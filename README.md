@@ -4,7 +4,13 @@
 
 [Mysql 索引](./Mysql/mysql-index.md)
 
+[Mysql 锁](./Mysql/mysql-lock.md)
 
+[Mysql 事务](./Mysql/mysql-trans.md)
+
+[Mysql 日志](./Mysql/mysql-logs.md)
+
+[Mysql 问题列表](./Mysql/questions.md)
 
 ## Kafka
 
