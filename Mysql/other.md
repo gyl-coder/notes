@@ -530,4 +530,36 @@ dbname >d:/dbname_db.sql
 -d 没有数据 
 --add-drop-table 在每个 create 语句之前增加一个 drop table
 ```
+=======
+## 关于数据库自增ID
 
+一张表，里面有 ID 自增主键，当 insert 了 17 条记录之后，删除了第 15,16,17 条记录， 再把 Mysql 重启，再 insert 一条记录，这条记录的 ID 是 18 还是 15 ？
+- 如果表的类型是 MyISAM，那么是 18 因为 MyISAM 表会把自增主键的最大 ID 记录到数据文件里，重启 MySQL 自增主键的最大 ID 也不会丢失 
+- 如果表的类型是 InnoDB，那么是 15 InnoDB 表只是把自增主键的最大 ID 记录到内存中，所以重启数据库或者是对表进行 OPTIMIZE 操作，都会导致最大 ID 丢失
+
+## 与 Oracle 相比，Mysql 有什么优势？ 
+
+- Mysql 是开源软件，随时可用，无需付费。 
+- Mysql 是便携式的。操作简单、部署方便
+- 带有命令提示符的 GUI。 
+- Mysql 的引擎是插件式
+
+## mysql中float、double、decimal的区别
+
+浮点数以 8 位精度存储在 FLOAT 中，并且有四个字节。 
+
+浮点数存储在 DOUBLE 中，精度为 18 位，有八个字节。
+
+float类型表示单精度浮点数值，double类型表示双精度浮点数值，float和double都是浮点型，而decimal是定点型；
+
+MySQL 浮点型和定点型可以用类型名称后加（M，D）来表示，M表示该值的总共长度，D表示小数点后面的长度，M和D又称为精度和标度，如float(5,2)的 可显示为999.99，MySQL保存值时会进行四舍五入，如果插入999.009，则结果为999.01。
+
+float和double在不指定精度时，默认会按照实际的精度来显示，而DECIMAL在不指定精度时，默认整数为10，小数为0。
+
+float和double求SUM的结果都是不精确的，只有decimal求SUM得到的是精准数值：
+
+所以，decimal 类型是适合财务和货币计算的128位数据类型。
+
+## LENGTH()与CHAR_LENGTH()区别
+
+无论是LENGTH()还是CHAR_LENGTH()都是为了统计字符串的长度。只不过，LENGTH()是按照字节来统计的，CHAR_LENGTH()是按照字符来统计的。例如：一个包含5个字符且每个字符占两个字节的字符串而言，LENGTH()返回长度10，CHAR_LENGTH()返回长度是5；如果对于单字节的字符，则两者返回结果相同。
