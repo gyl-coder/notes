@@ -38,3 +38,13 @@
 
 [Kafka有哪几处地方有分区分配的概念？简述大致的过程及原理](https://gyl-coder.top/kafka/kafka-partition-alocation/)
 
+## Java 基础
+
+1. Java 中的几种基本数据类型是什么？对应的包装类型是什么？各自占用多少字节呢？
+2. `String` `、 StringBuffer` 和 `StringBuilder` 的区别是什么? `String` 为什么是不可变的?
+3. == 与 equals?hashCode 与 equals ?
+4. Java 反射？反射有什么缺点？你是怎么理解反射的（为什么框架需要反射）？
+5. 谈谈对 Java 注解的理解，解决了什么问题？
+6. Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？
+7. 内部类了解吗？匿名内部类了解吗？
+8. BIO,NIO,AIO 有什么区别?
