@@ -34,6 +34,12 @@ Spring Aop知识点总结：https://leetcode-cn.com/circle/discuss/rg1taK/
 
 https://leetcode-cn.com/circle/discuss/2JG7nY/
 
+面试自测： https://mp.weixin.qq.com/s/PAERD0EHUXVjhZWAj8cMVg
+
+https://www.cnblogs.com/cxhfuujust/p/11720264.html
+
+![](./img/java/31.png)
+
 
 
 

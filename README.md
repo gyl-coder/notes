@@ -48,3 +48,5 @@
 6. Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？
 7. 内部类了解吗？匿名内部类了解吗？
 8. BIO,NIO,AIO 有什么区别?
+
+红黑树：https://tech.meituan.com/2016/12/02/redblack-tree.html
