@@ -756,7 +756,13 @@ p1:西安 p2:北京
 
 ## Java 反射
 
+https://zhuanlan.zhihu.com/p/142593317
+
 JAVA 反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性（通过**字节码文件**找到其类中的方法和属性）；这种动态获取的信息以及动态调用对象的方法的功能称为 java 语言的反射机制。
+
+**原理：**
+
+Java代码在编译之后会生成字节码文件（class文件），反射通过字节码文件找到相应的属性和方法。
 
 **反射机制优缺点**
 
@@ -1210,3 +1216,8 @@ Java 代码在编译过程中 ，我们即使不处理不受检查异常也可�
 
 1. **适用范围（资源的定义）：** 任何实现 `java.lang.AutoCloseable`或者 `java.io.Closeable` 的对象
 2. **关闭资源和 final 的执行顺序：** 在 `try-with-resources` 语句中，任何 catch 或 finally 块在声明的资源关闭后运行
+
+## 内部类
+
+https://github.com/Ccww-lx/JavaCommunity/blob/master/doc/javabase/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E8%AE%A9%E4%BD%A0%E5%BD%BB%E5%BA%95%E4%BA%86%E8%A7%A3Java%E5%86%85%E9%83%A8%E7%B1%BB.md
+

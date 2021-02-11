@@ -79,3 +79,12 @@ Spring Bean 中所说的作用域，在配置文件中即是“**scope**”
 - `@Repository` : 对应持久层即 Dao 层，主要用于数据库相关操作。
 - `@Service` : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao层。
 - `@Controller` : 对应 Spring MVC 控制层，主要用于接受用户请求并调用 Service 层返回数据给前端页面。
+
+
+
+## 请详细描述 spring mvc 处理请求的全流程
+
+
+
+## spring 装载bean的流程
+

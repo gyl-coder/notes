@@ -766,6 +766,12 @@ synchronized 不支持condition
 
 Reentrantlock 可以通过 condition 来实现精确唤醒，而不是像synchronized 一样要么随即唤醒一个线程要么唤醒所有线程。
 
+## Synchronized 什么情况是对象锁？ 什么时候是全局锁？
+
+对象锁：synchronized(this)  以及非static的synchronized方法 
+
+全局锁：synchronized 静态方法也相当于全局锁
+
 ## 谈谈 synchronized 和 ReentrantLock 的区别
 
 #### 两者都是可重入锁
@@ -1793,6 +1799,12 @@ AtomicInteger 类主要利用 **CAS (compare and swap) + volatile 和 native 方
 
 CAS 的原理是拿期望的值和原本的一个值作比较，如果相同则更新成新的值。UnSafe 类的 objectFieldOffset() 方法是一个本地方法，这个方法是用来拿到“原来的值”的内存地址，返回值是 valueOffset。另外 value 是一个 volatile 变量，在内存中可见，因此 JVM 可以保证任何时刻任何线程总能拿到该变量的最新值。
 
+### AtomicInteger 为什么用CAS而不是synchronized
+
+synchronized采用的是悲观锁，是一种独占锁，独占锁就意味着 其他线程只能依靠阻塞[就是其他线程不停的询问]来等待线程释放锁。而在 CPU 转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起 CPU 频繁的上下文切换导致效率很低
+
+CAS采用的是一种乐观锁的机制，它不会阻塞任何线程，所以在效率上，它会比 synchronized 要高。所谓乐观锁就是：每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。
+
 ### AtomicLong 可否被 LongAdder 替代？
 
 有了更高效的 `LongAdder`，那` AtomicLong` 可否不使用了呢？是否凡是用到 `AtomicLong `的地方，都可以用` LongAdder `替换掉呢？答案是不是的，这需要区分场景。
@@ -1991,6 +2003,22 @@ https://segmentfault.com/a/1190000037600050
 https://mp.weixin.qq.com/s/w5MRjG59Sjnwi5g4lCEo5w
 
 https://blog.csdn.net/dl674756321/article/details/100155641
+
+
+
+
+
+阻塞队列的作用？
+
+使用无界阻塞队列会出现什么问题
+
+线程池有用过吗？都有哪些参数？底层如何实现？
+
+threadlocal 底层如何实现？ 写一个例子呗？
+
+volitile工作原理
+
+cas知道如何实现的吗？
 
 
 

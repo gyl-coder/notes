@@ -36,7 +36,9 @@ https://leetcode-cn.com/circle/discuss/2JG7nY/
 
 面试自测： https://mp.weixin.qq.com/s/PAERD0EHUXVjhZWAj8cMVg
 
-https://www.cnblogs.com/cxhfuujust/p/11720264.html
+https://www.cnblogs.com/cxhfuujust/p/11720264.html ， https://blog.csdn.net/yowasa/article/details/81320795
+
+
 
 ![](./img/java/31.png)
 
@@ -45,6 +47,40 @@ https://www.cnblogs.com/cxhfuujust/p/11720264.html
 
 
 ## Java
+
+### 集合相关
+
+- [ ] Java 容器有哪些？ 哪些是同步容器？ 哪些是并发容器？
+
+
+
+HashMap ConcurrentHashMap的区别？
+
+ArrayList的扩容机制？
+
+HashMap 的底层实现、JDK 1.8 的时候为啥将链表转换成红黑树？HashMap 的负载因子
+
+ConcurrentHashMap的底层实现
+
+什么 ConcurrentHashMap 的读操作不需要加锁？
+
+HashMap，LinkedHashMap，TreeMap 有什么区别？HashMap ，TreeMap，
+
+有哪些集合是线程不安全的，又有哪些集合是线程不安全的？怎么解决呢？ 线程安全的集合类.
+
+什么是快速失败(fail-fast)、能举个例子吗？什么是安全失败(fail-safe)呢？
+
+HashMap 多线程操作导致死循环问题异常
+
+vector 底层实现
+
+map, hashmap 底层实现
+
+map 的 key 如果是结构体需要注意什么问题
+
+hash冲突如何解决
+
+
 
 - [x] java的异常体系介绍一下
 
@@ -183,33 +219,7 @@ interrupt，interrupted与isInterrupted方法的区别? 如何停止一个正在
 
 线程怎么同步
 
-### 集合
 
-HashMap ConcurrentHashMap的区别？
-
-ArrayList的扩容机制？
-
-HashMap 的底层实现、JDK 1.8 的时候为啥将链表转换成红黑树？HashMap 的负载因子
-
-ConcurrentHashMap的底层实现
-
-什么 ConcurrentHashMap 的读操作不需要加锁？
-
-HashMap，LinkedHashMap，TreeMap 有什么区别？HashMap ，TreeMap，
-
-有哪些集合是线程不安全的，又有哪些集合是线程不安全的？怎么解决呢？ 线程安全的集合类.
-
-什么是快速失败(fail-fast)、能举个例子吗？什么是安全失败(fail-safe)呢？
-
-HashMap 多线程操作导致死循环问题异常
-
-vector 底层实现
-
-map, hashmap 底层实现
-
-map 的 key 如果是结构体需要注意什么问题
-
-hash冲突如何解决
 
 ## 设计模式
 
