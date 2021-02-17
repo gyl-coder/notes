@@ -1,3 +1,8 @@
+- [10. 简单介绍一下 bean;知道 Spring 的 bean 的作用域与生命周期吗?](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md#10-简单介绍一下-bean知道-spring-的-bean-的作用域与生命周期吗)
+- [11. Spring 中的事务传播行为了解吗?TransactionDefinition 接口中哪五个表示隔离级别的常量?](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md#11-spring-中的事务传播行为了解吗transactiondefinition-接口中哪五个表示隔离级别的常量) - [事务传播行为](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md#事务传播行为) - [隔离级别](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md#隔离级别)
+- [12. SpringMVC 原理了解吗?](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md#12-springmvc-原理了解吗)
+- [13. Spring AOP IOC 实现原理](https://github.com/Snailclimb/JavaGuide/blob/master/docs/essential-content-for-interview/PreparingForInterview/美团面试常见问题总结.md#13-spring-aop-ioc-实现原理)
+
 ## IOC  AOP  DI 
 
 https://gyl-coder.top/spring/spring-ioc-aop/
@@ -88,3 +93,4 @@ Spring Bean 中所说的作用域，在配置文件中即是“**scope**”
 
 ## spring 装载bean的流程
 
+- 

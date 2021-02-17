@@ -1,12 +1,18 @@
+
+
+[TOC]
+
+
+
 ## Java 容器有哪些？ 哪些是同步容器？ 哪些是并发容器？
 
 https://juejin.cn/post/6844903954719965192
 
 Java 容器主要分两种：Collection 和 Map，Collection 是用于存储对象的集合，Map是用于存储键值对的集合。 其中Collection又可以分为List 和 Set两种集合。
 
-实现List接口的集合主要有：ArrayList，Vector（Stack），LinkedList
+实现List接口的集合主要有：ArrayList，LinkedList，Vector（Stack）
 
-实现Set接口的集合主要有：HashSet，TreeSet，LinkedSet
+实现Set接口的集合主要有：HashSet，LinkedSet，TreeSet
 
 实现map接口的集合主要有：HashMap，LinkedHashMap，TreeMap，HashTable
 
@@ -53,7 +59,7 @@ Java 集合类提供了一套设计良好的支持对一组对象进行操作的
 
 克隆（cloning）或者序列化（serialization）的语义和含义是跟具体的实现相关的。因此应该由集合类的具体实现类来决定如何被克隆或者序列化
 
-### 1.4 集合框架中的泛型有什么优点？
+### 集合框架中的泛型有什么优点？
 
 Java5 引入了泛型，所有的集合接口和实现都大量地使用它。泛型允许我们为集合提供一个可以容纳的对象类型。因此，如果你添加其它类型的任何元素，它会在编译时报错。这避免了在运行时出现 ClassCastException，因为你将会在编译时得到报错信息。
 
@@ -61,7 +67,7 @@ Java5 引入了泛型，所有的集合接口和实现都大量地使用它。�
 
 - 编译时类型检查
 - 使代码整洁
-- 运行时不会产生类型检查相关的字节码指令
+- **运行时不会产生类型检查相关的字节码指令**
 
 ## Collection 和 Collections 的区别？
 
@@ -71,8 +77,6 @@ Java5 引入了泛型，所有的集合接口和实现都大量地使用它。�
 ## 什么是迭代器(Iterator)？
 
 Iterator 接口提供了很多对集合元素进行迭代的方法。每一个集合类都包含了可以返回迭代器实例的 迭代方法。迭代器可以在迭代的过程中删除底层集合的元素。
-
-克隆(cloning)或者是序列化(serialization)的语义和含义是跟具体的实现相关的。因此，应该由集合类的具体实现来决定如何被克隆或者是序列化。
 
 ### Iterator和ListIterator的区别是什么？
 
@@ -84,21 +88,27 @@ Iterator 接口提供了很多对集合元素进行迭代的方法。每一个�
 
 ## fail-fast
 
-fail-fast 机制是java集合(Collection)中的一种错误机制。当多个线程对同一个集合的内容进行操作时，就可能会产生fail-fast事件。例如：当某一个线程A通过iterator去遍历某集合的过程中，若该集合的内容被其他线程所改变了；那么线程A访问集合时，就会抛出ConcurrentModificationException异常，产生fail-fast事件。
-
-**快速失败（fail—fast）**
-在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的内容进行了修改（增加、删除、修改），则会抛出Concurrent Modification Exception。
+fail-fast 机制是**Java集合**(Collection)中的一种**错误机制**。 在用迭代器遍历一个集合对象时，如果遍历过程中对集合对象的结构进行了修改（增加、删除），则会抛出**Concurrent Modification Exception**（并发修改异常）。
 
 **原理：**迭代器在遍历时直接访问集合中的内容，并且在遍历过程中使用一个 modCount 变量。集合在被遍历期间如果内容发生变化，就会改变modCount的值。每当迭代器使用hashNext()/next()遍历下一个元素之前，都会检测modCount变量是否为expectedmodCount值，是的话就返回遍历；否则抛出异常，终止遍历。
 注意：这里异常的抛出条件是检测到 modCount！=expectedmodCount 这个条件。如果集合发生变化时修改modCount值刚好又设置为了expectedmodCount值，则异常不会抛出。因此，不能依赖于这个异常是否抛出而进行并发操作的编程，这个异常只建议用于检测并发修改的bug。
 场景：java.util包下的集合类都是快速失败的，不能在多线程下发生并发修改（迭代过程中被修改）。
 
+**如何避免fail-fast抛异常？**
+
+1.如果非要在遍历的时候修改集合，那么建议用迭代器的remove等方法，而不是用集合的remove等方法。(老实遵守阿里巴巴java开发规范……)
+
+2.如果是并发的环境，那还要对Iterator对象加锁；也可以直接使用Collections.synchronizedList。
+
+3.CopyOnWriteArrayList（采用fail-safe）
+
 **安全失败（fail—safe）**
 采用安全失败机制的集合容器，在遍历时不是直接在集合内容上访问的，而是先复制原有集合内容，在拷贝的集合上进行遍历。
 
-**原理：**由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，所以不会触发Concurrent Modification Exception。
+**原理：**由于迭代时是对原集合的拷贝进行遍历，所以在遍历过程中对原集合所作的修改并不能被迭代器检测到，所以不会触发Concurrent Modification Exception。虽然fail-safe不会抛出异常，但存在以下缺点
 
-缺点：基于拷贝内容的优点是避免了Concurrent Modification Exception，但同样地，迭代器并不能访问到修改后的内容，即：迭代器遍历的是开始遍历那一刻拿到的集合拷贝，在遍历期间原集合发生的修改迭代器是不知道的。
+1. 复制时需要额外的空间和时间上的开销。
+2. 不能保证遍历的是最新内容。
 
 场景：java.util.concurrent包下的容器都是安全失败，可以在多线程下并发使用，并发修改。
 
@@ -116,10 +126,17 @@ Enumeration 速度是 Iterator 的2倍，同时占用更少的内存。但是，
 
 ## comparable 和 Comparator 的区别
 
-- `comparable` 接口实际上是出自`java.lang`包 它有一个 `compareTo(Object obj)`方法用来排序
-- `comparator`接口实际上是出自 java.util 包它有一个`compare(Object obj1, Object obj2)`方法用来排序
+Comparable和Comparator都是用来实现集合中元素的比较、排序的。
 
-一般我们需要对一个集合使用自定义排序时，我们就要重写`compareTo()`方法或`compare()`方法，当我们需要对某一个集合实现两种排序方式，比如一个 song 对象中的歌名和歌手名分别采用一种排序方法的话，我们可以重写`compareTo()`方法和使用自制的`Comparator`方法或者以两个 Comparator 来实现歌名排序和歌星名排序，第二种代表我们只能使用两个参数版的 `Collections.sort()`.
+- Comparable是在集合内部定义的方法实现的排序，位于java.lang 下。
+
+- Comparator是在集合外部实现的排序，位于java.util 下。
+
+Comparable是一个对象本身就已经支持自比较所需要实现的接口，如String、Integer自己就实现了Comparable接口，可完成比较大小操作。自定义类要在加入list容器中后能够排序，也可以实现Comparable接口，在用Collections类的sort方法排序时若不指定Comparator，那就以自然顺序排序。所谓自然顺序就是实现Comparable接口设定的排序方式。
+
+Comparator是一个专用的比较器，当这个对象不支持自比较或者自比较函数不能满足要求时，可写一个比较器来完成两个对象之间大小的比较。Comparator体现了一种策略模式(strategy design pattern)，就是不改变对象自身，而用一个策略对象(strategy object)来改变它的行为。总而言之Comparable是自已完成比较，Comparator是外部程序实现比较。
+
+链接：https://juejin.cn/post/6844903603258261518
 
 ```java
 ArrayList<Integer> arrayList = new ArrayList<Integer>();
@@ -231,77 +248,7 @@ OutPut :
 30-张三
 ```
 
-## Set
-
-Set接口继承了Collection接口。Set集合中不能包含重复的元素，每个元素必须是唯一的。你只需将元素加入set中，重复的元素会自动移除。有三种常见的Set实现——HashSet, TreeSet和LinkedHashSet。如果你需要一个访问快速的Set，你应该使用HashSet；当你需要一个排序的Set，你应该使用TreeSet；当你需要记录下插入时的顺序时，你应该使用LinedHashSet。
-
-### HashSet
-
-HashSet是是基于 HashMap 实现的，底层采用 HashMap 来保存元素,所以它不保证set 的迭代顺序；特别是它不保证该顺序恒久不变。add()、remove()以及contains()等方法都是复杂度为O(1)的方法。由于HashMap中key不可重复，所以HashSet元素不可重复。可以存储null元素，是线程不安全的。
-
-### TreeSet
-
-TreeSet是一个有序集，基于TreeMap实现，是线程不安全的。
-
-TreeSet底层采用TreeMap存储，构造器启动时新建TreeMap。TreeSet存储元素实际为TreeMap存储的键值对为<key,PRESENT>的key;，PRESENT为固定对象：private static final Object PRESENT = new Object().
-
-TreeSet支持两种两种排序方式，通过不同构造器调用实现。
-
-### LinkedHashSet
-
-LinkedHashSet介于HashSet和TreeSet之间。哈希表和链接列表实现。基本方法的复杂度为O(1)。
-
-LinkedHashSet 是 Set 的一个具体实现，其维护着一个运行于所有条目的双重链接列表。此链接列表定义了迭代顺序，该迭代顺序可为插入顺序或是访问顺序。
-
-LinkedHashSet 继承于 HashSet，并且其内部是通过 LinkedHashMap 来实现的。有点类似于我们之前说的LinkedHashMap 其内部是基于 Hashmap 实现的一样。
-
-如果我们需要迭代的顺序为插入顺序或者访问顺序，那么 LinkedHashSet 是需要你首先考虑的。
-
-LinkedHashSet 底层使用 LinkedHashMap 来保存所有元素，因为继承于 HashSet，所有的方法操作上又与 HashSet 相同，因此 LinkedHashSet 的实现上非常简单，只提供了四个构造方法，并通过传递一个标识参数，调用父类的构造器，底层构造一个 LinkedHashMap 来实现，在相关操作上与父类 HashSet 的操作相同，直接调用父类 HashSet 的方法即可。
-
-### 无序性和不可重复性的含义是什么
-
-1、什么是无序性？无序性不等于随机性 ，无序性是指存储的数据在底层数组中并非按照数组索引的顺序添加 ，而是根据数据的哈希值决定的。
-2、什么是不可重复性？不可重复性是指添加的元素按照 equals()判断时 ，返回 false，需要同时重写 equals()方法和 HashCode()方法。
-
-### 比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同
-
-HashSet 是 Set 接口的主要实现类 ，HashSet 的底层是 HashMap，线程不安全的，可以存储 null 值；
-
-LinkedHashSet 是 HashSet 的子类，能够按照添加的顺序遍历；
-
-TreeSet 底层使用红黑树，能够按照添加元素的顺序进行遍历，排序的方式有自然排序和定制排序。
-
-### Set中的元素不能重复，如何实现？
-
-HashSet实现了Set接口底层基于HashMap来实现，在将一个key-value对放入HashMap中时，首先根据key的hashCode()返回值决定该Entry的存储位置，如果两个key的hash值相同，那么它们的存储位置相同。如果这个两个key的equals比较返回true。那么新添加的Entry的value会覆盖原来的Entry的value，key不会覆盖。且HashSet中add()中 map.put(e, PRESENT)==null 为false，HashSet添加元素失败。因此,如果向HashSet中添加一个已经存在的元素，新添加的集合元素不会覆盖原来已有的集合元素。
-
-### HashSet 和 TreeSet 有什么区别？
-
-HashSet 是由一个 hash 表来实现的，因此，它的元素是无序的。add()，remove()，contains()方法的时间复杂度是 O(1)。
-
-另一方面，TreeSet 是由一个树形的结构来实现的，它里面的元素是有序的。因此，add()，remove()，contains() 方法的时间复杂度是 O(logn)。
-
 ## List
-
-### Vector
-
-`Vector`，一个可变长的数组，底层实现与 ArrayList 大同小异，但`Vector`是同步的（线程安全），`Vector`的很多方法之前都加了关键字`synchronized`，所以是线程安全的。
-
-初始容量为10， 默认扩展2倍
-
-```java
-int newCapacity = oldCapacity + ((capacityIncrement > 0) ?
-                                  capacityIncrement : oldCapacity);
-```
-
-### LinkedList
-
-LinkedList是一个实现了List接口和Deque接口的双端链表。 LinkedList底层的链表结构使它支持高效的插入和删除操作，另外它实现了Deque接口，使得LinkedList类也具有队列的特性;允许包含null值。 LinkedList不是线程安全的，如果想使LinkedList变成线程安全的，可以调用静态类Collections类中的synchronizedList方法：
-
-List list=Collections.synchronizedList(new LinkedList(...));
-
-LinkedList是一种可以在任何位置进行高效地插入和移除操作的有序序列，它是基于双向链表实现的。内部有三个变量，size表示链表中元素的个数， first指向链表头部，last指向链表尾部。
 
 ### ArrayList
 
@@ -457,37 +404,77 @@ LinkedList 底层是基于双向链表来进行数据存储的，针对数据的
 
 ArrayList 和Vector是采用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，都允许直接序号索引元素，但是插入数据要设计到数组元素移动等内存操作，所以索引数据快插入数据慢，Vector由于使用了synchronized方法（线程安全）所以性能上比ArrayList要差，LinkedList使用双向链表实现存储，按序号索引数据需要进行向前或向后遍历，但是插入数据时只需要记录本项的前后项即可，所以插入数度较快！
 
-### Iterater和ListIterator之间有什么区别？
+### LinkedList
 
-我们可以使用Iterator来遍历Set和List集合，而ListIterator只能遍历List。Iterator只可以向前遍历，而LIstIterator可以双向遍历。ListIterator从Iterator接口继承，然后添加了一些额外的功能，比如添加一个元素、替换一个元素、获取前面或后面元素的索引位置。
+LinkedList是一个实现了List接口和Deque接口的双端链表。 LinkedList底层的链表结构使它支持高效的插入和删除操作，另外它实现了Deque接口，使得LinkedList类也具有队列的特性;允许包含null值。 LinkedList不是线程安全的，如果想使LinkedList变成线程安全的，可以调用静态类Collections类中的synchronizedList方法：
+
+List list=Collections.synchronizedList(new LinkedList(...));
+
+LinkedList是一种可以在任何位置进行高效地插入和移除操作的有序序列，它是基于双向链表实现的。内部有三个变量，size表示链表中元素的个数， first指向链表头部，last指向链表尾部。
+
+### Vector
+
+`Vector`，一个可变长的数组，底层实现与 ArrayList 大同小异，但`Vector`是同步的（线程安全），`Vector`的很多方法之前都加了关键字`synchronized`，所以是线程安全的。
+
+初始容量为10， 默认扩展2倍
+
+```java
+int newCapacity = oldCapacity + ((capacityIncrement > 0) ?
+                                  capacityIncrement : oldCapacity);
+```
+
+## Set
+
+Set接口继承了Collection接口。Set集合中不能包含重复的元素，每个元素必须是唯一的。你只需将元素加入set中，重复的元素会自动移除。有三种常见的Set实现——HashSet, TreeSet和LinkedHashSet。如果你需要一个访问快速的Set，你应该使用HashSet；当你需要一个排序的Set，你应该使用TreeSet；当你需要记录下插入时的顺序时，你应该使用LinedHashSet。
+
+### HashSet
+
+HashSet是是基于 HashMap 实现的，底层采用 HashMap 来保存元素,所以它不保证set 的迭代顺序；特别是它不保证该顺序恒久不变。add()、remove()以及contains()等方法都是复杂度为O(1)的方法。由于HashMap中key不可重复，所以HashSet元素不可重复。可以存储null元素，是线程不安全的。
+
+### TreeSet
+
+TreeSet是一个有序集，基于TreeMap实现，是线程不安全的。
+
+TreeSet底层采用TreeMap存储，构造器启动时新建TreeMap。TreeSet存储元素实际为TreeMap存储的键值对为<key,PRESENT>的key;，PRESENT为固定对象：private static final Object PRESENT = new Object().
+
+TreeSet支持两种两种排序方式（自然排序和定制排序），通过不同构造器调用实现。
+
+### LinkedHashSet
+
+LinkedHashSet介于HashSet和TreeSet之间。哈希表和链接列表实现。基本方法的复杂度为O(1)。
+
+LinkedHashSet 是 Set 的一个具体实现，其维护着一个运行于所有条目的双重链接列表。此链接列表定义了迭代顺序，该迭代顺序可为插入顺序或是访问顺序。
+
+LinkedHashSet 继承于 HashSet，并且其内部是通过 LinkedHashMap 来实现的。有点类似于我们之前说的LinkedHashMap 其内部是基于 Hashmap 实现的一样。
+
+如果我们需要迭代的顺序为插入顺序或者访问顺序，那么 LinkedHashSet 是需要你首先考虑的。
+
+LinkedHashSet 底层使用 LinkedHashMap 来保存所有元素，因为继承于 HashSet，所有的方法操作上又与 HashSet 相同，因此 LinkedHashSet 的实现上非常简单，只提供了四个构造方法，并通过传递一个标识参数，调用父类的构造器，底层构造一个 LinkedHashMap 来实现，在相关操作上与父类 HashSet 的操作相同，直接调用父类 HashSet 的方法即可。
+
+### 无序性和不可重复性的含义是什么
+
+1、什么是无序性？无序性不等于随机性 ，无序性是指存储的数据在底层数组中并非按照数组索引的顺序添加 ，而是根据数据的哈希值决定的。
+2、什么是不可重复性？不可重复性是指添加的元素按照 equals()判断时 ，返回 false，需要同时重写 equals()方法和 HashCode()方法。
+
+### 比较 HashSet、LinkedHashSet 和 TreeSet 三者的异同
+
+HashSet 是 Set 接口的主要实现类 ，HashSet 的底层是 HashMap，线程不安全的，可以存储 null 值；
+
+LinkedHashSet 是 HashSet 的子类，能够按照添加的顺序遍历；
+
+TreeSet 底层使用红黑树，能够按照添加元素的顺序进行遍历，排序的方式有自然排序和定制排序。
+
+### Set中的元素不能重复，如何实现？
+
+HashSet实现了Set接口底层基于HashMap来实现，在将一个key-value对放入HashMap中时，首先根据key的hashCode()返回值决定该Entry的存储位置，如果两个key的hash值相同，那么它们的存储位置相同。如果这个两个key的equals比较返回true。那么新添加的Entry的value会覆盖原来的Entry的value，key不会覆盖。且HashSet中add()中 map.put(e, PRESENT)==null 为false，HashSet添加元素失败。因此,如果向HashSet中添加一个已经存在的元素，新添加的集合元素不会覆盖原来已有的集合元素。
+
+### HashSet 和 TreeSet 有什么区别？
+
+HashSet 是由一个 hash 表来实现的，因此，它的元素是无序的。add()，remove()，contains()方法的时间复杂度是 O(1)。
+
+另一方面，TreeSet 是由一个树形的结构来实现的，它里面的元素是有序的。因此，add()，remove()，contains() 方法的时间复杂度是 O(logn)。
 
 ## Map
-
-### LinkedHashMap
-
-LinkedHashMap 继承自 HashMap，在 HashMap 基础上，通过维护一条双向链表，解决了 HashMap 不能随时保持遍历顺序和插入顺序一致的问题。除此之外，LinkedHashMap 对访问顺序也提供了相关支持。在一些场景下，该特性很有用，比如缓存。在实现上，LinkedHashMap 很多方法直接继承自 HashMap，仅为维护双向链表覆写了部分方法。
-
-LinkedHashMap继承了HashMap，内部静态类Entry继承了HashMap的Entry，但是LinkedHashMap.Entry多了两个字段：before和after，before表示在本节点之前添加到LinkedHashMap的那个节点，after表示在本节点之后添加到LinkedHashMap的那个节点，这里的之前和之后指时间上的先后顺序。
-
-默认情况下，LinkedHashMap的迭代顺序是按照插入节点的顺序。也可以通过改变accessOrder参数的值，使得其遍历顺序按照访问顺序输出。
-
-#### 添加
-
-LinkedHashMap在添加元素的时候，依旧使用的是HashMap中的put方法。不同的是LinkedHashMap重写了newNode()方法在每次构建新节点时，通过linkNodeLast(p);将新节点链接在内部双向链表的尾部。
-
-#### 查找
-
-LinkedHashMap重写了get()和getOrDefault()方法默认情况下，LinkedHashMap是按插入顺序维护链表。不过如果我们在初始化 LinkedHashMap时，指定 accessOrder参数为 true，即可让它按访问顺序维护链表。访问顺序的原理是，当我们调用get/getOrDefault/replace等方法时，会将这些方法访问的节点移动到链表的尾部。
-
-https://github.com/Ccww-lx/JavaCommunity/blob/master/doc/javabase/collection/LinkedHashMap%20%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90.md
-
-https://gyl-coder.top/java/collection/LinkedHashMap/
-
-### TreeMap
-
-TreeMap最早出现在JDK 1.2中，是 Java 集合框架中比较重要一个的实现。TreeMap 底层基于红黑树实现，可保证在log(n)时间复杂度内完成 containsKey、get、put 和 remove 操作，效率很高。另一方面，由于 TreeMap 基于红黑树实现，这为 TreeMap 保持键的有序性打下了基础。总的来说，TreeMap 的核心是红黑树，其很多方法也是对红黑树增删查基础操作的一个包装。
-
-https://github.com/Ccww-lx/JavaCommunity/blob/master/doc/javabase/collection/TreeMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md
 
 ### HashMap
 
@@ -521,7 +508,7 @@ static int indexFor(int h, int length) {
 
 > 对于任意给定的对象，只要它的`hashCode()`返回值相同，那么程序调用方法一所计算得到的`Hash`码值总是相同的。我们首先想到的就是把`hash`值对数组长度取模运算，这样一来，元素的分布相对来说是比较均匀的。但是，模运算的消耗还是比较大的，这里我们用 `&` 位运算来优化效率。
 >
-> 这个方法非常巧妙，它通过`h & (table.length -1)`来得到该对象的保存位，而`HashMap`底层数组的长度总是 ***\*2 的 n 次方\****，这是`HashMap`在速度上的优化。当 length 总是 2 的 n 次方时，`h& (length-1)`运算等价于对 length 取模，也就是`h%length`，但是 ***\*&\**** 比 ***\*%\**** 具有更高的效率。
+> 这个方法非常巧妙，它通过`h & (table.length -1)`来得到该对象的保存位，而`HashMap`底层数组的长度总是 ***\**2 的 n 次方\*****，这是`HashMap`在速度上的优化。当 length 总是 2 的 n 次方时，`h& (length-1)`运算等价于对 length 取模，也就是`h%length`，但是 ***\*&\**** 比 ***\*%\**** 具有更高的效率。
 >
 > 在`JDK1.8`的实现中，优化了高位运算的算法，通过`hashCode()`的高 16 位异或低 16 位实现的：(h = k.hashCode()) ^ (h >>> 16)，主要是从速度、功效、质量来考虑的，这么做可以 Node 数组 table 的 length 比较小的时候，也能保证考虑到高低 Bit 都参与到 Hash 的计算中，同时不会有太大的开销。
 
@@ -649,10 +636,7 @@ jdk 1.7  put()方法
 - 遍历下标对应的链表,匹配hash值和key的值,
 - 如果存在,则覆盖,返回旧值
 - 如果不存在,新添加一个,返回null
-- 如果扩容,是先扩容之后再把数据添加进新扩容的数组中
-  如果数组中元素的容量超过阈值,会触发扩容,
-  扩容是先把源数组放进一个临时数组中,获取老数组的长度,通过老数组长度乘2获取新数组长度,并创建新数组,
-  把临时数组中的数据通过重新计算下表,存进扩容后的数组中.
+- 如果扩容,是先扩容之后再把数据添加进新扩容的数组中。如果数组中元素的容量超过阈值,会触发扩容,扩容是先把源数组放进一个临时数组中,获取老数组的长度,通过老数组长度乘2获取新数组长度,并创建新数组,把临时数组中的数据通过重新计算下表,存进扩容后的数组中。
 
 #### HashMap检测到hash冲突之后将元素插入到链表的头部还是尾部？
 
@@ -762,19 +746,59 @@ jdk1.7 头插法 + hashmap本来就不是线程安全的集合，所以导致该
 
 https://coolshell.cn/articles/9606.html
 
+### LinkedHashMap
+
+LinkedHashMap 继承自 HashMap，在 HashMap 基础上，通过维护一条双向链表，解决了 HashMap 不能随时保持遍历顺序和插入顺序一致的问题。除此之外，LinkedHashMap 对访问顺序也提供了相关支持。在一些场景下，该特性很有用，比如缓存。在实现上，LinkedHashMap 很多方法直接继承自 HashMap，仅为维护双向链表覆写了部分方法。
+
+LinkedHashMap继承了HashMap，内部静态类Entry继承了HashMap的Entry，但是LinkedHashMap.Entry多了两个字段：before和after，before表示在本节点之前添加到LinkedHashMap的那个节点，after表示在本节点之后添加到LinkedHashMap的那个节点，这里的之前和之后指时间上的先后顺序。
+
+默认情况下，LinkedHashMap的迭代顺序是按照插入节点的顺序。也可以通过改变accessOrder参数的值，使得其遍历顺序按照访问顺序输出。
+
+#### 添加
+
+LinkedHashMap在添加元素的时候，依旧使用的是HashMap中的put方法。不同的是LinkedHashMap重写了newNode()方法在每次构建新节点时，通过linkNodeLast(p);将新节点链接在内部双向链表的尾部。
+
+#### 查找
+
+LinkedHashMap重写了get()和getOrDefault()方法默认情况下，LinkedHashMap是按插入顺序维护链表。不过如果我们在初始化 LinkedHashMap时，指定 accessOrder参数为 true，即可让它按访问顺序维护链表。访问顺序的原理是，当我们调用get/getOrDefault/replace等方法时，会将这些方法访问的节点移动到链表的尾部。
+
+https://github.com/Ccww-lx/JavaCommunity/blob/master/doc/javabase/collection/LinkedHashMap%20%E6%BA%90%E7%A0%81%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90.md
+
+https://gyl-coder.top/java/collection/LinkedHashMap/
+
+### TreeMap
+
+TreeMap最早出现在JDK 1.2中，是 Java 集合框架中比较重要一个的实现。TreeMap 底层基于红黑树实现，可保证在log(n)时间复杂度内完成 containsKey、get、put 和 remove 操作，效率很高。另一方面，由于 TreeMap 基于红黑树实现，这为 TreeMap 保持键的有序性打下了基础。总的来说，TreeMap 的核心是红黑树，其很多方法也是对红黑树增删查基础操作的一个包装。
+
+https://github.com/Ccww-lx/JavaCommunity/blob/master/doc/javabase/collection/TreeMap%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md
+
 ### hashtable与hashmap
+
+**hashtable与hashmap**
 
 **相同点：**储存结构和实现基本相同，都是是实现的Map接口
 
-**不同点：**HashTable是同步的，HashMap是非同步的，需要同步的时候可以ConcurrentHashMap方法
+**不同点：**
 
-HashMap允许为null，HashTable不允许为null
+- Hashtable是线程安全，HashMap非线程安全。需要同步的时候可以ConcurrentHashMap方法。
 
-继承不同，HashMap继承的是AbstractMap，HashTable继承的是Dictionary
+- HashMap可以使用null作为key、value，并且null元素会计入size。Hashtable不允许null作为key、value，当出现null值会抛出异常。
 
-HashMap提供对key的Set进行遍历，因此它是fail-fast的，但HashTable提供对key的Enumeration进行遍历，它不支持fail-fast。
+- HashMap继承的是AbstractMap，HashTable继承的是Dictionary
 
-HashTable是一个遗留类，如果需要保证线程安全推荐使用CocurrentHashMap
+- HashMap提供对key的Set进行遍历，因此它是fail-fast的，但HashTable提供对key的Enumeration进行遍历，它不支持fail-fast。
+
+- HashTable是一个遗留类，如果需要保证线程安全推荐使用CocurrentHashMap
+
+- HashMap的初始容量为16，Hashtable初始容量为11，两者的填充因子默认都是0.75
+
+- HashMap扩容时是当前容量翻倍即：capacity\*2 Hashtable扩容时是容量翻倍+1即capacity\*2+1
+
+- HashMap的初始容量为16，Hashtable初始容量为11，两者的填充因子默认都是0.75
+
+- Hashtable计算hash是直接使用key的hashcode对table数组的长度直接进行取模。HashMap计算hash对key的hashcode进行了二次hash，以获得更好的散列值，然后对table数组长度取摸
+
+> Dictionary是一个抽象类，它直接继承于Object类，没有实现任何接口。Dictionary类是JDK 1.0的引入的。虽然Dictionary也支持“添加key-value键值对”、“获取value”、“获取大小”等基本操作，但它的API函数比Map少；而且Dictionary一般是通过Enumeration(枚举类)去遍历，Map则是通过Iterator(迭代器)去遍历。 然而‘由于Hashtable也实现了Map接口，所以，它既支持Enumeration遍历，也支持Iterator遍历。
 
 ### HashMap与TreeMap
 
@@ -824,14 +848,14 @@ Segment是一种可重入锁，是一种数组和链表的结构，一个Segment
 
 但在JDK1.8中摒弃了Segment分段锁的数据结构，基于CAS操作保证数据的获取以及使用synchronized关键字对相应数据段加锁来实现线程安全，这进一步提高了并发性。
 
-```
+```java
 static class Node<K,V> implements Map.Entry<K,V> {
         final int hash;
         final K key;
         volatile V val;  //使用了volatile属性
         volatile Node<K,V> next;  //使用了volatile属性
     	...
-    }
+}
 ```
 
 ConcurrentHashMap采用Node类作为基本的存储单元，每个键值对(key-value)都存储在一个Node中，使用了volatile关键字修饰value和next，保证并发的可见性。其中Node子类有：
@@ -846,16 +870,16 @@ ConcurrentHashMap中查找元素、替换元素和赋值元素都是基于`sun.m
 ```
 static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
         return (Node<K,V>)U.getObjectAcquire(tab, ((long)i << ASHIFT) + ABASE);
-    }
+}
 
-    static final <K,V> boolean casTabAt(Node<K,V>[] tab, int i,
-                                        Node<K,V> c, Node<K,V> v) {
-        return U.compareAndSetObject(tab, ((long)i << ASHIFT) + ABASE, c, v);
-    }
+static final <K,V> boolean casTabAt(Node<K,V>[] tab, int i,
+                                     Node<K,V> c, Node<K,V> v) {
+    return U.compareAndSetObject(tab, ((long)i << ASHIFT) + ABASE, c, v);
+}
 
-    static final <K,V> void setTabAt(Node<K,V>[] tab, int i, Node<K,V> v) {
-        U.putObjectRelease(tab, ((long)i << ASHIFT) + ABASE, v);
-    }
+static final <K,V> void setTabAt(Node<K,V>[] tab, int i, Node<K,V> v) {
+    U.putObjectRelease(tab, ((long)i << ASHIFT) + ABASE, v);
+}
 ```
 
 ### ConcurrentHashMap的put()方法
@@ -1105,11 +1129,6 @@ CopyOnWriteArrayList 是一个写时复制的容器，当我们往一个容器�
 > 如何理解 CopyOnWrite 思想？
 
 写时复制。就是在写的时候，拷贝一份原对象，只操作拷贝的对象，操作完后再覆盖原对象，保证 volatile 语义。
-
-> CopyOnWriteArrayList 的缺点是什么？
-
-1. 占用内存问题。因为 CopyOnWrite 的写时复制机制，所以在进行写操作的时候，内存里会同时驻扎两个对象的内存，旧的对象和新写入的对象，这样如果数据很大可能造成频繁的 GC。
-2. 数据一致性问题。因为 CopyOnWrite 容器支持读写分离，所以只能保证数据的最终一致性，不能保证实时一致性。
 
 > CopyOnWriteArrayList 在使用迭代器时是否有什么注意事项？
 
