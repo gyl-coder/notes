@@ -1,5 +1,85 @@
 [TOC]
 
+## 简述生产者消费者模型
+
+生产者-消费者模式的核心是一个**任务队列**，生产者线程生产任务，并将任务添加到任务队列中，而消费者线程从任务队列中获取任务并执行！
+
+**优点：**
+
+- 解耦
+- 支持异步，并且能够平衡生产者和消费者的速度差异
+
+
+
+## Java 如何高效进行数组拷贝
+
+https://blog.csdn.net/weixin_43896318/article/details/104645939
+
+https://zhuanlan.zhihu.com/p/37346162
+
+- System.arraycopy()
+- Arrays.copyOf()
+- clone
+- for循环逐一赋值
+
+> java.util.Arrays类中提供了一个copyOf()方法，通过这个方法可以实现数组复制。这个方法的原理是内部创建了一个数组对象，然后通过System.arraycopy来实现数组复制.
+>
+> System.arraycop方法是通过native方法,Java虚拟机内部实现的。
+
+## Java 是如何实现线程安全的，哪些数据结构是线程安全的？
+
+https://juejin.cn/post/6844903923116048397
+
+- **无状态实现**
+
+  > 在大多数情况下，多线程应用程序中的错误是由于多个线程之间共享状态不正确造成的。因此，我们要研究的第一种方法是使用**无状态**实现线程安全。
+
+- **不可变实现**
+
+  > 如果我们需要在不同的线程之间共享状态，我们可以通过使它们不可变来创建线程安全的类。
+  >
+  > 不变性是一个强大的、与语言无关的概念，它在 Java 中相当容易实现。 简单地说，**当一个类实例的内部状态在构造之后不能被修改时，它就是不可变的**。
+  >
+  > 例如：String类
+
+- **线程本地变量**
+
+  > 在面向对象程序设计中，对象实际上需要通过字段维护状态，并通过一个或多个方法实现行为。
+  >
+  > 如果我们实际上需要维护状态，**我们可以创建线程安全的类，通过使它们的字段线程本地化，这样这些类就不会在线程之间共享状态**。
+  >
+  > 我们可以通过简单地在 Thread类中定义私有字段来轻松地创建字段是线程本地的类。
+
+- **同步集合**
+
+  > 通过使用集合框架中包含的一组同步包装器，我们可以轻松地创建线程安全的集合。
+  >
+  > Collections.synchronizedCollection(**new** ArrayList<>());
+  >
+  > Collections.synchronizedMap(**new** ArrayList<>());
+  >
+  > Collections.synchronizedList(**new** ArrayList<>());
+  >
+  > Collections.synchronizedSet(**new** ArrayList<>());
+  >
+  > Vector, HashTable 
+
+- **并发集合**
+
+  > 除了同步集合，我们还可以使用并发集合来创建线程安全的集合。
+  >
+  > Java提供了Java.util.concurrent 包，它包含几个并发集合，比如 ConcurrentHashMap, CopyOnWriteArrayList, CopyOnWriteArraySet
+  >
+  > , ConcurrentHashMap, ConcurrentSkipListMap, ConcurrentSkipListSet
+
+- **原子对象**（无锁实现）
+
+  > 还可以使用 Java 提供的一组原子类(包括 AtomicInteger、 AtomicLong、 AtomicBoolean 和 AtomicReference)实现线程安全。
+
+- **synchronized & volatile**
+
+- **Lock**
+
 ## 什么是内存泄漏，怎么确定内存泄漏？
 
 **内存溢出：**简单地说内存溢出就是指**程序运行过程中申请的内存大于系统能够提供的内存，导致无法申请到足够的内存**，于是就发生了内存溢出。
@@ -1570,4 +1650,17 @@ Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上�
 
 ![](../img/java/2.png)
 
-## 
+## 成员变量和局部变量的区别?
+A:在类中的位置不同
+		成员变量：在类中方法外
+		局部变量：在方法定义中或者方法声明上
+	B:在内存中的位置不同
+		成员变量：在堆内存
+		局部变量：在栈内存
+	C:生命周期不同
+		成员变量：随着对象的创建而存在，随着对象的消失而消失
+		局部变量：随着方法的调用而存在，随着方法的调用完毕而消失
+	D:初始化值不同
+		成员变量：有默认初始化值
+		局部变量：没有默认初始化值，必须定义，赋值，然后才能使用。
+
