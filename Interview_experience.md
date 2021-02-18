@@ -59,12 +59,12 @@
 
 - [x] [470. 用 Rand7() 实现 Rand10()](https://leetcode-cn.com/problems/implement-rand10-using-rand7/)
 
-- [ ] [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
-- [ ] [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
-- [ ] [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
-- [ ] [112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
-- [ ] [113. 路径总和 II](https://leetcode-cn.com/problems/path-sum-ii/)
-- [ ] [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
+- [x] [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
+- [x] [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+- [x] [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+- [x] [112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
+- [x] [113. 路径总和 II](https://leetcode-cn.com/problems/path-sum-ii/)
+- [x] [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
 - [ ] [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
 - [ ] [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
 - [ ] [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
