@@ -1,3 +1,114 @@
+[TOC]
+
+## Java
+
+- [x] String 类能不能被继承？为什么？
+- [x] 实现单例设计模式（懒汉，饿汉）
+- [x] == 和 equals() 的区别？
+- [ ] 简述 BIO, NIO, AIO 的区别
+- [x] 简述 Java 的反射机制及其应用场景
+- [x] 什么是内存泄漏，怎么确定内存泄漏？
+- [x] 简述动态代理与静态代理
+
+- [x] java的异常体系介绍一下
+
+### 集合
+
+- [x] Java 容器有哪些？ 哪些是同步容器？ 哪些是并发容器？
+
+- [ ] HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？
+
+- [x] 集合类中的 List 和 Map 的线程安全版本是什么，如何保证线程安全的？
+
+- [ ] 简述 HashMap 和 TreeMap 的实现原理以及常见操作的时间复杂度
+
+
+
+### JVM 
+
+- [ ] Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？
+- [ ] 简述 JVM 的内存模型 JVM 内存是如何对应到操作系统内存的？
+- [ ] JVM 中内存模型是怎样的，简述新生代与老年代的区别？
+
+
+
+### 并发
+
+- [ ] volatile 关键字解决了什么问题，它的实现原理是什么？
+
+- [ ] synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？
+
+- [ ] ThreadLocal 实现原理是什么？
+- [ ] 简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点
+- [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
+- [ ] Java 线程和操作系统的线程是怎么对应的？Java线程是怎样进行调度的?
+
+
+
+## Spring 
+
+- [ ] spring mvc 流程
+
+- [ ] 简述 Spring AOP 的原理
+
+
+
+
+
+## 算法
+
+- [x] [470. 用 Rand7() 实现 Rand10()](https://leetcode-cn.com/problems/implement-rand10-using-rand7/)
+
+- [ ] [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
+- [ ] [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+- [ ] [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+- [ ] [112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
+- [ ] [113. 路径总和 II](https://leetcode-cn.com/problems/path-sum-ii/)
+- [ ] [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
+- [ ] [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+- [ ] [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
+- [ ] [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
+- [ ] [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+- [ ] [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)
+- [ ] [225. 用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/)
+- [ ] [232. 用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
+- [ ] [剑指 Offer 31. 栈的压入、弹出序列](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)
+- [ ] [189. 旋转数组](https://leetcode-cn.com/problems/rotate-array/)
+- [ ] [300. 最长递增子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+- [ ] [594. 最长和谐子序列](https://leetcode-cn.com/problems/longest-harmonious-subsequence/)
+- [ ] [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
+- [ ] [516. 最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/)
+- [ ] [1218. 最长定差子序列](https://leetcode-cn.com/problems/longest-arithmetic-subsequence-of-given-difference/)
+- [ ] [673. 最长递增子序列的个数](https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/)
+- [ ] [521. 最长特殊序列 Ⅰ](https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/)
+- [ ] [522. 最长特殊序列 II](https://leetcode-cn.com/problems/longest-uncommon-subsequence-ii/)
+- [ ] [674. 最长连续递增序列](https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/)
+- [ ] [718. 最长重复子数组](https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/)
+
+
+
+- [ ] 常用的限流算法有哪些？简述令牌桶算法原理
+- [ ] 有序链表插入的时间复杂度是多少？
+- [ ] 实现快速排序
+- [ ] 10亿个数中如何高效地找到最大的一个数以及最大的第 K 个数
+- [ ] AVL 树和红黑树有什么区别？
+- [ ] 给定一个包含 40亿 个无符号整数的大型文件，使用最多 1G 内存，对此文件进行排序
+- [ ] 10亿条数据包括 id，上线时间，下线时间，请绘制每一秒在线人数的曲线图
+- [ ] 如果通过一个不均匀的硬币得到公平的结果？
+- [ ] Hash 表常见操作的时间复杂度是多少？遇到 Hash 冲突是如何解决的？
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 面经整理
 
 拼多多秋招服务端面经汇总：https://leetcode-cn.com/circle/discuss/4GbJP5/
@@ -48,14 +159,6 @@ https://maimai.cn/article/detail?fid=1373977947&efid=8fQouk1zZ5Jz_x0yp-sQsw&shar
 
 
 
-## Java
-
-### 集合相关
-
-- [ ] Java 容器有哪些？ 哪些是同步容器？ 哪些是并发容器？
-
-
-
 HashMap ConcurrentHashMap的区别？
 
 ArrayList的扩容机制？
@@ -83,8 +186,6 @@ map 的 key 如果是结构体需要注意什么问题
 hash冲突如何解决
 
 
-
-- [x] java的异常体系介绍一下
 
 
 static 关键字的使用场景
@@ -220,8 +321,6 @@ interrupt，interrupted与isInterrupted方法的区别? 如何停止一个正在
 为什么要用虚拟内存
 
 线程怎么同步
-
-
 
 ## 设计模式
 
@@ -609,11 +708,7 @@ DNS 服务器与提供内容的服务器的区别
 
 AES 的过程
 
-## Spring 
 
-springmvc流程
-
-Spring aop怎么实现？
 
 ## 项目
 有什么设计的好的地方？
@@ -665,147 +760,6 @@ zab和paxos相比的优越性在哪
 
 
 
-
-
-
-
-
-
-
-Volatile 关键字的作用
-Volatile 关键字的实现
-
-Jvm内存区域划分
-程序计数器的作用
-本地方法栈和虚拟机栈的区别
-Gc全流程
-Gc算法
-连接过程中什么时候会出现time_wait状态
-为什么要有time_wait状态
-一致性hash了解吗？
-一致性hash的优点？
-设计题：有一个服务器专门接收大量请求，怎么设计？
-同步和异步的区别
-非阻塞io和阻塞式io的区别
-
-进程和线程的区别
-Java调度进程和线程
-Hashmap的结构
-String和Stringbuffer的区别
-你用过哪些设计模式
-静态代理实现
-动态代理实现
-观察者模式
-观察者模式的使用场景
-
-百万数据找中位数，提出了堆排序，面试官不太满意，于是手写了堆排，中间被怼边界条件没处理
-
-violatile关键字
-
-Jvm内存区域划分
-一个对象从进入堆区到死亡的全流程
-
-线程怎么同步
-
-堆和栈分配的速度，为什么？
-
-用了哪些设计模式
-Spring aop怎么实现？
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-为什么要使用redis分布式，setnx为什么可以达到分布式锁效果
-redis宕机后分布式锁就不能使用，如何解决
-为什么不直接用数据库的锁
-除了redis分布式锁，还知道哪些可以实现分布式锁，这些实现的方式各有什么优缺点
-
-操作系统IO，用户态和内存态，读取文件的流程
-ftp和https属于哪一层，区别，tcp，udp，tcp为什么是可靠的
-
-进程通信方式，管道有什么限制
-get和post区别，更改一个昵称用什么
-大端和小端，网络传输用什么
-解释 keep-alive 和 content-type
-网络7层模型
-Tcp和udp位于哪一层
-Ip寻址流程
-Tcp和udp的区别
-
-e-r图
-
-数据库索引的实现
-介绍B加树
-数据库两种存储引擎的区别
-为什么myisam不支持行锁
-
-LRU底层怎么实现
-
-为什么要用虚拟内存
-数据库索引，为什么要用B+树- 知不知道句柄溢出- 内存泄露几种场景- HashMap原理
-Redis的数据结构，Redis的主从复制；
-为什么用redis做消息队列，有没有考虑过其他消息队列，用redis做消息队列会出现什么问题。
-
-
-Mysql索引的实现
-使用b 树的理由
-B 树做索引比红黑树好在哪里？
-项目里Redis怎么用
-分布式缓存可能出现的问题
-分布式锁
-Setnx加锁的原理
-怎么解除分布式锁？
-
-http如何保持连接
-如果不用http，如何保持连接
-
-用户态和内核态的区别
-lru了解吗？
-怎么实现lru？
-布隆过滤器了解吗？
 
 
 

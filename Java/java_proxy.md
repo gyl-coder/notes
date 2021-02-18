@@ -171,7 +171,7 @@ public class MainApplication {
 
 通过上面两种方法获取到代理对象的源代码如下：
 
-```
+```java
 package com.sun.proxy;
 
 import com.tiantang.study.UserService;
@@ -354,7 +354,7 @@ cglib动态代理实现步骤和jdk及其相似，可以分为以下几个步骤
 
 cglib动态代理生成的代理类和jdk动态代理代码格式上几乎没有什么区别，唯一的区别在于cglib生成的代理类继承了仅仅Proxy类，而jdk动态代理生成的代理类继承了Proxy类的同时也实现了一个接口。代码如下：
 
-```
+```java
 // 生成一个Proxy的子类
 public final class OrderService extends Proxy {
     private static Method m1;
