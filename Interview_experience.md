@@ -13,11 +13,31 @@
 - [x] Java 是如何实现线程安全的，哪些数据结构是线程安全的？
 - [x] Java 中接口和抽象类的区别
 - [x] hashcode 和 equals 方法的联系
-- [ ] 简述常见的工厂模式以及单例模式的使用场景
-- [ ] 简述生产者消费者模型
+- [x] 简述常见的工厂模式以及单例模式的使用场景
+- [x] 简述生产者消费者模型
 - [x] Java 如何高效进行数组拷贝
 - [x] 成员变量和方法的区别？
 - [ ] 
+
+
+
+### 并发
+
+- [x] volatile 关键字解决了什么问题，它的实现原理是什么？
+- [ ] synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？
+- [ ] 简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点？
+- [ ]  ThreadLocal 实现原理是什么？
+- [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
+- [ ] Java 线程和操作系统的线程是怎么对应的？Java线程是怎样进行调度的?
+- [x] Java 中 sleep() 与 wait() 的区别
+- [ ] Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别
+- [ ] 线程池是如何实现的？简述线程池的任务策略
+- [ ] Java 线程间有多少通信方式？
+- [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
+- [ ] CAS 实现原理是什么？
+- [ ] 
+
+
 
 ### 集合
 
@@ -41,24 +61,6 @@
 - [ ] JVM 中内存模型是怎样的，简述新生代与老年代的区别？
 - [ ] Java 类的加载流程是怎样的？什么是双亲委派机制？
 - [ ] JVM 是怎么去调优的？简述过程和调优的结果
-- [ ] 
-
-
-
-### 并发
-
-- [ ] volatile 关键字解决了什么问题，它的实现原理是什么？
-- [ ] synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？
-- [ ] ThreadLocal 实现原理是什么？
-- [ ] 简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点
-- [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
-- [ ] Java 线程和操作系统的线程是怎么对应的？Java线程是怎样进行调度的?
-- [ ] Java 中 sleep() 与 wait() 的区别
-- [ ] Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别
-- [ ] 线程池是如何实现的？简述线程池的任务策略
-- [ ] Java 线程间有多少通信方式？
-- [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
-- [ ] CAS 实现原理是什么？
 - [ ] 
 
 

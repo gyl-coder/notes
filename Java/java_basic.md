@@ -2,14 +2,16 @@
 
 ## 简述生产者消费者模型
 
-生产者-消费者模式的核心是一个**任务队列**，生产者线程生产任务，并将任务添加到任务队列中，而消费者线程从任务队列中获取任务并执行！
+该模型中有三个元素：生产者，消费者，任务队列
+
+生产者-消费者模式的核心是一个**任务队列**，生产者往存储空间中添加产品，消费者从存储空间中取走产品，当存储空间为空时，消费者阻塞，当存储空间满时，生产者阻塞。
 
 **优点：**
 
 - 解耦
 - 支持异步，并且能够平衡生产者和消费者的速度差异
 
-
+具体实现：https://www.jianshu.com/p/f53fb95b5820
 
 ## Java 如何高效进行数组拷贝
 
@@ -1330,178 +1332,6 @@ Java 代码在编译过程中 ，我们即使不处理不受检查异常也可�
 ## 内部类
 
 https://github.com/Ccww-lx/JavaCommunity/blob/master/doc/javabase/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0%E8%AE%A9%E4%BD%A0%E5%BD%BB%E5%BA%95%E4%BA%86%E8%A7%A3Java%E5%86%85%E9%83%A8%E7%B1%BB.md
-
-## 单例的实现方式有几种？它们有什么优缺点？
-
-单例模式是 Java 中最简单的设计模式之一，它是指一个类在运行期间始终只有一个实例，我们就把它称之为**单例模式**。
-
-单例的实现分为**饿汉模式**和**懒汉模式**。顾名思义，饿汉模式就好比他是一个饿汉，而且有一定的危机意识，他会提前把食物囤积好，以备饿了之后直接能吃到食物。对应到程序中指的是，在类加载时就会进行单例的初始化，以后访问时直接使用单例对象即可。
-
-**饿汉模式的实现代码如下：**
-
-```java
-public class Singleton {
-    // 声明私有对象
-    private static Singleton instance = new Singleton();    
-    // 获取实例（单例对象）
-    public static Singleton getInstance() {
-        return instance;
-    }
-
-    private Singleton() {}
-
-    // 方法
-    public void sayHi() {
-        System.out.println("Hi,Java.");
-    }
-}
-
-class SingletonTest {
-    public static void main(String[] args) {
-        // 调用单例对象
-        Singleton singleton = Singleton.getInstance();
-        // 调用方法
-        singleton.sayHi();
-    }
-}
-```
-
-饿汉模式，它的优点是线程安全，因为单例对象在类加载的时候就已经被初始化了，当调用单例对象时只是把早已经创建好的对象赋值给变量；它的缺点是可能会造成资源浪费，如果类加载了单例对象（对象被创建了），但是一直没有使用，这样就造成了资源的浪费。
-
-懒汉模式也被称作为**饱汉模式**，顾名思义他比较懒，每次只有需要吃饭的时候，才出去找饭吃，而不是像饿汉那样早早把饭准备好。对应到程序中指的是，当每次需要使用实例时，再去创建获取实例，而不是在类加载时就将实例创建好。
-
-**懒汉模式的实现代码如下：**
-
-```java
-public class Singleton {
-    // 声明私有对象
-    private static Singleton instance;
-    // 获取实例（单例对象）
-    public static Singleton getInstance() {
-        if (instance == null) {
-            instance = new Singleton();
-        }
-        return instance;
-    }
-
-    private Singleton() {}
-
-    // 方法
-    public void sayHi() {
-        System.out.println("Hi,Java.");
-    }
-}
-
-class SingletonTest {
-    public static void main(String[] args) {
-        Singleton singleton = Singleton.getInstance();
-        singleton.sayHi();
-    }
-}
-```
-
-懒汉模式，它的优点是不会造成资源的浪费，因为在调用的时候才会创建被实例化对象；它的缺点在多线程环境下是非线程是安全的，比如多个线程同时执行到 if 判断处，此时判断结果都是未被初始化，那么这些线程就会同时创建 n 个实例，这样就会导致意外的情况发生。
-
-**双重检测实现代码如下：**
-
-为了保证懒汉模式的线程安全我们最简单的做法就是给获取实例的方法上加上 synchronized（同步锁）修饰。如果将整个方法都被 synchronized 所包围，会因此增加了同步开销，降低了程序的执行效率。为了改进程序的执行效率，我们将 synchronized 放入到方法中，以此来减少被同步锁所修饰的代码范围，实现代码如下：
-
-```java
-public class Singleton {
-
-    // 声明私有对象
-    private volatile static Singleton instance;
-    // 获取实例（单例对象）
-    public static Singleton getInstance() {
-        // 第一次判断
-        if (instance == null) {
-            synchronized (Singleton.class) {
-                // 第二次判断
-                if (instance == null) {
-                    instance = new Singleton();
-                }
-            }
-        }
-        return instance;
-    }
-
-    private Singleton() { }
-
-    // 类方法
-    public void sayHi() {
-        System.out.println("Hi,Java.");
-    }
-}
-```
-
-**静态内部类的实现代码如下：**
-
-静态内部类和饿汉方式有异曲同工之妙，它们都采用了类装载的机制来保证，当初始化实例时只有一个线程执行，从而保证了**多线程下的安全操作**。JVM 会在类初始化阶段（也就是类装载阶段）创建一个锁，该锁可以保证多个线程同步执行类初始化的工作，因此在多线程环境下，类加载机制依然是线程安全的。
-
-但静态内部类和饿汉方式也有着细微的差别，饿汉方式是在程序启动时就会进行加载，因此可能造成资源的浪费；而静态内部类只有在调用 getInstance() 方法时，才会装载内部类从而完成实例的初始化工作，因此不会造成资源浪费的问题。由此可知，此方式也是较为推荐的单例实现方式。
-
-```java
-public class Singleton {
-    // 静态内部类
-    private static class SingletonInstance {
-        private static final Singleton instance = new Singleton();
-    }
-
-    // 获取实例（单例对象）
-    public static Singleton getInstance() {
-        return SingletonInstance.instance;
-    }
-    
-    private Singleton() {}
-    
-    // 类方法
-    public void sayHi() {
-        System.out.println("Hi,Java.");
-    }
-}
-```
-
-**枚举实现代码如下：**
-
-单例的另一种实现方式为枚举，它也是《Effective Java》作者极力推荐地单例实现方式，因为枚举的实现方式不仅是线程安全的，而且只会装载一次，无论是序列化、反序列化、反射还是克隆都不会新创建对象。它的实现代码如下：
-
-```java
-public class Singleton {
-    // 枚举类型是线程安全的，并且只会装载一次
-    private enum SingletonEnum {
-        INSTANCE;
-        // 声明单例对象
-        private final Singleton instance;
-        // 实例化
-        SingletonEnum() {
-            instance = new Singleton();
-        }
-
-        private Singleton getInstance() {
-            return instance;
-        }
-    }
-
-    // 获取实例（单例对象）
-    public static Singleton getInstance() {
-        return SingletonEnum.INSTANCE.getInstance();
-    }
-
-    private Singleton() { }
-
-    // 类方法
-    public void sayHi() {
-        System.out.println("Hi,Java.");
-    }
-}
-
-class SingletonTest {
-    public static void main(String[] args) {
-        Singleton singleton = Singleton.getInstance();
-        singleton.sayHi();
-    }
-}
-```
 
 ## 红黑树和平衡二叉树有什么区别？
 
