@@ -16,7 +16,7 @@
 - [x] 简述常见的工厂模式以及单例模式的使用场景
 - [x] 简述生产者消费者模型
 - [x] Java 如何高效进行数组拷贝
-- [x] 成员变量和方法的区别？
+- [ ] 成员变量和方法的区别？
 - [ ] 
 
 
@@ -27,13 +27,14 @@
 - [x] synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？
 - [x] 简述 Synchronized，Volatile，可重入锁（ReetrantLock） 的不同使用场景及优缺点？
 - [x]  ThreadLocal 实现原理是什么？
-- [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
+- [x] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
 - [ ] Java 线程和操作系统的线程是怎么对应的？Java线程是怎样进行调度的?
 - [x] Java 中 sleep() 与 wait() 的区别
-- [ ] Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别
-- [ ] 线程池是如何实现的？简述线程池的任务策略
+- [x] Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别
+- [x] 线程池是如何实现的？简述线程池的任务策略
 - [x] Java 线程间有多少通信方式？
-- [ ] CAS 实现原理是什么？
+- [x] CAS 实现原理是什么？
+- [x] 谈谈对AQS的理解
 - [ ] 
 
 
@@ -101,7 +102,7 @@
 - [x] [112. 路径总和](https://leetcode-cn.com/problems/path-sum/)
 - [x] [113. 路径总和 II](https://leetcode-cn.com/problems/path-sum-ii/)
 - [x] [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
-- [ ] [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+- [x] [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
 - [ ] [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
 - [ ] [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
 - [ ] [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
@@ -132,12 +133,6 @@
 - [ ] 10亿条数据包括 id，上线时间，下线时间，请绘制每一秒在线人数的曲线图
 - [ ] 如果通过一个不均匀的硬币得到公平的结果？
 - [ ] Hash 表常见操作的时间复杂度是多少？遇到 Hash 冲突是如何解决的？
-
-
-
-
-
-
 
 
 

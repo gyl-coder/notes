@@ -4,6 +4,305 @@
 
 
 
+## CAS
+
+Conmpare And Swap（比较和交换）
+
+### CAS解决什么问题？
+
+当多个线程对同一个数据进行操作的时候，如果没有同步就会产生线程安全问题。为了解决线程线程安全问题，我们需要加上同步代码块，操作，如加上synchronized。但是某些情况下这并不是最优选择。
+
+synchronized关键字会让没有得到锁资源的线程进入BLOCKED状态，而后在争夺到锁资源后恢复为RUNNABLE状态，这个过程中涉及到操作系统用户模式和内核模式的转换，代价比较高。这个过程是一个串行的过程，效率很低。
+
+尽管JAVA 1.6为synchronized做了优化，增加了从偏向锁到轻量级锁再到重量级锁的过过度，但是在最终转变为重量级锁之后，性能仍然比较低。所以面对这种情况，我们就可以使用java中的“原子操作类”。
+
+而原子操作类的底层正是用到了“CAS机制”。
+
+CAS是英文单词Compare and Swap的缩写，翻译过来就是比较并替换。
+
+CAS操作包含三个操作数——内存位置、预期原值及新值。执行CAS操作的时候，将内存位置的值与预期原值比较，如果相匹配，那么处理器会自动将该位置值更新为新值，否则，处理器不做任何操作。我们都知道，CAS是一条CPU的原子指令（cmpxchg指令），不会造成所谓的数据不一致问题，Unsafe提供的CAS方法（如compareAndSwapXXX）底层实现即为CPU指令cmpxchg。
+
+从思想上来说，synchronized属于悲观锁，悲观的认为程序中的并发情况严重，所以严防死守，CAS属于乐观锁，乐观地认为程序中的并发情况不那么严重，所以让线程不断去重试更新。
+
+### CAS存在的问题
+
+1） CPU开销过大
+
+​		在并发量比较高的情况下，如果许多线程反复尝试更新某一个变量，却又一直更新不成功，循环往复，会给CPU带来很到的压力。
+
+2） 不能保证代码块的原子性
+
+​		CAS机制所保证的知识一个变量的原子性操作，而不能保证整个代码块的原子性。比如需要保证3个变量共同进行原子性的更新，就不得不使用synchronized了。
+
+3） ABA问题
+
+​		这是CAS机制最大的问题所在。
+
+### 如何解决ABA问题？
+
+添加修改版本号  
+
+AtomicStampedReference 带时间戳的原子引用
+
+### CAS的应用
+
+CAS在java.util.concurrent.atomic相关类、Java AQS、CurrentHashMap等实现上有非常广泛的应用。
+
+## AQS
+
+AQS 的全称为（AbstractQueuedSynchronizer）抽象的同步队列。AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask` 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。
+
+### 原理
+
+AQS 是一个抽象类，不能实例化。只能被继承然后重写指定的方法（线程获取资源和释放资源的方式）。
+
+AQS 中维护了一个 state 字段，**用来表示同步状态**，由volatile修饰，用于展示当前共享资源的获锁情况。并且提供了相应的 get set方法以及用cas实现的set方法，AQS只是提供了相应的方法（并且是final类型的，子类无法重写），具体什么时间调用，有具体的同步器来决定。
+
+> - 对于ReentrantLock的实现来说，state可以用来表示当前线程获取锁的可重入次数；
+> - 对于读写锁ReentrantReadWriteLock来说，state的高16位表示读状态，也就是获取该读锁的次数，低16位表示获取到写锁的线程的可重入次数；
+> - 对于semaphore来说，state用来表示当前可用信号的个数；
+> - 对于CountDownlatch来说，state用来表示计数器当前的值。
+
+AQS 维护了一个CLH变体的虚拟双向队列（FIFO），将暂时获取不到锁的线程加入到队列中。并且实现了一套阻塞和唤醒机制。AQS核心思想是，如果被请求的共享资源空闲，那么就将当前请求资源的线程设置为有效的工作线程，将共享资源设置为锁定状态；如果共享资源被占用，就需要一定的阻塞等待唤醒机制来保证锁分配。这个机制主要由该队列实现。
+
+另外，AQS还定义了两组获取和释放资源的方法，独占式获取/释放资源的方法 tryAcquire和tryRelease，以及共享式获取/释放资源的方法tryAcquireShared 和 tryReleaseShared。AQS针对这两组方法没有默认实现，只是定义了两套模板方法，由具体是同步器来实现。
+
+> **总结起来子类的任务有：**
+>
+> 1. 通过`CAS`操作维护共享变量`state`。
+> 2. 重写资源的获取方式。
+> 3. 重写资源释放的方式。
+
+![](../img/java/32.png)
+
+AQS是一个FIFO的双向队列，其内部通过节点head和tail记录队首和队尾元素，队列元素的类型为Node。Node 中有如下几个变量：
+
+- thread变量：用来存放进入AQS队列里面的线程
+- SHARED：用来标记该线程是获取共享资源时被阻塞挂起后放入AQS队列的
+- EXCLUSIVE：用来标记线程是获取独占资源时被挂起后放入AQS队列的
+- waitStatus：记录当前线程等待状态，可以为CANCELLED（线程被取消了）、SIGNAL（线程需要被唤醒）、CONDITION（线程在条件队列里面等待）、PROPAGATE（释放共享资源时需要通知其他节点）
+- prev：记录当前节点的前驱节点
+- next：记录当前节点的后继节点。
+
+对于AQS来说，线程同步的关键是对状态值state进行操作。根据state是否属于一个线程，操作state的方式分为独占方式和共享方式。
+
+- 在独占方式下获取和释放资源使用的方法为： void acquire（int arg）void acquireInterruptibly（int arg）boolean release（int arg）。
+- 在共享方式下获取和释放资源的方法为： void acquireShared（int arg）voidacquireSharedInterruptibly（int arg）boolean releaseShared（int arg）。
+
+**在独占方式下，获取与释放资源的流程如下：**
+
+1. 当一个线程调用acquire（int arg）方法获取独占资源时，会首先使用tryAcquire方法尝试获取资源，具体是设置状态变量state的值，成功则直接返回，失败则将当前线程封装为类型为Node.EXCLUSIVE的Node节点后插入到AQS阻塞队列的尾部，并调用LockSupport.park（this）方法挂起自己。
+2. 当一个线程调用release（int arg）方法时会尝试使用tryRelease操作释放资源，这里是设置状态变量state的值，然后调用LockSupport.unpark（thread）方法激活AQS队列里面被阻塞的一个线程（thread）。被激活的线程则使用tryAcquire尝试，看当前状态变量state的值是否能满足自己的需要，满足则该线程被激活，然后继续向下运行，否则还是会被放入AQS队列并被挂起。
+
+需要注意的是，AQS类并没有提供可用的tryAcquire和tryRelease方法，正如AQS是锁阻塞和同步器的基础框架一样，tryAcquire和tryRelease需要由具体的子类来实现。子类在实现tryAcquire和tryRelease时要根据具体场景使用CAS算法尝试修改state状态值，成功则返回true，否则返回false。子类还需要定义，在调用acquire和release方法时state状态值的增减代表什么含义。
+
+**在共享方式下，获取与释放资源的流程如下：**
+
+1. 当线程调用acquireShared（int arg）获取共享资源时，会首先使用tryAcquireShared尝试获取资源，具体是设置状态变量state的值，成功则直接返回，失败则将当前线程封装为类型为Node.SHARED的Node节点后插入到AQS阻塞队列的尾部，并使用LockSupport.park（this）方法挂起自己。
+
+2. 当一个线程调用releaseShared（int arg）时会尝试使用tryReleaseShared操作释放资源，这里是设置状态变量state的值，然后使用LockSupport.unpark（thread）激活AQS队列里面被阻塞的一个线程（thread）。被激活的线程则使用tryReleaseShared查看当前状态变量state的值是否能满足自己的需要，满足则该线程被激活，然后继续向下运行，否则还是会被放入AQS队列并被挂起。
+
+> 独占方式下的void acquire（int arg）和voidacquireInterruptibly（int arg），与共享方式下的void acquireShared（intarg）和void acquireSharedInterruptibly（int arg），这两套函数中都有一个带有Interruptibly关键字的函数，那么带这个关键字和不带有什么区别呢？
+>
+> 我们来讲讲。其实不带Interruptibly关键字的方法的意思是不对中断进行响应，也就是线程在调用不带Interruptibly关键字的方法获取资源时或者获取资源失败被挂起时，其他线程中断了该线程，那么该线程不会因为被中断而抛出异常，它还是继续获取资源或者被挂起，也就是说不对中断进行响应，忽略中断。而带Interruptibly关键字的方法要对中断进行响应，也就是线程在调用带Interruptibly关键字的方法获取资源时或者获取资源失败被挂起时，其他线程中断了该线程，那么该线程会抛出InterruptedException异常而返回。
+
+https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html
+
+https://www.cnblogs.com/wang-meng/p/12816829.html
+
+https://ddnd.cn/2019/03/15/java-abstractqueuedsynchronizer/
+
+## ReentrantLock 原理
+
+https://juejin.cn/post/6844903805683761165
+
+对 AQS 进行简单介绍
+
+ReentrantLock实现了 Lock 接口，含有3个内部类，其中Sync内部类继承自AQS 实现了独占式获取和释放资源的方法。另外的两个内部类继承自`Sync`，这两个类分别是用来**公平锁和非公平锁**的。
+
+`ReentrantLock`有两个构造方法，无参构造方法默认是创建**非公平锁**，而传入`true`为参数的构造方法创建的是**公平锁**。
+
+### 非公平锁的实现原理
+
+当我们使用无参构造方法构造的时候即`ReentrantLock lock = new ReentrantLock()`，创建的就是非公平锁。
+
+```java
+public ReentrantLock() {
+    sync = new NonfairSync();
+}
+
+//或者传入false参数 创建的也是非公平锁
+public ReentrantLock(boolean fair) {
+    sync = fair ? new FairSync() : new NonfairSync();
+}
+```
+
+**lock 方法获取锁**
+
+`lock`方法调用`CAS`方法设置`state`的值，如果`state`等于期望值`0`(代表锁没有被占用)，那么就将`state`更新为`1`(代表该线程获取锁成功)，然后执行`setExclusiveOwnerThread`方法直接将该线程设置成锁的所有者。如果`CAS`设置`state`的值失败，即`state`不等于`0`，代表锁正在被占领着，则执行`acquire(1)`，即下面的步骤。
+
+`nonfairTryAcquire`方法首先调用`getState`方法获取`state`的值，如果`state`的值为`0`(之前占领锁的线程刚好释放了锁)，那么就用`CAS`设置`state`的值，设置成功则将该线程设置成锁的所有者，并且返回`true`。如果`state`的值不为`0`，那就**调用`getExclusiveOwnerThread`方法查看占用锁的线程是不是自己**，如果是的话那就直接将`state + 1`，然后返回`true`。如果`state`不为`0`且锁的所有者又不是自己，那就返回`false`，**然后线程会进入到同步队列中**。
+
+![](../img/java/57.png)
+
+```java
+final void lock() {
+    //CAS操作设置state的值
+    if (compareAndSetState(0, 1))
+        //设置成功 直接将锁的所有者设置为当前线程 流程结束
+        setExclusiveOwnerThread(Thread.currentThread());
+    else
+        //设置失败 则进行后续的加入同步队列准备
+        acquire(1);
+}
+
+public final void acquire(int arg) {
+    //调用子类重写的tryAcquire方法 如果tryAcquire方法返回false 那么线程就会进入同步队列
+    if (!tryAcquire(arg) &&
+        acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+        selfInterrupt();
+}
+
+//子类重写的tryAcquire方法
+protected final boolean tryAcquire(int acquires) {
+    //调用nonfairTryAcquire方法
+    return nonfairTryAcquire(acquires);
+}
+
+final boolean nonfairTryAcquire(int acquires) {
+    final Thread current = Thread.currentThread();
+    int c = getState();
+    //如果状态state=0，即在这段时间内 锁的所有者把锁释放了 那么这里state就为0
+    if (c == 0) {
+        //使用CAS操作设置state的值
+        if (compareAndSetState(0, acquires)) {
+            //操作成功 则将锁的所有者设置成当前线程 且返回true，也就是当前线程不会进入同步
+            //队列。
+            setExclusiveOwnerThread(current);
+            return true;
+        }
+    }
+    //如果状态state不等于0，也就是有线程正在占用锁，那么先检查一下这个线程是不是自己
+    else if (current == getExclusiveOwnerThread()) {
+        //如果线程就是自己了，那么直接将state+1，返回true，不需要再获取锁 因为锁就在自己
+        //身上了。
+        int nextc = c + acquires;
+        if (nextc < 0) // overflow
+            throw new Error("Maximum lock count exceeded");
+        setState(nextc);
+        return true;
+    }
+    //如果state不等于0，且锁的所有者又不是自己，那么线程就会进入到同步队列。
+    return false;
+}
+```
+
+**tryRelease锁的释放**
+
+1. 判断当前线程是不是锁的所有者，如果是则进行步骤`2`，如果不是则抛出异常。
+2. 判断此次释放锁后`state`的值是否为0，如果是则代表**锁有没有重入**，然后将锁的所有者设置成`null`且返回`true`，然后执行步骤`3`，如果不是则**代表锁发生了重入**执行步骤`4`。
+3. 现在锁已经释放完，即`state=0`，唤醒同步队列中的后继节点进行锁的获取。
+4. 锁还没有释放完，即`state!=0`，不唤醒同步队列。
+
+
+![](../img/java/58.png)
+
+```java
+public void unlock() {
+    sync.release(1);
+}
+
+public final boolean release(int arg) {
+    //子类重写的tryRelease方法，需要等锁的state=0，即tryRelease返回true的时候，才会去唤醒其
+    //它线程进行尝试获取锁。
+    if (tryRelease(arg)) {
+        Node h = head;
+        if (h != null && h.waitStatus != 0)
+            unparkSuccessor(h);
+        return true;
+    }
+    return false;
+}
+    
+protected final boolean tryRelease(int releases) {
+    //状态的state减去releases
+    int c = getState() - releases;
+    //判断锁的所有者是不是该线程
+    if (Thread.currentThread() != getExclusiveOwnerThread())
+        //如果所的所有者不是该线程 则抛出异常 也就是锁释放的前提是线程拥有这个锁，
+        throw new IllegalMonitorStateException();
+    boolean free = false;
+    //如果该线程释放锁之后 状态state=0，即锁没有重入，那么直接将将锁的所有者设置成null
+    //并且返回true，即代表可以唤醒其他线程去获取锁了。如果该线程释放锁之后state不等于0，
+    //那么代表锁重入了，返回false，代表锁还未正在释放，不用去唤醒其他线程。
+    if (c == 0) {
+        free = true;
+        setExclusiveOwnerThread(null);
+    }
+    setState(c);
+    return free;
+}
+```
+
+### 公平锁的实现原理
+
+**lock方法获取锁**
+
+1. 获取状态的`state`的值，如果`state=0`即代表锁没有被其它线程占用(但是并不代表同步队列没有线程在等待)，执行步骤`2`。如果`state!=0`则代表锁正在被其它线程占用，执行步骤`3`。
+2. **判断同步队列是否存在线程(节点)，如果不存在则直接将锁的所有者设置成当前线程，且更新状态state，然后返回true。**
+3. **判断锁的所有者是不是当前线程，如果是则更新状态state的值，然后返回true，如果不是，那么返回false，即线程会被加入到同步队列中**
+
+通过步骤`2`**实现了锁获取的公平性，即锁的获取按照先来先得的顺序，后来的不能抢先获取锁，非公平锁和公平锁也正是通过这个区别来实现了锁的公平性。**
+
+
+![](../img/java/59.png)
+
+```java
+final void lock() {
+    acquire(1);
+}
+
+public final void acquire(int arg) {
+    //同步队列中有线程 且 锁的所有者不是当前线程那么将线程加入到同步队列的尾部，
+    //保证了公平性，也就是先来的线程先获得锁，后来的不能抢先获取。
+    if (!tryAcquire(arg) &&
+        acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+        selfInterrupt();
+}
+
+protected final boolean tryAcquire(int acquires) {
+    final Thread current = Thread.currentThread();
+    int c = getState();
+    //判断状态state是否等于0，等于0代表锁没有被占用，不等于0则代表锁被占用着。
+    if (c == 0) {
+        //调用hasQueuedPredecessors方法判断同步队列中是否有线程在等待，如果同步队列中没有
+        //线程在等待 则当前线程成为锁的所有者，如果同步队列中有线程在等待，则继续往下执行
+        //这个机制就是公平锁的机制，也就是先让先来的线程获取锁，后来的不能抢先获取。
+        if (!hasQueuedPredecessors() &&
+            compareAndSetState(0, acquires)) {
+            setExclusiveOwnerThread(current);
+            return true;
+        }
+    }
+    //判断当前线程是否为锁的所有者，如果是，那么直接更新状态state，然后返回true。
+    else if (current == getExclusiveOwnerThread()) {
+        int nextc = c + acquires;
+        if (nextc < 0)
+            throw new Error("Maximum lock count exceeded");
+        setState(nextc);
+        return true;
+    }
+    //如果同步队列中有线程存在 且 锁的所有者不是当前线程，则返回false。
+    return false;
+}
+```
+
+**tryRelease锁的释放**
+
+公平锁的释放和非公平锁的释放一样，这里就不重复。
+
+公平锁和非公平锁的公平性是在**获取锁**的时候体现出来的，释放的时候都是一样释放的。
+
 ## volatile 
 
 https://bbs.huaweicloud.com/blogs/239766
@@ -1835,122 +2134,6 @@ CAS采用的是一种乐观锁的机制，它不会阻塞任何线程，所以�
 
 > 直达链接：[突击并发编程JUC系列-JDK1.8 扩展类型 LongAdder](https://mp.weixin.qq.com/s/5hDtf7siTCX3QPEAsbNPCA)
 
-## CAS
-
-Conmpare And Swap（比较和交换）
-
-### CAS解决什么问题？
-
-当多个线程对同一个数据进行操作的时候，如果没有同步就会产生线程安全问题。为了解决线程线程安全问题，我们需要加上同步代码块，操作，如加上synchronized。但是某些情况下这并不是最优选择。
-
-synchronized关键字会让没有得到锁资源的线程进入BLOCKED状态，而后在争夺到锁资源后恢复为RUNNABLE状态，这个过程中涉及到操作系统用户模式和内核模式的转换，代价比较高。这个过程是一个串行的过程，效率很低。
-
-尽管JAVA 1.6为synchronized做了优化，增加了从偏向锁到轻量级锁再到重量级锁的过过度，但是在最终转变为重量级锁之后，性能仍然比较低。所以面对这种情况，我们就可以使用java中的“原子操作类”。
-
-而原子操作类的底层正是用到了“CAS机制”。
-
-CAS是英文单词Compare and Swap的缩写，翻译过来就是比较并替换。
-
-CAS操作包含三个操作数——内存位置、预期原值及新值。执行CAS操作的时候，将内存位置的值与预期原值比较，如果相匹配，那么处理器会自动将该位置值更新为新值，否则，处理器不做任何操作。我们都知道，CAS是一条CPU的原子指令（cmpxchg指令），不会造成所谓的数据不一致问题，Unsafe提供的CAS方法（如compareAndSwapXXX）底层实现即为CPU指令cmpxchg。
-
-从思想上来说，synchronized属于悲观锁，悲观的认为程序中的并发情况严重，所以严防死守，CAS属于乐观锁，乐观地认为程序中的并发情况不那么严重，所以让线程不断去重试更新。
-
-### CAS存在的问题
-
-1） CPU开销过大
-
-​		在并发量比较高的情况下，如果许多线程反复尝试更新某一个变量，却又一直更新不成功，循环往复，会给CPU带来很到的压力。
-
-2） 不能保证代码块的原子性
-
-​		CAS机制所保证的知识一个变量的原子性操作，而不能保证整个代码块的原子性。比如需要保证3个变量共同进行原子性的更新，就不得不使用synchronized了。
-
-3） ABA问题
-
-​		这是CAS机制最大的问题所在。
-
-### 如何解决ABA问题？
-
-添加修改版本号  
-
-AtomicStampedReference 带时间戳的原子引用
-
-### CAS的应用
-
-CAS在java.util.concurrent.atomic相关类、Java AQS、CurrentHashMap等实现上有非常广泛的应用。
-
-## AQS
-
-AQS 的全称为（AbstractQueuedSynchronizer）抽象的同步队列。它主要提供了：
-
-- 同步状态管理
-- 阻塞和唤醒线程功能
-- 队列模型
-
-AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask` 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。
-
-### 原理
-
-**AQS的 核心思想是：**如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制
-
-`AQS`中 维护了一个`volatile int state`（代表共享资源）和一个`FIFO`线程等待队列（多线程争用资源被阻塞时会进入此队列）。
-
-这里`volatile`能够保证多线程下的可见性，当`state=1`则代表当前对象锁已经被占有，其他线程来加锁时则会失败，加锁失败的线程会被放入一个`FIFO`的等待队列中，比列会被`UNSAFE.park()`操作挂起，等待其他获取锁的线程释放锁才能够被唤醒。
-
-另外`state`的操作都是通过`CAS`来保证其并发修改的安全性。
-
-![](../img/java/32.png)
-
-AQS是一个FIFO的双向队列，其内部通过节点head和tail记录队首和队尾元素，队列元素的类型为Node。Node 中有如下几个变量：
-
-- thread变量：用来存放进入AQS队列里面的线程
-- SHARED：用来标记该线程是获取共享资源时被阻塞挂起后放入AQS队列的
-- EXCLUSIVE：用来标记线程是获取独占资源时被挂起后放入AQS队列的
-- waitStatus：记录当前线程等待状态，可以为CANCELLED（线程被取消了）、SIGNAL（线程需要被唤醒）、CONDITION（线程在条件队列里面等待）、PROPAGATE（释放共享资源时需要通知其他节点）
-- prev：记录当前节点的前驱节点
-- next：记录当前节点的后继节点。
-
-在AQS中维持了一个单一的状态信息state，可以通过getState、setState、compareAndSetState函数修改其值。state 的值在不同实现中拥有不同的含义。
-
-- 对于ReentrantLock的实现来说，state可以用来表示当前线程获取锁的可重入次数；
-- 对于读写锁ReentrantReadWriteLock来说，state的高16位表示读状态，也就是获取该读锁的次数，低16位表示获取到写锁的线程的可重入次数；
-- 对于semaphore来说，state用来表示当前可用信号的个数；
-- 对于CountDownlatch来说，state用来表示计数器当前的值。
-
-AQS有个内部类ConditionObject，用来结合锁实现线程同步。ConditionObject可以直接访问AQS对象内部的变量，比如state状态值和AQS队列。ConditionObject是条件变量，每个条件变量对应一个条件队列（单向链表队列），其用来存放调用条件变量的await方法后被阻塞的线程。
-
-对于AQS来说，线程同步的关键是对状态值state进行操作。根据state是否属于一个线程，操作state的方式分为独占方式和共享方式。
-
-- 在独占方式下获取和释放资源使用的方法为： void acquire（int arg）void acquireInterruptibly（int arg）boolean release（int arg）。
-- 在共享方式下获取和释放资源的方法为： void acquireShared（int arg）voidacquireSharedInterruptibly（int arg）boolean releaseShared（int arg）。
-
-> 使用独占方式获取的资源是与具体线程绑定的，就是说如果一个线程获取到了资源，就会标记是这个线程获取到了，其他线程再尝试操作state获取资源时会发现当前该资源不是自己持有的，就会在获取失败后被阻塞。比如独占锁ReentrantLock的实现，当一个线程获取了ReentrantLock的锁后，在AQS内部会首先使用CAS操作把state状态值从0变为1，然后设置当前锁的持有者为当前线程，当该线程再次获取锁时发现它就是锁的持有者，则会把状态值从1变为2，也就是设置可重入次数，而当另外一个线程获取锁时发现自己并不是该锁的持有者就会被放入AQS阻塞队列后挂起。
->
-> 对应共享方式的资源与具体线程是不相关的，当多个线程去请求资源时通过CAS方式竞争获取资源，当一个线程获取到了资源后，另外一个线程再次去获取时如果当前资源还能满足它的需要，则当前线程只需要使用CAS方式进行获取即可。比如Semaphore信号量，当一个线程通过acquire（）方法获取信号量时，会首先看当前信号量个数是否满足需要，不满足则把当前线程放入阻塞队列，如果满足则通过自旋CAS获取信号量。
-
-**在独占方式下，获取与释放资源的流程如下：**
-
-1. 当一个线程调用acquire（int arg）方法获取独占资源时，会首先使用tryAcquire方法尝试获取资源，具体是设置状态变量state的值，成功则直接返回，失败则将当前线程封装为类型为Node.EXCLUSIVE的Node节点后插入到AQS阻塞队列的尾部，并调用LockSupport.park（this）方法挂起自己。
-2. 当一个线程调用release（int arg）方法时会尝试使用tryRelease操作释放资源，这里是设置状态变量state的值，然后调用LockSupport.unpark（thread）方法激活AQS队列里面被阻塞的一个线程（thread）。被激活的线程则使用tryAcquire尝试，看当前状态变量state的值是否能满足自己的需要，满足则该线程被激活，然后继续向下运行，否则还是会被放入AQS队列并被挂起。
-
-需要注意的是，AQS类并没有提供可用的tryAcquire和tryRelease方法，正如AQS是锁阻塞和同步器的基础框架一样，tryAcquire和tryRelease需要由具体的子类来实现。子类在实现tryAcquire和tryRelease时要根据具体场景使用CAS算法尝试修改state状态值，成功则返回true，否则返回false。子类还需要定义，在调用acquire和release方法时state状态值的增减代表什么含义。
-
-**在共享方式下，获取与释放资源的流程如下：**
-
-1. 当线程调用acquireShared（int arg）获取共享资源时，会首先使用tryAcquireShared尝试获取资源，具体是设置状态变量state的值，成功则直接返回，失败则将当前线程封装为类型为Node.SHARED的Node节点后插入到AQS阻塞队列的尾部，并使用LockSupport.park（this）方法挂起自己。
-
-2. 当一个线程调用releaseShared（int arg）时会尝试使用tryReleaseShared操作释放资源，这里是设置状态变量state的值，然后使用LockSupport.unpark（thread）激活AQS队列里面被阻塞的一个线程（thread）。被激活的线程则使用tryReleaseShared查看当前状态变量state的值是否能满足自己的需要，满足则该线程被激活，然后继续向下运行，否则还是会被放入AQS队列并被挂起。
-
-
-
-> 独占方式下的void acquire（int arg）和voidacquireInterruptibly（int arg），与共享方式下的void acquireShared（intarg）和void acquireSharedInterruptibly（int arg），这两套函数中都有一个带有Interruptibly关键字的函数，那么带这个关键字和不带有什么区别呢？
->
-> 我们来讲讲。其实不带Interruptibly关键字的方法的意思是不对中断进行响应，也就是线程在调用不带Interruptibly关键字的方法获取资源时或者获取资源失败被挂起时，其他线程中断了该线程，那么该线程不会因为被中断而抛出异常，它还是继续获取资源或者被挂起，也就是说不对中断进行响应，忽略中断。而带Interruptibly关键字的方法要对中断进行响应，也就是线程在调用带Interruptibly关键字的方法获取资源时或者获取资源失败被挂起时，其他线程中断了该线程，那么该线程会抛出InterruptedException异常而返回。
-
-https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html
-
-https://www.cnblogs.com/wang-meng/p/12816829.html
-
 ## 并发工具 JUC
 
 https://segmentfault.com/a/1190000037600050
@@ -1994,12 +2177,18 @@ https://segmentfault.com/a/1190000037600050
 
 ## 阻塞队列
 
+https://mp.weixin.qq.com/s/w5MRjG59Sjnwi5g4lCEo5w
+
+https://blog.csdn.net/dl674756321/article/details/100155641
+
+https://blog.csdn.net/luzhensmart/article/details/81712583
+
 阻塞队列（`BlockingQueue`）是一个支持两个附加操作的队列。这两个附加的操作支持阻塞的插入和移除方法。
 
 - 支持阻塞的插入方法：意思是当队列满时，队列会阻塞插入元素的线程，直到队列不满。
 - 支持阻塞的移除方法：意思是在队列为空时，获取元素的线程会等待队列变为非空。
 
-阻塞队列常用于生产者和消费者的场景，生产者是向队列里添加元素的线程，消费者是从队列里取元素的线程。阻塞队列就是生产者用来存放元素、消费者用来获取元素的容器。
+**阻塞队列常用于生产者和消费者的场景**，生产者是向队列里添加元素的线程，消费者是从队列里取元素的线程。阻塞队列就是生产者用来存放元素、消费者用来获取元素的容器。
 
 | 方法/处理方式 | 抛出异常  | 返回特殊值 | 一直阻塞 | 超时退出           |
 | :------------ | :-------- | :--------- | :------- | :----------------- |
@@ -2016,35 +2205,27 @@ https://segmentfault.com/a/1190000037600050
 
 ### 列举几个常见的阻塞队列
 
-- `ArrayBlockingQueue`：一个由数组结构组成的有界阻塞队列。
-- `LinkedBlockingQueue`：一个由链表结构组成的有界阻塞队列。
-- `PriorityBlockingQueue`：一个支持优先级排序的无界阻塞队列。
-- `DelayQueue`：一个使用优先级队列实现的无界阻塞队列。
-- `SynchronousQueue`：一个不存储元素的阻塞队列。
+- `ArrayBlockingQueue`：采用**数组**实现的有界阻塞队列，按照先进先出的原则，初始化时，需要指定容量的大小，一旦创建，容量就不能改变。采用可重入锁进行并发控制，添加和删除操作采用的是同一个锁。
+- `LinkedBlockingQueue`：采用**单向链表**实现的阻塞队列，可以无界也可以有界，按照先进先出的原则，默认容量为 Integer.MAX_VALUE。锁是分离的，添加和删除操作使用两个不同的锁，在高并发场景下，生产者和消费者可以并行的操作队列中的数据，所以提高了并发性能。
+- `PriorityBlockingQueue`：一个支持优先级排序的无界阻塞队列。可以通过实现 compareTo 方法来指定元素比较规则，也可以使用 Comparator 比较器来指定比较规则。
+- `SynchronousQueue`：一个不存储元素的阻塞队列。通过新建一个线程来处理新任务。是一种轻量级的ArrayBlockingQueue，在只有一个生产者和一个消费者的场景下性能较好。
+- `DelayQueue`：是一个支持延时获取元素的无界阻塞队列。队列使用`PriorityQueue`来实现。队列中的元素必须实现`Delayed`接口，在创建元素时可以指定多久才能从队列中获取当前元素。只有在延迟期满时才能从队列中提取元素。**应用场景：** 缓存系统，设置缓存元素的有效期；定时任务调度。
 - `LinkedTransferQueue`：一个由链表结构组成的无界阻塞队列。
 - `LinkedBlockingDeque`：一个由链表结构组成的双向阻塞队列。
 
-https://mp.weixin.qq.com/s/w5MRjG59Sjnwi5g4lCEo5w
+### LinkedBlockingQueue和ArrayBlockingQueue的区别
 
-https://blog.csdn.net/dl674756321/article/details/100155641
+**共性：**
 
+它们都继承了BlockingQueue的接口，也就是说，它们都是阻塞式的队列，这里的阻塞情况无外乎2种：一种是队列满时阻塞等待，另一种就是队列空时阻塞等待，前者等待的生成者，后者则是消费者。所以这种结构用在生产者-消费者的使用场景中是比较适用的。还有一点，因为是队列，所以肯定保证FIFO顺序性的。
 
+它们所对外提供的方法也是一致的，add/offer/put，take/poll/remove。这里面还能够支持阻塞，非阻塞的调用形式，总体来说还是非常灵活的。
 
+**区别：**
 
+ArrayBlockingQueue是有界的，而LinkedBlockingQueue默认是无界的（可以通过指定大小来变为有界）。ArrayBlockingQueue有界就意味着我们使用ArrayBlockingQueue必须指定capacity大小。这样的话，内存空间会直接预先分配好，所以在使用LinkedBlockingQueue无界情况下时要考虑到内存实际使用问题，防止内存溢出问题的发生。
 
-阻塞队列的作用？
-
-使用无界阻塞队列会出现什么问题
-
-线程池有用过吗？都有哪些参数？底层如何实现？
-
-threadlocal 底层如何实现？ 写一个例子呗？
-
-volitile工作原理
-
-cas知道如何实现的吗？
-
-
+锁使用的比较。ArrayBlockingQueue内部使用1个锁来控制队列项的插入、取出操作，而LinkedBlockingQueue则是使用了2个锁来控制，一个名为putLock，另一个是takeLock，但是锁的本质都是ReentrantLock。因为LinkedBlockingQueue使用了2个锁的情况下，所以在一定程度上LinkedBlockingQueue能更好支持高并发的场景操作，这里指的是并发性上，不是吞吐量。
 
 
 
