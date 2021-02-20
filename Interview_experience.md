@@ -1,6 +1,6 @@
 [TOC]
 
-## Java
+## 基础
 
 - [x] String 类能不能被继承？为什么？
 - [x] 实现单例设计模式（懒汉，饿汉）
@@ -21,25 +21,26 @@
 
 
 
-### 并发
+## 并发
 
 - [x] volatile 关键字解决了什么问题，它的实现原理是什么？
-- [ ] synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？
-- [ ] 简述 Synchronized，Volatile，可重入锁的不同使用场景及优缺点？
-- [ ]  ThreadLocal 实现原理是什么？
+- [x] synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？
+- [x] 简述 Synchronized，Volatile，可重入锁（ReetrantLock） 的不同使用场景及优缺点？
+- [x]  ThreadLocal 实现原理是什么？
 - [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
 - [ ] Java 线程和操作系统的线程是怎么对应的？Java线程是怎样进行调度的?
 - [x] Java 中 sleep() 与 wait() 的区别
 - [ ] Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别
 - [ ] 线程池是如何实现的？简述线程池的任务策略
-- [ ] Java 线程间有多少通信方式？
-- [ ] Java 常见锁有哪些？ReetrantLock 是怎么实现的？
+- [x] Java 线程间有多少通信方式？
 - [ ] CAS 实现原理是什么？
 - [ ] 
 
 
 
-### 集合
+
+
+## 集合
 
 - [x] Java 容器有哪些？ 哪些是同步容器？ 哪些是并发容器？
 - [ ] HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？
@@ -54,7 +55,11 @@
 
 - [ ] hashMap 1.7 / 1.8 的实现区别
 
-### JVM 
+
+
+
+
+## JVM 
 
 - [ ] Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？
 - [ ] 简述 JVM 的内存模型 JVM 内存是如何对应到操作系统内存的？

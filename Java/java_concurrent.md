@@ -351,6 +351,42 @@ monitor 监视器锁本质上是依赖操作系统的 Mutex Lock 互斥量 来�
 
 https://www.cnblogs.com/wuqinglong/p/9945618.html
 
+## Synchronized 和 ReentrantLock 的区别？
+
+都是可重入锁
+
+- synchronized 是 JVM 隐式实现的，而 ReentrantLock 是 Java 语言提供的 API；
+- ReentrantLock 可设置为公平锁，而 synchronized 却不行；
+- ReentrantLock 只能修饰代码块，而 synchronized 可以用于修饰方法、修饰代码块等；
+- ReentrantLock 需要手动加锁和释放锁，如果忘记释放锁，则会造成资源被永久占用，而 synchronized 无需手动释放锁；
+- ReentrantLock 可以知道是否成功获得了锁，而 synchronized  却不行。
+
+**ReentrantLock 比 synchronized 增加了一些高级功能**
+
+相比`synchronized`，`ReentrantLock`增加了一些高级功能。主要来说主要有三点：
+
+- **等待可中断** : `ReentrantLock`提供了一种能够中断等待锁的线程的机制，通过 `lock.lockInterruptibly()` 来实现这个机制。也就是说正在等待的线程可以选择放弃等待，改为处理其他事情。
+- **可实现公平锁** : `ReentrantLock`可以指定是公平锁还是非公平锁。而`synchronized`只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。`ReentrantLock`默认情况是非公平的，可以通过 `ReentrantLock`类的`ReentrantLock(boolean fair)`构造方法来制定是否是公平的。
+- **可实现选择性通知（锁可以绑定多个条件）**: `synchronized`关键字与`wait()`和`notify()`/`notifyAll()`方法相结合可以实现等待/通知机制。`ReentrantLock`类当然也可以实现，但是需要借助于`Condition`接口与`newCondition()`方法。
+
+> `Condition`是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个`Lock`对象中可以创建多个`Condition`实例（即对象监视器），**线程对象可以注册在指定的`Condition`中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用`notify()/notifyAll()`方法进行通知时，被通知的线程是由 JVM 选择的，用`ReentrantLock`类结合`Condition`实例可以实现“选择性通知”** ，这个功能非常重要，而且是 Condition 接口默认提供的。而`synchronized`关键字就相当于整个 Lock 对象中只有一个`Condition`实例，所有的线程都注册在它一个身上。如果执行`notifyAll()`方法的话就会通知所有处于等待状态的线程这样会造成很大的效率问题，而`Condition`实例的`signalAll()`方法 只会唤醒注册在该`Condition`实例中的所有等待线程。
+
+**如果你想使用上述功能，那么选择 ReentrantLock 是一个不错的选择。性能已不是选择标准**
+
+## Synchronized 什么情况是对象锁？ 什么时候是全局锁？
+
+对象锁：synchronized(this)  以及非static的synchronized方法 
+
+全局锁：synchronized 静态方法也相当于全局锁
+
+## 说说 synchronized 关键字和 volatile 关键字的区别
+
+`synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
+
+- `volatile` 关键字是线程同步的**轻量级实现**，所以`volatile `性能肯定比`synchronized`关键字要好。但是 volatile 关键字只能用于变量而 `synchronized` 关键字可以修饰方法以及代码块。
+- `volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。
+- `volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。
+
 
 
 ## 进程和线程的区别？
@@ -780,77 +816,6 @@ StringBuffer.append（）方法中都有一个同步块，锁就是sb对象。�
 
 自适应意味着自旋的时间（次数）不再固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很有可能再次成功，进而它将允许自旋等待持续相对更长的时间。如果对于某个锁，自旋很少成功获得过，那在以后尝试获取这个锁时将可能省略掉自旋过程，直接阻塞线程，避免浪费处理器资源。
 
-## Synchronized 和 **ReentrantLock** 的区别？
-
-都是可重入锁
-
-- synchronized 是 JVM 隐式实现的，而 ReentrantLock 是 Java 语言提供的 API；
-- ReentrantLock 可设置为公平锁，而 synchronized 却不行；
-- ReentrantLock 只能修饰代码块，而 synchronized 可以用于修饰方法、修饰代码块等；
-- ReentrantLock 需要手动加锁和释放锁，如果忘记释放锁，则会造成资源被永久占用，而 synchronized 无需手动释放锁；
-- ReentrantLock 可以知道是否成功获得了锁，而 synchronized  却不行。
-
-**ReentrantLock 比 synchronized 增加了一些高级功能**
-
-相比`synchronized`，`ReentrantLock`增加了一些高级功能。主要来说主要有三点：
-
-- **等待可中断** : `ReentrantLock`提供了一种能够中断等待锁的线程的机制，通过 `lock.lockInterruptibly()` 来实现这个机制。也就是说正在等待的线程可以选择放弃等待，改为处理其他事情。
-- **可实现公平锁** : `ReentrantLock`可以指定是公平锁还是非公平锁。而`synchronized`只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。`ReentrantLock`默认情况是非公平的，可以通过 `ReentrantLock`类的`ReentrantLock(boolean fair)`构造方法来制定是否是公平的。
-- **可实现选择性通知（锁可以绑定多个条件）**: `synchronized`关键字与`wait()`和`notify()`/`notifyAll()`方法相结合可以实现等待/通知机制。`ReentrantLock`类当然也可以实现，但是需要借助于`Condition`接口与`newCondition()`方法。
-
-> `Condition`是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个`Lock`对象中可以创建多个`Condition`实例（即对象监视器），**线程对象可以注册在指定的`Condition`中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用`notify()/notifyAll()`方法进行通知时，被通知的线程是由 JVM 选择的，用`ReentrantLock`类结合`Condition`实例可以实现“选择性通知”** ，这个功能非常重要，而且是 Condition 接口默认提供的。而`synchronized`关键字就相当于整个 Lock 对象中只有一个`Condition`实例，所有的线程都注册在它一个身上。如果执行`notifyAll()`方法的话就会通知所有处于等待状态的线程这样会造成很大的效率问题，而`Condition`实例的`signalAll()`方法 只会唤醒注册在该`Condition`实例中的所有等待线程。
-
-**如果你想使用上述功能，那么选择 ReentrantLock 是一个不错的选择。性能已不是选择标准**
-
-**原始构成**
-
-synchronized是关键字属于 JVM 层面（monitorenter(底层是通过 monitor对象来完成，其实wit/ notify等方法也依赖 monitor对象只有在同步块线方法中才能调wait/ notify等）
-
-Lock 是具体类(java.uti. concurrent. Locks.Lock) 是api层面的
-
-**使用方法**
-
-synchronized 不需要用户去手动释放锁，当 synchronized代码执行完后系统会自动让线程释放对锁的占用
-
-Reentrantlock则需要用户去手动释放锁若没有主动释放锁,就有可能导致出现死锁现象
-
-需要 lock() 和 unlock() 方法配合 try/ finally语句块来
-
-**等待是否可中断**
-
-synchronized不可中断，除非抛出异常或者正常运行完成
-
-Reentrantlock可中断
-
-- 设置超时方法 tryLock( Long timeout, TimeUnit unit)
-- lockInterruptibly() 放代码块中,调用 interrupt()方法可中断
-
-**加锁是否公平**
-
-synchronized 是非公平锁
-
-Reentrantlock 同时支持公平锁和非公平锁，通过构造方法来决定使用公平锁还是非公平锁
-
-**是否支持 condition**
-
-synchronized 不支持condition
-
-Reentrantlock 可以通过 condition 来实现精确唤醒，而不是像synchronized 一样要么随即唤醒一个线程要么唤醒所有线程。
-
-## Synchronized 什么情况是对象锁？ 什么时候是全局锁？
-
-对象锁：synchronized(this)  以及非static的synchronized方法 
-
-全局锁：synchronized 静态方法也相当于全局锁
-
-## 说说 synchronized 关键字和 volatile 关键字的区别
-
-`synchronized` 关键字和 `volatile` 关键字是两个互补的存在，而不是对立的存在！
-
-- **`volatile` 关键字**是线程同步的**轻量级实现**，所以**`volatile `性能肯定比`synchronized`关键字要好**。但是**`volatile` 关键字只能用于变量而 `synchronized` 关键字可以修饰方法以及代码块**。
-- **`volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。**
-- **`volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。**
-
 ## JMM
 
 Java 内存模型（JMM）是一种抽象的概念，并不真实存在，它描述了一组规则或规范，通过这组规范定义了程序中各个变量（包括实例字段、静态字段和构成数组对象的元素）的访问方式。试图屏蔽各种硬件和操作系统的内存访问差异，以实现让 Java 程序在各种平台下都能达到一致的内存访问效果。
@@ -893,29 +858,19 @@ https://tech.meituan.com/2018/11/15/java-lock.html
 
 ### 乐观锁 & 悲观锁
 
-乐观锁与悲观锁是一种广义上的概念，体现了看待线程同步的不同角度。在Java和数据库中都有此概念对应的实际应用。
+这个分类不是具体锁的分类，而是看待并发同步的角度；
 
-先说概念。对于同一个数据的并发操作，悲观锁认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候会先加锁，确保数据不会被别的线程修改。Java中，synchronized关键字和Lock的实现类都是悲观锁。
+悲观锁认为对于同一个数据的并发操作一定是会发生修改的（哪怕实质没修改也认为会修改），因此对于同一个数据的并发操作，悲观锁采取加锁的形式，因为悲观锁认为不加锁的操作一定有问题；
 
-而乐观锁认为自己在使用数据时不会有别的线程修改数据，所以不会添加锁，只是在更新数据的时候去判断之前有没有别的线程更新了这个数据。如果这个数据没有被更新，当前线程将自己修改的数据成功写入。如果数据已经被其他线程更新，则根据不同的实现方式执行不同的操作（例如报错或者自动重试）。
+乐观锁则认为对于同一个数据的并发操作是不会发生修改的，在更新数据的时候会采用不断的尝试更新，乐观锁认为不加锁的并发操作是没事的；
 
-乐观锁在Java中是通过使用无锁编程来实现，最常采用的是CAS算法，Java原子类中的递增操作就通过CAS自旋实现的。
-
-> 悲观锁适合写操作多的场景，先加锁可以保证写操作时数据正确。
->
-> 乐观锁适合读操作多的场景，不加锁的特点能够使其读操作的性能大幅提升。
+由此可以看出悲观锁适合写操作非常多的场景，乐观锁适合读操作非常多的场景，不加锁会带来大量的性能提升，悲观锁在 java 中很常见（synchronized关键字和Lock的实现类都是悲观锁），乐观锁其实就是基于 CAS 的无锁编程，譬如 java 的原子类就是通过 CAS 自旋实现的。
 
 ### 公平锁 VS 非公平锁
 
-公平锁是指多个线程按照申请锁的顺序来获取锁，线程直接进入队列中排队，队列中的第一个线程才能获得锁。
+公平锁指多个线程按照申请锁的顺序来获取锁，非公平锁就是没有顺序完全随机，所以能会造成优先级反转或者饥饿现象；
 
-- 公平锁的优点是等待锁的线程不会饿死。
-- 缺点是整体吞吐效率相对非公平锁要低，等待队列中除第一个线程以外的所有线程都会阻塞，CPU唤醒阻塞线程的开销比非公平锁大。
-
-非公平锁是多个线程加锁时直接尝试获取锁，获取不到才会到等待队列的队尾等待。但如果此时锁刚好可用，那么这个线程可以无需阻塞直接获取到锁，所以非公平锁有可能出现  后申请锁的线程先获取锁的场景。
-
-- 非公平锁的优点是可以减少唤起线程的开销，整体的吞吐效率高，因为线程有几率不阻塞直接获得锁，CPU不必唤醒所有线程。
-- 缺点是处于等待队列中的线程可能会饿死，或者等很久才会获得锁。
+synchronized 实现的是非公平锁，ReentrantLock 通过构造参数可以决定是非公平锁还是公平锁，默认构造是非公平锁；非公平锁的吞吐量性能比公平锁大好。
 
 ReentrantLock的实现中：公平锁与非公平锁的lock()方法唯一的区别就在于公平锁在获取同步状态时多了一个限制条件：hasQueuedPredecessors()。
 
@@ -927,15 +882,18 @@ ReentrantLock的实现中：公平锁与非公平锁的lock()方法唯一的区�
 
 Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。
 
-synchronized 重入的实现机制
-
-每个锁对象都拥有：1. 锁计数器  2. 指向拥有该锁的线程的指针
-
-当执行monitorenter时，如果目标锁对象的计数器为0 ，那么说明他没有被其他线程持有。这时，JVM会将该锁对象的持有线程设置为当前线程，并将计数器加1.
-
-在目标锁对象的计数器不为0的情况下，如果锁对象的持有线程是当前线程那么JVM可以将其计数器加1，否则需要等待，直至持有线程释放锁。
-
-当执行monitorexit时，JVM则需要将锁对象的计数器减1，计数器数值为0代表锁已被释放。
+> synchronized 重入的实现机制
+>
+> 每个锁对象都拥有：
+>
+> 1. 锁计数器  
+> 2. 指向拥有该锁的线程的指针
+>
+> 当执行monitorenter时，如果目标锁对象的计数器为0 ，那么说明他没有被其他线程持有。这时，JVM会将该锁对象的持有线程设置为当前线程，并将计数器加1.
+>
+> 在目标锁对象的计数器不为0的情况下，如果锁对象的持有线程是当前线程那么JVM可以将其计数器加1，否则需要等待，直至持有线程释放锁。
+>
+> 当执行monitorexit时，JVM则需要将锁对象的计数器减1，计数器数值为0代表锁已被释放。
 
 ### 独享锁 & 共享锁
 
@@ -1045,9 +1003,13 @@ t1	1612934985962	----- 被唤醒
 
 https://www.jianshu.com/p/377bb840802f
 
-通常情况下，我们创建的变量是可以被任何一个线程访问并修改的。**如果想实现每一个线程都有自己的专属本地变量该如何解决呢？** JDK 中提供的`ThreadLocal`类正是为了解决这样的问题。 **`ThreadLocal`类主要解决的就是让每个线程绑定自己的值，可以将`ThreadLocal`类形象的比喻成存放数据的盒子，盒子中可以存储每个线程的私有数据。**
+https://www.cnblogs.com/wupeixuan/p/12638203.html
 
-**如果你创建了一个`ThreadLocal`变量，那么访问这个变量的每个线程都会有这个变量的本地副本，这也是`ThreadLocal`变量名的由来。他们可以使用 `get（）` 和 `set（）` 方法来获取默认值或将其值更改为当前线程所存的副本的值，从而避免了线程安全问题。**
+通常情况下，我们创建的变量是可以被任何一个线程访问并修改的。如果想实现每一个线程都有自己的专属本地变量该如何解决呢？JDK 中提供的`ThreadLocal`类正是为了解决这样的问题。
+
+ **`ThreadLocal`类主要解决的就是让每个线程绑定自己的值，可以将`ThreadLocal`类形象的比喻成存放数据的盒子，盒子中可以存储每个线程的私有数据。**
+
+如果你创建了一个`ThreadLocal`变量，那么访问这个变量的每个线程都会有这个变量的本地副本，这也是`ThreadLocal`变量名的由来。他们可以使用 `get（）` 和 `set（）` 方法来获取默认值或将其值更改为当前线程所存的副本的值，从而避免了线程安全问题。
 
 ### 示例
 
@@ -1174,15 +1136,15 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 `ThreadLocalMap` 中使用的 key 为 `ThreadLocal` 的弱引用,而 value 是强引用。所以，如果 `ThreadLocal` 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。这样一来，`ThreadLocalMap` 中就会出现 key 为 null 的 Entry。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露。ThreadLocalMap 实现中已经考虑了这种情况，在调用 `set()`、`get()`、`remove()` 方法的时候，会清理掉 key 为 null 的记录。使用完 `ThreadLocal`方法后 最好手动调用`remove()`方法
 
 ```java
-      static class Entry extends WeakReference<ThreadLocal<?>> {
-            /** The value associated with this ThreadLocal. */
-            Object value;
+static class Entry extends WeakReference<ThreadLocal<?>> {
+    /** The value associated with this ThreadLocal. */
+    Object value;
 
-            Entry(ThreadLocal<?> k, Object v) {
-                super(k);
-                value = v;
-            }
-        }
+    Entry(ThreadLocal<?> k, Object v) {
+        super(k);
+        value = v;
+    }
+}
 ```
 
 ## 线程池
@@ -1919,7 +1881,11 @@ CAS在java.util.concurrent.atomic相关类、Java AQS、CurrentHashMap等实现�
 
 ## AQS
 
-AQS 的全称为（AbstractQueuedSynchronizer）抽象的同步队列。它是实现同步器的基础组件，并发包中锁的底层实现就是使用AQS实现的。
+AQS 的全称为（AbstractQueuedSynchronizer）抽象的同步队列。它主要提供了：
+
+- 同步状态管理
+- 阻塞和唤醒线程功能
+- 队列模型
 
 AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask` 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。
 
