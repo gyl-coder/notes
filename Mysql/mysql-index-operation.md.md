@@ -1,24 +1,5 @@
 ## Mysql 索引操作
 
-### 创建索引
-
-索引的创建可以在CREATE TABLE语句中进行，也可以单独用CREATE INDEX或ALTER TABLE来给表增加索引。以下命令语句分别展示了如何创建主键索引（PRIMARY KEY），联合索引（UNIQUE）和普通索引（INDEX）的方法。
-
-```
-mysql> ALTER TABLE `table_name` ADD INDEX `index_name` (column list);
-mysql> ALTER TABLE `table_name` ADD UNIQUE `index_name` (column list);
-mysql> ALTER TABLE `table_name` ADD PRIMARY KEY `index_name` (column list);
-mysql> CREATE INDEX `index_name` ON `table_name` (column_list);
-mysql> CREATE UNIQUE INDEX `index_name` ON `table_name` (column_list);
-
-例如：
-mysql> ALTER TABLE `article` ADD INDEX `id`;//给article表增加id索引
-或者：
-mysql> ALTER TABLE `article` ADD INDEX (`id`,`order_id`); //给article表增加id索引，order_id索引
-```
-
-
-
 ### 重建索引
 
 重建索引在常规的数据库维护操作中经常使用。在数据库运行了较长时间后，索引都有损坏的可能，这时就需要重建。对数据重建索引可以起到提高检索效率。
@@ -42,6 +23,25 @@ alter table T add index(k);
 #### 为什么需要重建索引？
 
 索引可能因为删除，或者页分裂等原因，导致数据页有空洞，重建索引的过程会创建一个新的索引，把数据按顺序插入，这样页面的利用率高，也就是索引更紧凑、更省空间。
+
+
+
+### 创建索引
+
+索引的创建可以在CREATE TABLE语句中进行，也可以单独用CREATE INDEX或ALTER TABLE来给表增加索引。以下命令语句分别展示了如何创建主键索引（PRIMARY KEY），联合索引（UNIQUE）和普通索引（INDEX）的方法。
+
+```
+mysql> ALTER TABLE `table_name` ADD INDEX `index_name` (column list);
+mysql> ALTER TABLE `table_name` ADD UNIQUE `index_name` (column list);
+mysql> ALTER TABLE `table_name` ADD PRIMARY KEY `index_name` (column list);
+mysql> CREATE INDEX `index_name` ON `table_name` (column_list);
+mysql> CREATE UNIQUE INDEX `index_name` ON `table_name` (column_list);
+
+例如：
+mysql> ALTER TABLE `article` ADD INDEX `id`;//给article表增加id索引
+或者：
+mysql> ALTER TABLE `article` ADD INDEX (`id`,`order_id`); //给article表增加id索引，order_id索引
+```
 
 
 
