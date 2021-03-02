@@ -8,35 +8,33 @@
 
 https://juejin.cn/post/6844903954719965192
 
-Java 容器主要分两种：Collection 和 Map，Collection 是用于存储对象的集合，Map是用于存储键值对的集合。 其中Collection又可以分为List 和 Set两种集合。
+Java 容器主要分两种：Collection 和 Map，Collection 是用于存储对象的集合，Map 是用于存储键值对的集合。 其中Collection又可以分为List 和 Set两种集合。
 
-实现List接口的集合主要有：ArrayList，LinkedList，Vector（Stack）
+- 实现List接口的集合主要有：ArrayList，LinkedList，Vector（Stack）
 
-实现Set接口的集合主要有：HashSet，LinkedSet，TreeSet
+- 实现Set接口的集合主要有：HashSet，LinkedSet，TreeSet
 
-实现map接口的集合主要有：HashMap，LinkedHashMap，TreeMap，HashTable
+- 实现map接口的集合主要有：HashMap，LinkedHashMap，TreeMap，HashTable
 
-**同步容器** 
+其中属于 **同步容器** 的有：Vector，Stack，HashTable，另外 Collections 提供了以下几种方法可以将非同步容器转化为同步容器
 
-其中属于 **同步容器** 的有：Vector，Stack，HashTable，另外Collections提供了一下几种方法可以将非同步容器转化为同步容器
-
+```java
 List list = Collections.synchronizedList(new ArrayList());
-
 Set set = Collections.synchronizedSet(new HashSet());
-
 Map map = Collections.synchronizedMap(new HashMap());
+```
 
 **并发容器**
 
-1.CopyOnWriteArrayList
+1. CopyOnWriteArrayList
 
-2.CopyOnWriteArraySet
+2. CopyOnWriteArraySet
 
-3.ConcurrentHashMap
+3. ConcurrentHashMap
 
-4.ConcurrentSkipListMap
+4. ConcurrentSkipListMap
 
-5.ConcurrentSkipListSet
+5. ConcurrentSkipListSet
 
 ## 集合框架有哪些优点
 
@@ -44,16 +42,6 @@ Map map = Collections.synchronizedMap(new HashMap());
 - 随着使用经过严格测试的集合框架类，代码质量会得到提高。
 - 通过使用 JDK 附带的集合类，可以降低代码维护成本。
 - 复用性和可操作性。
-
-## Java集合类框架的基本接口有哪些？
-
-Java 集合类提供了一套设计良好的支持对一组对象进行操作的接口和类。Java集合类里面最基本的接口有：
-
-- Collection：代表一组对象，每一个对象都是它的子元素。
-- Set：不包含重复元素的 Collection。
-- List：有顺序的 collection，并且可以包含重复元素。
-- Map：可以把键(key)映射到值(value)的对象，键不能重复。
-- 还有其它接口 Queue、Dequeue、SortedSet、SortedMap 和 ListIterator。
 
 ## 为什么集合类没有实现 Cloneable 和 Serializable 接口？
 

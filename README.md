@@ -58,8 +58,6 @@
 
 
 
-
-
 ## JVM 
 
 - [ ] Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？
@@ -101,14 +99,6 @@
 - [ ] MySQL 有什么调优的方式？
 - [ ] 简述 MySQL 的主从同步机制，如果同步失败会怎么样？
 
-
-
-
-
-
-
-
-
 - [x] Mysql 索引重建
 - [ ] Mysql 事务实现的底层原理
 - [x] Mysql 在可重复读隔离级别下会不会有幻读的情况，为什么？
@@ -131,9 +121,25 @@
 - [ ] Mysql 主从模式如何保证主从强一致性
 - [ ] Mysql 集群如何保证主从可用性
 
+[Mysql 基础架构](./Mysql/mysql.md)
 
+[Mysql 增删改查操作](./Mysql/mysql-index-operation.md.md)
 
+[Mysql 索引](./Mysql/mysql-index.md)
 
+[Mysql 索引 增删改查操作](./Mysql/mysql-index-operation.md)
+
+[Mysql 锁](./Mysql/mysql-lock.md)
+
+[Mysql 事务](./Mysql/mysql-trans.md)
+
+[Mysql MVCC 多版本并发控制](./Mysql/mysql-mvcc.md)
+
+[Mysql 日志](./Mysql/mysql-logs.md)
+
+[Mysql 其他](./Mysql/other.md)
+
+[Mysql 问题列表](./Mysql/questions.md)
 
 
 
@@ -167,11 +173,21 @@
 
 Kafka 发送消息是如何保证可靠性的？
 
+[Kafka中的基本概念](https://gyl-coder.top/kafka/kafka-concept/)
 
+[Kafka中的ISR、AR又代表什么？ISR的伸缩又指什么？](https://gyl-coder.top/kafka/kafka-concept/)
+
+[Kafka中的HW、LEO、LSO等分别代表什么？](https://gyl-coder.top/kafka/kafka-concept/)
+
+[kafka如何保证数据可靠性和数据一致性](https://gyl-coder.top/kafka/kafka-reliability/)
+
+[Kafka Rebalance机制分析](https://gyl-coder.top/kafka/kafka-rebalance/)
+
+[kafka 主题管理](https://gyl-coder.top/kafka/kafka-topic-manage/)
+
+[Kafka有哪几处地方有分区分配的概念？简述大致的过程及原理](https://gyl-coder.top/kafka/kafka-partition-alocation/)
 
 ### 其他
-
-
 
 简述一致性哈希算法的实现方式及原理
 
@@ -230,7 +246,6 @@ Kafka 发送消息是如何保证可靠性的？
 ## 手写
 
 - [x] 手写生产者消费者模型
-- [ ] 
 
 
 
@@ -241,10 +256,6 @@ Phoenix是一个有状态的响应式微服务框架。它提供了高可用、�
 Phoenix是一套响应式微服务开发框架，致力于打造有状态服务。在应用系统架构方面，提供了包括客户端开发、服务端开发、消息通讯架构、服务端状态数据存储和恢复、计算层和消息层监控、服务端运维等架构方案。
 
 而在业务开发方面，Phoenix提供了一套领域驱动设计模式(DDD)的实现模型，业务开发中的领域模型定义以聚合根(Aggregate Root)的形式作为业务计算的基本单元，在整个业务计算的流程中，聚合根对象之间仅以消息(Message)作为数据交互接口。框架对聚合根对象的状态管理和多层次交互的实现进行了封装。Phoenix可以支持用无状态的方式来开发高价值的有状态场景。
-
-
-
- 
 
 
 
@@ -278,30 +289,13 @@ KAFKA怎么保证消息不丢？
 
 ​				基于msgId和业务自定义幂等。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 分布式事务的了解？
+
 TCC、SAGA、二阶段提交
+
 TCC的CC失败怎么处理？
+
 回答目前没有方案处理
-
-
-
-
-
-
 
 内存快照如何保证一致性
 
@@ -326,17 +320,24 @@ cqrs
 phoenix里有什么展现java能力的亮点
 
 phx优点是什么，使用场景是什么，单线程模型如何使用cpu的多核特性
+
 phx和db的关系
+
 phx如何保证内存可靠性和灾备
+
 phx遇到洪峰流量碰到的问题是什么？最先遇到瓶颈的可能是啥？如何解决
+
 phx里你主要负责的模块？ 多少人做这个框架，成员怎么分布
+
 介绍下actor模型
+
 介绍下akka-cluster和akka-sharding
+
 介绍akka里的actor的生命周期
+
 介绍phx的模型，水平扩容如何实现，提升易用性和性能是什么意思，phx里akka的用法
+
 介绍下saga模型，介绍下事务应该怎么编排
-
-
 
 
 
@@ -351,7 +352,7 @@ phx里你主要负责的模块？ 多少人做这个框架，成员怎么分布
 - [x] [113. 路径总和 II](https://leetcode-cn.com/problems/path-sum-ii/)
 - [x] [437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
 - [x] [215. 数组中的第K个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
-- [ ] [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
+- [x] [83. 删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
 - [ ] [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
 - [ ] [142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
 - [ ] [剑指 Offer 09. 用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)
@@ -381,50 +382,6 @@ phx里你主要负责的模块？ 多少人做这个框架，成员怎么分布
 - [ ] 10亿条数据包括 id，上线时间，下线时间，请绘制每一秒在线人数的曲线图
 - [ ] 如果通过一个不均匀的硬币得到公平的结果？
 - [ ] Hash 表常见操作的时间复杂度是多少？遇到 Hash 冲突是如何解决的？
-
-
-
-
-
-## Mysql 
-
-[Mysql 基础架构](./Mysql/mysql.md)
-
-[Mysql 增删改查操作](./Mysql/mysql-index-operation.md.md)
-
-[Mysql 索引](./Mysql/mysql-index.md)
-
-[Mysql 索引 增删改查操作](./Mysql/mysql-index-operation.md)
-
-[Mysql 锁](./Mysql/mysql-lock.md)
-
-[Mysql 事务](./Mysql/mysql-trans.md)
-
-[Mysql MVCC 多版本并发控制](./Mysql/mysql-mvcc.md)
-
-[Mysql 日志](./Mysql/mysql-logs.md)
-
-[Mysql 其他](./Mysql/other.md)
-
-[Mysql 问题列表](./Mysql/questions.md)
-
-## Kafka
-
-[Kafka中的基本概念](https://gyl-coder.top/kafka/kafka-concept/)
-
-[Kafka中的ISR、AR又代表什么？ISR的伸缩又指什么？](https://gyl-coder.top/kafka/kafka-concept/)
-
-[Kafka中的HW、LEO、LSO等分别代表什么？](https://gyl-coder.top/kafka/kafka-concept/)
-
-[kafka如何保证数据可靠性和数据一致性](https://gyl-coder.top/kafka/kafka-reliability/)
-
-[Kafka Rebalance机制分析](https://gyl-coder.top/kafka/kafka-rebalance/)
-
-[kafka 主题管理](https://gyl-coder.top/kafka/kafka-topic-manage/)
-
-[Kafka有哪几处地方有分区分配的概念？简述大致的过程及原理](https://gyl-coder.top/kafka/kafka-partition-alocation/)
-
-
 
 
 
