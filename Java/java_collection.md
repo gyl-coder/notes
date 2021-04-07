@@ -812,7 +812,7 @@ ConcurrentHashMap的出现主要为了解决hashmap在并发环境下不安全�
 
 **ConcurrentHashMap保证线程安全的方案是：**
 
-- **JDK1.8：synchronized+CAS+HashEntry+红黑树；**
+- **JDK1.8：synchronized+CAS+Node+红黑树；**
 - **JDK1.7：ReentrantLock+Segment+HashEntry。**
 
 #### JDK7 ConcurrentHashMap

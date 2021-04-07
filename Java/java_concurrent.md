@@ -686,8 +686,6 @@ https://www.cnblogs.com/wuqinglong/p/9945618.html
 - `volatile` 关键字能保证数据的可见性，但不能保证数据的原子性。`synchronized` 关键字两者都能保证。
 - `volatile`关键字主要用于解决变量在多个线程之间的可见性，而 `synchronized` 关键字解决的是多个线程之间访问资源的同步性。
 
-
-
 ## 进程和线程的区别？
 
 - 进程是资源分配的最小单位，线程是任务执行的最小单位。
