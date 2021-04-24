@@ -1,0 +1,538 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>Mysql 事务相关 — Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/mysql/mysql-trans.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/mysql/mysql-trans.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/mysql/mysql-trans.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/mysql/mysql-trans.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/mysql/mysql-trans.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/mysql/mysql-trans.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/mysql/mysql-trans.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/mysql/mysql-trans.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mysql 事务相关 — Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mysql 事务相关 — Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "api"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api/" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide/" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples/" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook/" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li>
+  <a href="/mysql/">💼数据库</a>
+</li>
+<li>
+  <a target="_blank" rel="noopener" href="https://codetop.cc/#/home">❤️算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/mysql/mysql-trans.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/mysql/mysql-trans.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/mysql/mysql-trans.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/mysql/mysql-trans.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/mysql/mysql-trans.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/mysql/mysql-trans.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/mysql/mysql-trans.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/mysql/mysql-trans.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/mysql/mysql-trans.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      <!-- <div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <span>Special Sponsor</span>
+    <div>
+    <a href="https://autocode.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/autocode.svg" alt="Autocode">
+    </a>
+    </div>
+  </div>
+</div>
+
+ -->
+      
+        <!-- <h2>
+          
+          API
+          
+            <select class="version-select">
+              <option value="v3">3.x</option>
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+        </h2> -->
+        <ul class="menu-root">
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!-- 
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>Platinum Sponsors</span>
+    <div>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://retool.com/?utm_source=sponsor&utm_campaign=vue" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/retool.png" alt="Retool">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/ionic.png" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/nuxt.png" alt="Nuxt">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    Become a Sponsor
+  </a>
+</div>
+
+ -->
+
+
+<div class="content api with-sidebar ">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js">
+  </script>
+</div>
+
+
+    
+  
+  
+    <h1>Mysql 事务相关</h1>
+  
+  
+    <h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><p><strong>原子性：</strong>事务是一个原子操作单元，其对数据的修改，要么全都执行，要么全都不执行。</p>
+<p><strong>一致性：</strong>指的是事务开始之前和事务结束之后，数据库的完整性限制未被破坏。一致性包括两方面的内容，分别是约束一致性和数据一致性。</p>
+<p><strong>隔离性：</strong>指的是一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对其他的并发事务是隔离的。</p>
+<p><strong>持久性：</strong>指的是一个事务一旦提交，它对数据库中数据的改变就应该是永久性的，后续的操作或故障不 应该对其有任何影响，不会丢失。</p>
+<h2 id="并发事务会引发哪些问题？如何解决？"><a href="#并发事务会引发哪些问题？如何解决？" class="headerlink" title="并发事务会引发哪些问题？如何解决？"></a>并发事务会引发哪些问题？如何解决？</h2><p><strong>丢失更新：</strong>当两个或多个事务更新同一行记录，会产生更新丢失现象。可以分为回滚覆盖和提交覆盖。</p>
+<ul>
+<li>回滚覆盖：一个事务回滚操作，把其他事务已提交的数据给覆盖了。 </li>
+<li>提交覆盖：一个事务提交操作，把其他事务已提交的数据给覆盖了。</li>
+</ul>
+<p><strong>脏读：</strong>读到了数据库中未提交的数据。（读未提交）。事务T1读到了事务T2未提交的数据，并对该数据进行操作然后提交，但是事务T2对撤销了该事务，导致事务T1操作的是错误的数据。</p>
+<p><strong>不可重复读：</strong>一个事务T1在读取表中的数据后，另一个事务T2对表中的数据进行了修改，多次读取的结果不一样</p>
+<p><strong>幻读：</strong>一个事务T1读取按一定条件读取数据库中的某些数据后，另一个事务T2插入或者删除了一些记录，当T1再次读取该数据库时，出现了前后不一致的情况。（事务T1对表的全部数据进行了修改，事务T2在表里插入了一些数据，导致事务T1再次操作该表时，发现还有未修改的数据，好像出现了幻觉一样）</p>
+<h2 id="不可重复读和幻读的区别"><a href="#不可重复读和幻读的区别" class="headerlink" title="不可重复读和幻读的区别"></a>不可重复读和幻读的区别</h2><p>不可重复读：由于数据修改引起的，</p>
+<p>幻读：由于数据插入和删除引起的，在可重复读中，sql第一次读取数据后，就将这些数据加锁，其他事物无法修改这些数据，但是可以insert数据，所以事务A先前读取了数据，或者修改了全部数据，事务B还是可以insert数据，这是事务A就会发现多了一条数据，这就是幻读</p>
+<h2 id="Mysql-中-InnoDB-支持的四种事务隔离级别名称，以及逐级之间的区别？"><a href="#Mysql-中-InnoDB-支持的四种事务隔离级别名称，以及逐级之间的区别？" class="headerlink" title="Mysql 中 InnoDB 支持的四种事务隔离级别名称，以及逐级之间的区别？"></a>Mysql 中 InnoDB 支持的四种事务隔离级别名称，以及逐级之间的区别？</h2><p>隔离级别：四种隔离级别（读未提交、读已提交、可重复读、串行化）</p>
+<ul>
+<li><strong>读未提交：</strong>（在读未提交隔离级别下，事务A可以读取到事务B修改过但未提交的数据）隔离级别最低，会引发脏读、不可重复读和幻读</li>
+<li><strong>读已提交：</strong>读到的都是已提交的数据，会引发不可重复读和幻读</li>
+<li><strong>可重复读：</strong>解决了不可重复读，它确保同一事务的多个实例在并发读取数据 时，会看到同样的数据行。避免了脏读、不可重复读，会引发幻读</li>
+<li><strong>串行化：</strong>所有的增删改查串行执行。它通过强制事务排序，解决相互冲突，从而解决 幻度的问题。这个级别可能导致大量的超时现象的和锁竞争，效率低下。</li>
+</ul>
+<p><img src="..%5Cimg%5Cmysql%5C12.png" alt="image-20210118214947232"></p>
+<p>数据库的事务隔离级别越高，并发问题就越小，但是并发处理能力越差（代价）。读未提交隔离级别最低，并发问题多，但是并发处理能力好。以后使用时，可以根据系统特点来选择一个合适的隔离级别， 比如对不可重复读和幻读并不敏感，更多关心数据库并发处理能力，此时可以使用Read Commited隔离级别。 事务隔离级别，针对Innodb引擎，支持事务的功能。像MyISAM引擎没有关系。</p>
+<p><strong>mysql的默认隔离级别是：可重复读。</strong>myISAM和InnoDB都支持表级锁，但Innodb默认是行级锁。</p>
+<p><strong>oracle</strong>支持读已提交和串行化两种隔离级别，<strong>默认情况是读已提交</strong></p>
+<h2 id="什么是数据库事务"><a href="#什么是数据库事务" class="headerlink" title="什么是数据库事务"></a>什么是数据库事务</h2><p>在执行SQL语句的时候，某些业务要求，一系列操作必须全部执行，而不能仅执行一部分。例如，一个转账操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 从id&#x3D;1的账户给id&#x3D;2的账户转账100元</span><br><span class="line">-- 第一步：将id&#x3D;1的A账户余额减去100</span><br><span class="line">UPDATE accounts SET balance &#x3D; balance - 100 WHERE id &#x3D; 1;</span><br><span class="line">-- 第二步：将id&#x3D;2的B账户余额加上100</span><br><span class="line">UPDATE accounts SET balance &#x3D; balance + 100 WHERE id &#x3D; 2;</span><br></pre></td></tr></table></figure>
+
+<p>这两条SQL语句必须全部执行，或者，由于某些原因，如果第一条语句成功，第二条语句失败，就必须全部撤销。</p>
+<p>这种把多条语句作为一个整体进行操作的功能，被称为数据库<strong>事务</strong>。数据库事务可以确保该事务范围内的所有操作都可以全部成功或者全部失败。如果事务失败，那么效果就和没有执行这些SQL一样，不会对数据库数据有任何改动。</p>
+<p>数据库事务的特性：ACID</p>
+<h2 id="Mysql-事务实现的底层原理"><a href="#Mysql-事务实现的底层原理" class="headerlink" title="Mysql 事务实现的底层原理"></a>Mysql 事务实现的底层原理</h2><ul>
+<li>事务的原子性是通过undolog来实现的</li>
+<li>事务的持久性性是通过redolog来实现的</li>
+<li>事务的隔离性是通过(读写锁+MVCC)来实现的</li>
+<li>事务的终极大 boss 一致性是通过原子性，持久性，隔离性来实现的！！！</li>
+</ul>
+<p>原子性，持久性，隔离性的目的也是为了保障数据的一致性！</p>
+<p>总之，ACID只是个概念，事务最终目的是要保障数据的可靠性，一致性。</p>
+<h3 id="原子性实现"><a href="#原子性实现" class="headerlink" title="原子性实现"></a>原子性实现</h3><p>原子性：一个事务必须被视为不可分割的最小工作单位，一个事务中的所有操作要么全部成功提交，要么全部失败回滚，对于一个事务来说不可能只执行其中的部分操作，这就是事务的原子性。</p>
+<p>数据库原子性的实现，主要是通过 undo log 进行回滚操作。所谓回滚操作就是当发生错误异常或者显式的执行rollback语句时需要把数据还原到原先的模样。</p>
+<p><strong>Undo Log：</strong>数据库事务开始之前，会将要修改的记录存放到 Undo 日志里，当事务回滚时或者数据库崩溃时，可以利用 Undo 日志，撤销未提交事务对数据库产生的影响。（每条数据变更(insert/update/delete)操作都伴随一条undo log的生成,并且回滚日志必须先于数据持久化到磁盘上）</p>
+<p><strong>Undo Log产生和销毁：</strong>Undo Log在事务开始前产生；事务在提交时，并不会立刻删除undo log，innodb会将该事务对应的undo log放入到删除列表中，后面会通过后台线程purge thread进 行回收处理。Undo Log属于<strong>逻辑日志</strong>，记录一个变化过程。</p>
+<p>回滚操作就是要还原到原来的状态，undo log记录了数据被修改前的信息以及新增和被删除的数据信息，根据undo log生成回滚语句，比如：</p>
+<p>(1) 如果在回滚日志里有新增数据记录，则生成删除该条的语句<br>(2) 如果在回滚日志里有删除数据记录，则生成生成该条的语句<br>(3) 如果在回滚日志里有修改数据记录，则生成修改到原先数据的语句</p>
+<h3 id="持久性实现"><a href="#持久性实现" class="headerlink" title="持久性实现"></a>持久性实现</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000037671950">https://segmentfault.com/a/1190000037671950</a></p>
+<p><strong>持久性：</strong>事务一旦提交，其所做的修改会永久保存到数据库中，此时即使系统崩溃修改的数据也不会丢失。</p>
+<p>MySQL的表数据是存放在磁盘上的，因此想要存取的时候都要经历磁盘IO,然而即使是使用SSD磁盘IO也是非常消耗性能的。为此，为了提升性能InnoDB提供了缓冲池(Buffer Pool)，Buffer Pool中包含了磁盘数据页的映射，可以当做缓存来使用：</p>
+<p>读数据：会首先从缓冲池中读取，如果缓冲池中没有，则从磁盘读取再放入缓冲池；</p>
+<p>写数据：会首先写入缓冲池，缓冲池中的数据会定期同步到磁盘中；</p>
+<p>上面这种缓冲池的措施虽然在性能方面带来了质的飞跃，但是它也带来了新的问题，当MySQL系统宕机，断电的时候可能会丢数据！！！</p>
+<p>因为我们的数据已经提交了，但此时是在缓冲池里头，还没来得及在磁盘持久化，所以我们急需一种机制需要存一下已提交事务的数据，为恢复数据使用。</p>
+<p>Redo Log 是为了实现事务的持久性而出现的产物。防止在发生故障的时间点，尚有脏页未写入表 的 IBD 文件中，在重启 MySQL 服务的时候，根据 Redo Log 进行重做，从而达到事务的未入磁盘 数据进行持久化这一特性。</p>
+<h3 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h3><p>redo log 也就是重做日志，用来实现事务的持久性，即 ACID 中的 D。我们知道 InnoDB 存储引擎是以页为单位来管理存储空间的，我们的增删改查等操作本质上都是在访问和操作数据页，而在真正访问数据页之前，需要先把磁盘上的数据页读到内存中，具体来说是 Buffer Pool 中。为了保证持久性（就是对于一个已经提交的事务，即使系统发生了崩溃，这个事务对数据库所做的更改也不能丢失），需要把内存中的修改同步回磁盘（fsync），一个简单的做法就是在事务提交之前将该事务所修改的所有页面都刷新到磁盘，但是这个简单粗暴的做法有几个问题。</p>
+<ul>
+<li>刷新一个完整的数据页过于浪费。有时我们可能仅仅修改了数据页中的一个字节，但是在事务提交之前却不得不将一个完整的数据页从内存刷新到磁盘。</li>
+<li>随机 IO 刷新比较慢。一个事务可能包含多条语句，即使是一条语句也有可能需要修改多个数据页，而且修改的这些页面也有可能并不相邻，这就意味着将它们刷新到磁盘时，需要进行很多随机 IO，而随机 IO 要比顺序 IO 慢很多。</li>
+</ul>
+<p>其实我们没有必要在每次事务提交时就把内存中所有修改过的页面都刷新到磁盘上，我们只需要把修改了哪些东西记录一下即可。比方说某个事务将系统表空间的第 100 号页面中的偏移量为 1000 的那个字节的值由 1 改为了 2，我们只需要记录这个即可。这样即使系统突然崩溃了，在重启之后只要按照上述内容重新更新一下数据页，系统就能恢复该事务对数据库所做的修改。</p>
+<p>这样做有很多好处。</p>
+<ul>
+<li>redo 日志所占用的空间很小。存储表空间的 ID、页号、偏移量以及需要更新的值，这些内容所需要的存储空间很小。同时并发的事务共享 redo log 存储空间，它们的 redo log 按照语句的执行顺序，依次交替地记录在一起，以减少日志占用的空间。</li>
+<li>redo 日志其实是<strong>批量写入</strong>的。事务对数据页所做的更改不会直接写入日志文件，而是先写入 redo log buffer，然后再将 buffer 中的数据以每秒钟一次的频率一并写入日志文件中。</li>
+<li>同时 redo log 只进行<strong>顺序追加</strong>的操作，也就是说它使用的是<strong>顺序 IO</strong>，因此性能更好。</li>
+</ul>
+<h3 id="数据丢失的问题"><a href="#数据丢失的问题" class="headerlink" title="数据丢失的问题"></a>数据丢失的问题</h3><p>对于随机写性能差的情况，常见的优化方法有两个：</p>
+<ul>
+<li><p>一个是先写日志，将随机写优化为顺序写；</p>
+</li>
+<li><p>另一个就是将单次写优化为批量写。既然要实现批量写，就需要引入缓存。</p>
+</li>
+</ul>
+<p><img src="../img/mysql/18.png"></p>
+<p>redo log 最终落盘的流程为：首先，事务提交时，会将对数据页的修改写入 log buffer。接着只有当 MySQL 发起系统调用写文件时，log buffer 中的数据才会写到系统缓存中。最后在写文件的系统调用完成后，还需要调用 fsync 方法落盘，这也是最慢的一步。如果不进行 flush，那么什么时候落盘是由操作系统决定的。</p>
+<p>在 redo log 的三层架构中，MySQL 做了一次批量写优化，操作系统也做了一次批量写优化，这样确实能够提升性能，但是缺点也很明显。MySQL 在事务提交时，将 redo log 写入缓存中后，就会认为事务提交成功。如果 MySQL 在 log buffer 中的数据在写入操作系统缓存之前就崩溃了，那么就会出现数据丢失。同样的，如果在操作系统的缓存没有落盘之前，系统崩溃，那么也会出现数据丢失。</p>
+<p>对于有的业务来说，可能允许性能较低但不允许数据丢失；而有的业务可能必须要高性能高吞吐，但是可以能够容忍少量的数据丢失。MySQL 提供了一个 <code>innodb_flush_log_at_trx_commit</code> 参数，通过它可以控制事务提交时 redo log 的刷新策略，从而适应不同的业务需要。</p>
+<table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">目的</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">最佳性能</td>
+<td align="left">此时每隔一秒才会将 log buffer 中的数据批量地写入到操作系统缓存中，同时 MySQL 会主动调用 fsync。如果数据库发生崩溃，这种策略可能会导致 1 秒的数据丢失</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">强一致性</td>
+<td align="left">每次事务提交时，都会将 log buffer 中的数据写入到操作系统缓存中，同时 MySQL 会主动调用 fsync。<strong>这种策略是 MySQL 默认的策略</strong></td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">平衡性能与一致性</td>
+<td align="left">每次事务提交时，都会将 log buffer 中的数据写入到操作系统缓存中，然后每隔一秒主动调用 fsync 将操作系统缓存落盘，由于操作系统也会不定时地调用 fsync，所以在这种策略下，如果操作系统崩溃，那么最多也就丢失 1 秒的数据，而操作系统与数据库相比，出现崩溃的概率更低</td>
+</tr>
+</tbody></table>
+<h3 id="隔离性实现"><a href="#隔离性实现" class="headerlink" title="隔离性实现"></a>隔离性实现</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000025156465#">https://segmentfault.com/a/1190000025156465#</a></p>
+<p>隔离性（isolation）指的是不同事务先后提交并执行后，最终呈现出来的效果是串行的，也就是说，对于事务来说，它在执行过程中，感知到的数据变化应该只有自己操作引起的，不存在其他事务引发的数据变化。</p>
+<p>隔离性解决的是并发事务出现的问题。</p>
+<p>隔离性是事务ACID特性里最复杂的一个。在SQL标准里定义了四种隔离级别，每一种级别都规定一个事务中的修改，哪些是事务之间可见的，哪些是不可见的。</p>
+<p>Mysql 采用 MVCC + 锁的方式来实现不同的隔离级别。运用的优化思想有读写分离，读读并行，读写并行</p>
+<p>我们来看下 InnoDB 的事务具体是怎么实现的（下面的读都指的是非主动加锁的 select）</p>
+<table>
+<thead>
+<tr>
+<th>事务隔离级别</th>
+<th>实现方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>未提交读（RU）</td>
+<td>事务对当前被读取的数据不加锁，都是<strong>当前读</strong>； 事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加<strong>行级共享锁</strong>，直到事务结束才释放。</td>
+</tr>
+<tr>
+<td>提交读（RC）</td>
+<td>事务对当前被读取的数据不加锁，且是<strong>快照读</strong>； 事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加<strong>行级排他锁（Record）</strong>，直到事务结束才释放。 <strong>通过快照，在这个级别 MySQL 就解决了不可重复读的问题</strong></td>
+</tr>
+<tr>
+<td>可重复读（RR）</td>
+<td>事务对当前被读取的数据不加锁，且是<strong>快照读</strong>； 事务在更新某数据的瞬间（就是发生更新的瞬间），必须先对其加<strong>行级排他锁（Record，GAP，Next-Key）</strong>，直到事务结束才释放。 <strong>通过间隙锁，在这个级别 MySQL 就解决了幻读的问题</strong></td>
+</tr>
+<tr>
+<td>序列化读（S）</td>
+<td>事务在读取数据时，必须先对其加<strong>表级共享锁</strong> ，直到事务结束才释放，都是<strong>当前读</strong>； 事务在更新数据时，必须先对其加<strong>表级排他锁</strong> ，直到事务结束才释放。</td>
+</tr>
+</tbody></table>
+<p>可以看到，InnoDB 通过 MVCC 很好的解决了读写冲突的问题，而且提前一个级别就解决了标准级别下会出现的幻读和不可重复读问题，大大提升了数据库的并发能力。</p>
+<h4 id="幻读到底包不包括了delete的情况"><a href="#幻读到底包不包括了delete的情况" class="headerlink" title="幻读到底包不包括了delete的情况?"></a>幻读到底包不包括了delete的情况?</h4><p>不可重复读：前后多次读取一行，数据内容不一致，针对其他事务的update和delete操作。为了解决这个问题，使用行共享锁，锁定到事务结束（也就是RR级别，当然MySQL使用MVCC在RC级别就解决了这个问题）</p>
+<p>幻读：当同一个查询在不同时间生成不同的行集合时就是出现了幻读，针对的是其他事务的insert操作，为了解决这个问题，锁定整个表到事务结束（也就是S级别，当然MySQL使用间隙锁在RR级别就解决了这个问题）</p>
+<p>网上很多文章提到幻读和提交读的时候，有的说幻读包括了delete的情况，有的说delete应该属于提交读的问题，那到底真相如何呢？我们实际来看下MySQL的官方文档（如下）</p>
+<blockquote>
+<p>The so-called phantom problem occurs within a transaction when the same query produces different sets of rows at different times. For example, if a SELECT) is executed twice, but returns a row the second time that was not returned the first time, the row is a “phantom” row.</p>
+</blockquote>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/innodb-next-key-locking.html">https://dev.mysql.com/doc/refman/5.7/en/innodb-next-key-locking.html</a></p>
+</blockquote>
+<p>可以看到，幻读针对的是结果集前后发生变化，所以看起来delete的情况应该归为幻读，但是我们实际分析下上面列出的标准SQL在RR级别的实现原理就知道，标准SQL的RR级别是会对查到的数据行加行共享锁，所以这时候其他事务想删除这些数据行其实是做不到的，所以在RR下，不会出现因delete而出现幻读现象，也就是幻读不包含delete的情况。</p>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/mysql/mysql-trans.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>
