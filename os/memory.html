@@ -1,0 +1,518 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/os/memory.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/os/memory.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/os/memory.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/os/memory.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/os/memory.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/os/memory.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/os/memory.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/os/memory.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = ""
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/os/memory.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/os/memory.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/os/memory.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/os/memory.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/os/memory.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/os/memory.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/os/memory.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/os/memory.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/os/memory.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/os/memory.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/os/memory.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/os/memory.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/os/memory.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/os/memory.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/os/memory.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/os/memory.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/os/memory.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/os/memory.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+  
+  
+    <h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><p>内存管理是操作系统设计中最重要和最复杂的内容之一，有效的内存管理在多道程序（多进程）设计中非常重要，不仅方便用户使用存储器、提高内存利用率，还可以通过虚拟技术从逻辑上扩充存储器。</p>
+<p>内存管理的功能有：</p>
+<ul>
+<li><p>内存空间的分配与回收，包括内存的分配和共享。</p>
+</li>
+<li><p>地址转换，把逻辑地址转换成相应的物理地址。</p>
+</li>
+<li><p>内存空间的扩充，利用虚拟内存技术或自动覆盖技术，从逻辑上扩充内存。</p>
+</li>
+<li><p>存储保护，保证各道作业在各自存储空间内运行，互不干扰。</p>
+</li>
+</ul>
+<p>在进行具体的内存管理之前，需要了解进程运行的基本原理和要求。</p>
+<p>创建进程首先要将程序和数据装入内存。将用户原程序变成可在内存中执行的程序，通常需要以下几个步骤。</p>
+<ul>
+<li><p>编译，由编译程序将用户源代码编译成若干个目标模块。</p>
+</li>
+<li><p>链接，由链接程序将编译后形成的一组目标模块，以及所需库函数链接，形成完整的装入模块。</p>
+</li>
+<li><p>装入，由装入程序将装入模块装入内存。</p>
+</li>
+</ul>
+<p>程序的链接有以下三种方式：</p>
+<ul>
+<li><p>静态链接：在程序运行之前，先将各目标模块及它们所需的库函数链接成一个完整的可执行程序，以后不再拆开。</p>
+</li>
+<li><p>装入时动态链接：将用户源程序编译后所得到的一组目标模块，再装入内存时，采用边装入变链接的方式。</p>
+</li>
+<li><p>运行时动态链接：对某些目标模块的连接，是在程序执行中需要该目标模块时，才对她进行链接。其优点是便于修改和更新，便于实现对目标模块的共享。</p>
+</li>
+</ul>
+<h2 id="覆盖和交换"><a href="#覆盖和交换" class="headerlink" title="覆盖和交换"></a>覆盖和交换</h2><p>覆盖与交换技术是在多道程序环境下用来扩充内存的两种方法。覆盖技术主要用在早期的操作系统中，而交换技术则在现代操作系统中仍具有较强的生命力。</p>
+<p>早期的计算机系统中，主存容量很小，虽然主存中仅存放一道用户程序，但是存储空间放不下用户进程的现象也经常发生，这一矛盾可以用覆盖技术来解决。</p>
+<p>覆盖的基本思想是：由于程序运行时并非任何时候都要访问程序和数据的各个部分，因此可以把用户空间分成一个固定区和若干个覆盖区。将经常活跃的部分放在固定区，其余部分按调用关系分段。首先将那些将要访问的段放入覆盖区，其他段放在外存中，在需要调用时，系统再将其掉入覆盖区，替换其中原有的段。</p>
+<p>交换的基本思想是：把处于等待状态（或在CPU调度原则下被剥夺运行权利）的进程从内存移到辅存，把内存空间腾出来，这一过程又叫换出；把准备好竞争CPU运行的进程从辅存移到内存，这一过程又称为换入。</p>
+<p>例如，有一个CPU采用时间片轮转调度算法的多道程序环境。时间片到，内存管理器将刚刚执行过的进程换出，将另一进程换入到刚刚释放的内存空间中。同时，CPU调度器可以将时间片分配给其他已在内存中的进程。每个进程用完时间片都与另一进程交换。理想情况下。内存管理器的交换过程速度足够快，总有进程在内存中可以执行。</p>
+<p>有关交换需要注意以下几个问题：</p>
+<ul>
+<li><p>交换需要备份存储，通常是快速磁盘。它必须足够大，并且提供对这些内存影响的直接访问。</p>
+</li>
+<li><p>为了有效使用CPU，需要每个进程的执行时间比交换时间长，而影响交换时间的主要是转移时间。转移时间与所见换的内存空间成正比。</p>
+</li>
+<li><p>如果换出进程，必须确保该进程是完全处于空闲状态。</p>
+</li>
+<li><p>交换空间通常作为磁盘的一整块，且独立于文件系统，因此使用就可能很快。</p>
+</li>
+<li><p>交换通常在有许多进程运行且内存空间吃紧的时候开始启动，而系统负荷降低就暂停。</p>
+</li>
+<li><p>普通的交换使用不多，但交换策略的某些变种在许多系统中仍发挥作用。</p>
+</li>
+</ul>
+<blockquote>
+<p>交换技术主要是在不同进程之间进行，而覆盖则用于同一个程序中。</p>
+</blockquote>
+<p>由于覆盖技术要求给程序段之间的覆盖结构，使得其对用户和程序员不透明，所以对于主存无法存放用户程序的矛盾，现在操作系统是通过虚拟内存技术来解决的，覆盖技术则已成为历史；而交换技术在现代操作系统中仍具有较强的生命力。</p>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/os/memory.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>

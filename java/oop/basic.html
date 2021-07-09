@@ -1,0 +1,1170 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>基础 — Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/java/oop/basic.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/java/oop/basic.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/java/oop/basic.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/java/oop/basic.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/java/oop/basic.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/java/oop/basic.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/java/oop/basic.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/java/oop/basic.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="基础 — Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="基础 — Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "guide"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link current">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/java/oop/basic.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/java/oop/basic.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/java/oop/basic.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/java/oop/basic.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/java/oop/basic.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/java/oop/basic.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/java/oop/basic.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/java/oop/basic.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/java/oop/basic.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      <!-- <div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <span>Special Sponsor</span>
+    <div>
+    <a href="https://autocode.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/autocode.svg" alt="Autocode">
+    </a>
+    </div>
+  </div>
+</div>
+
+ -->
+      
+        <!-- <h2>
+          
+          Guide
+          
+            <select class="version-select">
+              <option value="v3">3.x</option>
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+        </h2> -->
+        <ul class="menu-root">
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/java/oop/oop.html" class="sidebar-link">面向对象</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/java/oop/basic.html" class="sidebar-link current">基础</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/java/oop/collection.html" class="sidebar-link">集合</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/java/oop/concurrent.html" class="sidebar-link">并发</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!-- 
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>Platinum Sponsors</span>
+    <div>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://retool.com/?utm_source=sponsor&utm_campaign=vue" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/retool.png" alt="Retool">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/ionic.png" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/nuxt.png" alt="Nuxt">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    Become a Sponsor
+  </a>
+</div>
+
+ -->
+
+
+<div class="content guide with-sidebar basic-guide">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js">
+  </script>
+</div>
+
+
+    
+  
+  
+    <h1>基础</h1>
+  
+  
+    <h2 id="🔥什么是内存泄漏，怎么确定内存泄漏？"><a href="#🔥什么是内存泄漏，怎么确定内存泄漏？" class="headerlink" title="🔥什么是内存泄漏，怎么确定内存泄漏？"></a>🔥什么是内存泄漏，怎么确定内存泄漏？</h2><p><strong>内存溢出：</strong>简单地说内存溢出就是指<strong>程序运行过程中申请的内存大于系统能够提供的内存，导致无法申请到足够的内存</strong>，于是就发生了内存溢出。</p>
+<p><strong>内存泄漏：</strong>内存泄漏指程序运行过程中<strong>分配内存给临时变量，用完之后却没有被GC回收，始终占用着内存</strong>，既不能被使用也不能分配给其他程序，于是就发生了内存泄漏。</p>
+<p><strong>内存溢出常见情况：</strong></p>
+<ul>
+<li>运行时常量池溢出</li>
+<li>程序中使用了大量的jar或class，使得方法区中保存的class对象没有被及时回收或者class信息占用的内存超过了配置的大小。</li>
+<li>创建的对象太多，在进行垃圾回收之前对象数量达到了最大堆的容量限制。</li>
+<li>虚拟机栈和本地方法栈溢出</li>
+</ul>
+<p><strong>内存泄漏常见情况：</strong></p>
+<p>内存泄漏的根本原因是长生命周期的对象持有短生命周期对象的引用，尽管短生命周期的对象已经不再需要，但由于长生命周期对象持有它的引用而导致不能被回收。</p>
+<ul>
+<li>静态集合类引起的内存泄漏</li>
+<li>修改HashSet中对象的参数值，且参数是计算哈希值的字段</li>
+<li>各种连接（忘记关闭连接）</li>
+</ul>
+<p><strong>避免内存泄漏的几点建议：</strong></p>
+<ul>
+<li>尽早释放无用对象的引用。</li>
+<li>避免在循环中创建对象。</li>
+<li>使用字符串处理时避免使用String，应使用StringBuffer。</li>
+<li>尽量少使用静态变量，因为静态变量存放在永久代，基本不参与垃圾回收。</li>
+</ul>
+<p><strong>怎么确定内存泄漏？</strong></p>
+<ul>
+<li><p>开启垃圾回收器日志信息</p>
+<p>在启动应用的时候，使用-verbose:gc参数，允许你在每次开始执行GC的时候，生成跟踪信息。意思是，当内存被回收的时候，在标准控制台会输出摘要信息，给出一个明确的数据，展示当前内存的管理情况。</p>
+</li>
+<li><p>使用 jdk 自带工具 Java VisualVM，对Java Heap进行内存监视，并确定其行为是否存在内存泄漏。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaoxi/p/7354857.html">https://www.cnblogs.com/xiaoxi/p/7354857.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903871538528269#heading-16">https://juejin.cn/post/6844903871538528269#heading-16</a></p>
+<blockquote>
+<p><strong>1、常发性内存泄漏</strong>。发生内存泄漏的代码会被多次执行到，每次被执行的时候都会导致一块内存泄漏。</p>
+<p><strong>2、偶发性内存泄漏。</strong>发生内存泄漏的代码只有在某些特定环境或操作过程下才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性的也许就变成了常发性的。所以测试环境和测试方法对检测内存泄漏至关重要。 </p>
+<p><strong>3、一次性内存泄漏。</strong>发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块仅且一块内存发生泄漏。比如，在类的构造函数中分配内存，在析构函数中却没有释放该内存，所以内存泄漏只会发生一次。 </p>
+<p><strong>4、隐式内存泄漏。</strong>程序在运行过程中不停的分配内存，但是直到结束的时候才释放内存。严格的说这里并没有发生内存泄漏，因为最终程序释放了所有申请的内存。但是对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致最终耗尽系统的所有内存。所以，我们称这类内存泄漏为隐式内存泄漏。 </p>
+</blockquote>
+<h2 id="JVM-JDK-JRE"><a href="#JVM-JDK-JRE" class="headerlink" title="JVM  JDK  JRE"></a>JVM  JDK  JRE</h2><p>Java 虚拟机（<strong>JVM</strong>）是运行 Java 字节码的虚拟机。JVM 有针对不同系统的特定实现。目的主要是使用相同的字节码，都能保证给出相同的结果。字节码和不同系统的JVM实现是java 语言 一次编译，随处运行的关键。</p>
+<blockquote>
+<p>什么是字节码？ 有什么好处？</p>
+<p>在 Java 中，jvm可以解释的代码就叫做字节码。（文件扩展名为.class）他不面向任何特定的处理器，只面向虚拟机。由于字节码并不针对一种特定的机器，因此，Java 程序无须重新编译便可在多种不同操作系统的计算机上运行。</p>
+</blockquote>
+<p><strong>JRE</strong> 是 Java运行时环境。它是运行已编译 java 程序所需的所有内容的集合，包括 java 虚拟机，java类库，java命令和一些其他的基础构建。但是他不能创建新程序。</p>
+<p><strong>JDK</strong> 是 Java Development 的缩写，他是功能齐全的java sdk。 他拥有JRE所拥有的一切，还有编译器（javac）和工具，它能够创建和编译程序。</p>
+<h3 id="Open-JDK-和-Oracle-JDK-的区别"><a href="#Open-JDK-和-Oracle-JDK-的区别" class="headerlink" title="Open JDK 和 Oracle JDK 的区别"></a>Open JDK 和 Oracle JDK 的区别</h3><ol>
+<li>OpenJDK 是一个参考模型并且是完全开源的，而 Oracle JDK 是 OpenJDK 的一个实现，并不是完全开源的；</li>
+<li>Oracle JDK 比 OpenJDK 更稳定。OpenJDK 和 Oracle JDK 的代码几乎相同，但 Oracle JDK 有更多的类和一些错误修复。因此，如果您想开发企业/商业软件，我建议您选择 Oracle JDK，因为它经过了彻底的测试和稳定。某些情况下，有些人提到在使用 OpenJDK 可能会遇到了许多应用程序崩溃的问题，但是，只需切换到 Oracle JDK 就可以解决问题；</li>
+<li>在响应性和 JVM 性能方面，Oracle JDK 与 OpenJDK 相比提供了更好的性能；</li>
+<li>Oracle JDK 不会为即将发布的版本提供长期支持，用户每次都必须通过更新到最新版本获得支持来获取最新版本；</li>
+<li>Oracle JDK 大概每 6 个月发一次主要版本，而 OpenJDK 版本大概每三个月发布一次。但这不是固定的，我觉得了解这个没啥用处。详情参见：<a target="_blank" rel="noopener" href="https://blogs.oracle.com/java-platform-group/update-and-faq-on-the-java-se-release-cadence">https://blogs.oracle.com/java-platform-group/update-and-faq-on-the-java-se-release-cadence</a> 。</li>
+<li>Oracle JDK 根据二进制代码许可协议获得许可，而 OpenJDK 根据 GPL v2 许可获得许可。</li>
+</ol>
+<h2 id="为什么说-Java-语言“编译与解释并存”？"><a href="#为什么说-Java-语言“编译与解释并存”？" class="headerlink" title="为什么说 Java 语言“编译与解释并存”？"></a>为什么说 Java 语言“编译与解释并存”？</h2><p>高级编程语言按照程序的执行方式分为：编译型和解释型两种。</p>
+<p>简单来说，编译型语言是指编译器针对特定的操作系统将源代码一次性翻译成可被该平台执行的机器码；</p>
+<p>解释型语言是指解释器对源程序逐行解释成特定平台的机器码并立即执行。</p>
+<blockquote>
+<p>比如，你想阅读一本英文名著，你可以找一个英文翻译人员帮助你阅读， 有两种选择方式，你可以先等翻译人员将全本的英文名著（也就是源码）都翻译成汉语，再去阅读，也可以让翻译人员翻译一段，你在旁边阅读一段，慢慢把书读完。</p>
+</blockquote>
+<p>Java 语言既具有编译型语言的特征，也具有解释型语言的特征，因为 Java 程序要经过先编译，后解释两个步骤，由 Java 编写的程序需要先经过编译步骤，生成字节码（*.class 文件），这种字节码必须由 Java 解释器来解释执行。因此，我们可以认为 Java 语言编译与解释并存。</p>
+<h2 id="八大基本类型"><a href="#八大基本类型" class="headerlink" title="八大基本类型"></a>八大基本类型</h2><p>Java 中有 8 种基本数据类型，分别为：</p>
+<ol>
+<li>6 种数字类型 ：byte、short、int、long、float、double</li>
+<li>1 种字符类型：char</li>
+<li>1 种布尔型：boolean。</li>
+</ol>
+<p>这八种基本类型都有对应的包装类分别为：Byte、Short、Integer、Long、Float、Double、Character、Boolean</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>位数</th>
+<th>字节</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>8</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>1</td>
+<td></td>
+<td>false</td>
+</tr>
+<tr>
+<td>char</td>
+<td>16</td>
+<td>2</td>
+<td>‘u0000’</td>
+</tr>
+<tr>
+<td>short</td>
+<td>16</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>32</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>32</td>
+<td>4</td>
+<td>0f</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64</td>
+<td>8</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64</td>
+<td>8</td>
+<td>0d</td>
+</tr>
+</tbody></table>
+<p>对于 boolean，官方文档未明确定义，它依赖于 JVM 厂商的具体实现。逻辑上理解是占用 1 位，但是实际中会考虑计算机高效存储因素。</p>
+<p>注意：</p>
+<ol>
+<li>Java 里使用 long 类型的数据一定要在数值后面加上 <strong>L</strong>，否则将作为整型解析：</li>
+<li><code>char a = &#39;h&#39;</code>char :单引号，<code>String a = &quot;hello&quot;</code> :双引号</li>
+</ol>
+<p><strong>自动装箱与拆箱</strong></p>
+<ul>
+<li><strong>装箱</strong>：将基本类型用它们对应的引用类型包装起来；</li>
+<li><strong>拆箱</strong>：将包装类型转换为基本数据类型；</li>
+</ul>
+<p>装箱过程是通过调用包装器的valueOf方法实现的，而拆箱过程是通过调用包装器的 xxxValue方法实现的。（xxx代表对应的基本数据类型）。</p>
+<p>更多内容见：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3780005.html">深入剖析 Java 中的装箱和拆箱</a></p>
+<p><strong>8 种基本类型的包装类和常量池</strong></p>
+<p>Java 基本类型的包装类的大部分都实现了常量池技术，即 Byte,Short,Integer,Long,Character,Boolean；前面 4 种包装类默认创建了数值[-128，127] 的相应类型的缓存数据，Character 创建了数值在[0,127]范围的缓存数据，Boolean 直接返回 True Or False。如果超出对应范围仍然会去创建新的对象。 为啥把缓存设置为[-128，127]区间？（<a target="_blank" rel="noopener" href="https://github.com/Snailclimb/JavaGuide/issues/461">参见 issue/461</a>）性能和资源之间的权衡。</p>
+<h2 id="short-s1-1-s1-s1-1-有什么错？"><a href="#short-s1-1-s1-s1-1-有什么错？" class="headerlink" title="short s1=1;s1=s1+1;有什么错？"></a>short s1=1;s1=s1+1;有什么错？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* short s1=1;s1=s1+1;有什么错？</span></span><br><span class="line"><span class="comment">* short s2=1;s2+=1;有什么错？</span></span><br><span class="line"><span class="comment">* long l1 = 1;l1 = l1+1;有什么错？</span></span><br><span class="line"><span class="comment">* long l2 = 1;l2+=1;有什么错？</span></span><br><span class="line"><span class="comment">* 对于short s1 = 1; s1 = s1 + 1; 由于s1+1运算时会自动提升表达式的类型，所以结果是int型，再赋值给short类型s1时，编译器将报告需要强制转换类型的错误。</span></span><br><span class="line"><span class="comment">对于short s1 = 1; s1 += 1;由于 += 是java语言规定的运算符，java编译器会对它进行特殊处理，因此可以正确编译。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">short</span> s1 = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// s1 = s1+1;//报错，因为s1+1结果是int类型，等号左边是short类型，所以要强转</span></span><br><span class="line">        s1 = (<span class="keyword">short</span>) (s1 + <span class="number">1</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;s1:&quot;</span> + s1);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">short</span> s2 = <span class="number">1</span>;</span><br><span class="line">        s2 += <span class="number">1</span>;<span class="comment">// 因为+=在Java中进行了特殊处理，所以不会报错</span></span><br><span class="line">        System.out.println(<span class="string">&quot;s2:&quot;</span> + s2);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">long</span> l1 = <span class="number">1</span>;</span><br><span class="line">        l1 = l1 + <span class="number">1</span>;<span class="comment">// 不报错，+左边是long型，右边是int型，所以进行运算的时候都变为long型，结果是long型再赋值给long型自然不会错</span></span><br><span class="line">        System.out.println(<span class="string">&quot;l1:&quot;</span> + l1);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">long</span> l2 = <span class="number">1</span>;</span><br><span class="line">        l2 += <span class="number">1</span>;<span class="comment">// OK</span></span><br><span class="line">        System.out.println(<span class="string">&quot;l2:&quot;</span> + l2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="char类型是否可以存储一个汉字"><a href="#char类型是否可以存储一个汉字" class="headerlink" title="char类型是否可以存储一个汉字"></a>char类型是否可以存储一个汉字</h2><p>在c语言中，char类型占一个字节，而汉字占两个字节，所以不能存储。</p>
+<p>在java语言中，char类型占两个字节，而java默认采用Unicode码是16位，所以一个Unicode码占两个字节，java中无论汉字还是英文都是用Unicode编码来表达的，所以可以存储一个汉字。</p>
+<p>1Byte(字节) = 8bit (位)</p>
+<p>1024 byte = 1kb</p>
+<p>1024kb  =1mb</p>
+<p>1024mb = 1gb</p>
+<p>1024gb = 1t</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在16位的系统中（比如8086微机） 1字 （word）&#x3D; 2字节（byte）&#x3D; 16（bit）</span><br><span class="line"></span><br><span class="line">在32位的系统中（比如win32） 1字（word）&#x3D; 4字节（byte）&#x3D;32（bit）</span><br><span class="line"></span><br><span class="line">在64位的系统中（比如win64）1字（word）&#x3D; 8字节（byte）&#x3D;64（bit）</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符型常量和字符串常量的区别"><a href="#字符型常量和字符串常量的区别" class="headerlink" title="字符型常量和字符串常量的区别?"></a>字符型常量和字符串常量的区别?</h2><ol>
+<li><p>形式上: 字符常量是单引号引起的一个字符; 字符串常量是双引号引起的 0 个或若干个字符</p>
+</li>
+<li><p>含义上: 字符常量相当于一个整型值( ASCII 值),可以参加表达式运算; 字符串常量代表一个地址值(该字符串在内存中存放位置)</p>
+</li>
+<li><p>占内存大小 字符常量只占 2 个字节; 字符串常量占若干个字节 (<strong>注意： char 在 Java 中占两个字节</strong>),</p>
+</li>
+</ol>
+<blockquote>
+<p>字符封装类 <code>Character</code> 有一个成员常量 <code>Character.SIZE</code> 值为 16,单位是<code>bits</code>,该值除以 8(<code>1byte=8bits</code>)后就可以得到 2 个字节</p>
+</blockquote>
+<h2 id="String-A-“123”-创建了几个对象"><a href="#String-A-“123”-创建了几个对象" class="headerlink" title="String A = “123” 创建了几个对象"></a>String A = “123” 创建了几个对象</h2><p>以下几种情况(均不考虑字符串在常量池中已存在的情况)：</p>
+<p>1、String a=”123”;</p>
+<p>创建了1个对象</p>
+<p>jvm在编译阶段会判断常量池中是否有 “123” 这个常量对象如果有，a直接指向这个常量的引用，如果没有会在常量池里创建这个常量对象。</p>
+<p>2、String a=new String(“123”);</p>
+<p>创建了2个对象</p>
+<p>同情况1，jvm编译阶段判断常量池中 “123”存在与否，进而来判断是否创建常量对象，然后运行阶段通过new关键字在java heap创建String对象。</p>
+<p>3、String a=”123”+”456”;</p>
+<p>创建了1个对象</p>
+<p>jvm编译阶段过编译器优化后会把字符串常量直接合并成”123456”，所有创建对象时最多会在常量池中创建1个对象。</p>
+<p>4、String a=”123”+new String(“456”);</p>
+<p>创建了4个对象</p>
+<p>常量池对象”123” ,”456”，new String(“456”)创建堆对象，还有一个堆对象”123456”。</p>
+<h2 id="String-类能不能被继承？为什么？有什么好处？"><a href="#String-类能不能被继承？为什么？有什么好处？" class="headerlink" title="String 类能不能被继承？为什么？有什么好处？"></a>String 类能不能被继承？为什么？有什么好处？</h2><p>String 类被 final 关键字修饰了，不能被继承。</p>
+<p><strong>为什么String要设计成不可变</strong></p>
+<p>String不可变的原因包括：设计考虑，效率优化问题，以及安全性这三大方面。 </p>
+<ol>
+<li>字符串常量池的需要</li>
+</ol>
+<p>字符串常量池(String pool, String intern pool, String保留池) 是Java堆内存中一个特殊的存储区域, 当创建一个String对象时,假如此字符串值已经存在于常量池中,则不会创建一个新的对象,而是引用已经存在的对象。这种常量池的思想,是一种优化手段.</p>
+<ol start="2">
+<li>允许String 对象缓存 HashCode</li>
+</ol>
+<p>Java中String对象的哈希码被频繁地使用, 比如在hashMap 等容器中。字符串不变性保证了hash码的唯一性，因此可以放心地进行缓存。这也是一种性能优化手段,意味着不必每次都去计算新的哈希码.。</p>
+<ol start="3">
+<li>安全性</li>
+</ol>
+<p>String被许多的Java类(库)用来当做参数,例如 网络连接地址URL,文件路径path,还有反射机制所需要的String参数等, 假若String不是固定不变的,将会引起各种安全隐患。</p>
+<p>因为字符串是不可变的，所以是多线程安全的，同一个字符串实例可以被多个线程共享。这样便不用因为线程安全问题而使用同步。字符串自己便是线程安全的。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dorapan1987/article/details/44347933">https://blog.csdn.net/dorapan1987/article/details/44347933</a></p>
+<h2 id="String-、-StringBuffer-和-StringBuilder-的区别是什么"><a href="#String-、-StringBuffer-和-StringBuilder-的区别是什么" class="headerlink" title="String 、 StringBuffer 和 StringBuilder 的区别是什么?"></a><code>String</code> <code>、 StringBuffer</code> 和 <code>StringBuilder</code> 的区别是什么?</h2><p>1、String是字符串常量，而StringBuffer和StringBuilder是字符串变量。由String创建的字符内容是不可改变的，而由StringBuffer和StringBuidler创建的字符内容是可以改变的。</p>
+<p>2、StringBuffer是线程安全的，而StringBuilder是非线程安全的。StringBuilder是从JDK 5开始，为StringBuffer类补充的一个单线程的等价类。我们在使用时应优先考虑使用StringBuilder，因为它支持StringBuffer的所有操作，但是因为它不执行同步，不会有线程安全带来额外的系统消耗，所以速度更快。</p>
+<p><strong>String为什么不可变</strong></p>
+<p>虽然String、StringBuffer和StringBuilder都是final类，它们生成的对象都是不可变的，而且它们内部也都是靠char数组实现的。</p>
+<p>但是不同之处在于，String类中定义的char数组是final的，而StringBuffer和StringBuilder都是继承自AbstractStringBuilder类，它们的内部实现都是靠这个父类完成的，而这个父类中定义的char数组只是一个普通是私有变量，可以用append追加。因为AbstractStringBuilder实现了Appendable接口。</p>
+<h2 id="和-equals-的区别"><a href="#和-equals-的区别" class="headerlink" title="==和 equals 的区别"></a>==和 equals 的区别</h2><p><strong>==</strong> : 它的作用是判断两个对象的地址是不是相等。即判断两个对象是不是同一个对象。(<strong>基本数据类型==比较的是值，引用数据类型==比较的是内存地址</strong>)</p>
+<blockquote>
+<p>因为 Java 只有值传递，所以，对于 == 来说，不管是比较基本数据类型，还是引用数据类型的变量，其本质比较的都是值，只是引用类型变量存的值是对象的地址。</p>
+</blockquote>
+<p><strong>equals()</strong> : 它的作用也是判断两个对象是否相等，它不能用于比较基本数据类型的变量。<code>equals()</code>方法存在于<code>Object</code>类中，而<code>Object</code>类是所有类的直接或间接父类。</p>
+<p><code>equals()</code> 方法存在两种使用情况：</p>
+<ul>
+<li>情况 1：类没有覆盖 <code>equals()</code>方法。则通过<code>equals()</code>比较该类的两个对象时，等价于通过“==”比较这两个对象。使用的默认是 <code>Object</code>类<code>equals()</code>方法。</li>
+<li>情况 2：类覆盖了 <code>equals()</code>方法。一般，我们都覆盖 <code>equals()</code>方法来两个对象的内容相等；若它们的内容相等，则返回 true(即，认为这两个对象相等)</li>
+<li><code>String</code> 中的 <code>equals</code> 方法是被重写过的，因为 <code>Object</code> 的 <code>equals</code> 方法是比较的对象的内存地址，而 <code>String</code> 的 <code>equals</code> 方法比较的是对象的值。</li>
+<li>当创建 <code>String</code> 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 <code>String</code> 对象。</li>
+</ul>
+<h2 id="hashcode-和-equals"><a href="#hashcode-和-equals" class="headerlink" title="hashcode() 和 equals()"></a>hashcode() 和 equals()</h2><p><code>hashCode()</code> 的作用是获取哈希码，也称为散列码；它实际上是返回一个 int 整数。这个哈希码的作用是确定该对象在哈希表中的索引位置。<code>hashCode()</code>定义在 JDK 的 <code>Object</code> 类中，这就意味着 Java 中的任何类都包含有 <code>hashCode()</code> 函数。另外需要注意的是： <code>Object</code> 的 hashcode 方法是本地方法，也就是用 c 语言或 c++ 实现的，该方法通常用来将对象的 内存地址 转换为整数之后返回。</p>
+<p>也就是说：<strong>hashCode() 在散列表中才有用，在其它情况下没用。</strong>在散列表中hashCode() 的作用是获取对象的散列码，进而确定该对象在散列表中的位置。</p>
+<p><strong>为什么重写equals（）时必须要重写hashcode（）?</strong></p>
+<p>如果两个对象相等，则 hashcode 一定也是相同的。两个对象相等,对两个对象分别调用 equals 方法都返回 true。但是，两个对象有相同的 hashcode 值，它们也不一定是相等的 。<strong>因此，equals 方法被覆盖过，则 <code>hashCode</code> 方法也必须被覆盖。</strong></p>
+<blockquote>
+<p><code>hashCode()</code>的默认行为是对堆上的对象产生独特值。如果没有重写 <code>hashCode()</code>，则该 class 的两个对象无论如何都不会相等（即使这两个对象指向相同的数据）</p>
+<p>往HashMap添加元素的时候，需要先定位到在数组的位置（hashCode方法）。如果只重写了 equals 方法，两个对象 equals 返回了true，<strong>集合是不允许出现重复元素的</strong>，只能插入一个。此时如果没有重写 hashCode 方法，那么就无法定位到同一个位置，集合还是会插入元素。这样集合中就出现了重复元素了。那么重写的equals方法就没有意义了。</p>
+</blockquote>
+<p><strong>为什么两个对象有相同的 hashcode 值，它们也不一定是相等的？</strong></p>
+<p>因为 <code>hashCode()</code> 所使用的 hash 算法也许刚好会让多个对象传回相同的 hash 值。越糟糕的 hash 算法越容易碰撞，但这也与数据值域分布的特性有关（所谓碰撞也就是指的是不同的对象得到相同的 <code>hashCode</code>。</p>
+<p>更多关于 <code>hashcode()</code> 和 <code>equals()</code> 的内容可以查看：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/skywang12345/p/3324958.html">Java hashCode() 和 equals()的若干问题解答</a></p>
+<h2 id="重载和重写的区别"><a href="#重载和重写的区别" class="headerlink" title="重载和重写的区别"></a>重载和重写的区别</h2><blockquote>
+<p>重载就是同样的一个方法能够根据输入数据的不同，做出不同的处理</p>
+<p>重写就是当子类继承自父类的相同方法，输入数据一样，但要做出有别于父类的响应时，你就要覆盖父类方法</p>
+</blockquote>
+<p><strong>重载：</strong></p>
+<p>发生在同一个类中，方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。</p>
+<p>重载就是同一个类中多个同名方法根据不同的传参来执行不同的逻辑处理。</p>
+<p><strong>重写：</strong></p>
+<p>重写发生在运行期，是子类对父类的允许访问的方法的实现过程进行重新编写。</p>
+<ol>
+<li>返回值类型、方法名、参数列表必须相同，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。</li>
+<li>如果父类方法访问修饰符为 <code>private/final/static</code> 则子类就不能重写该方法，但是被 static 修饰的方法能够被再次声明。</li>
+<li>构造方法无法被重写</li>
+</ol>
+<p>重写就是子类对父类方法的重新改造，外部样子不能改变，内部逻辑可以改变</p>
+<table>
+<thead>
+<tr>
+<th>区别点</th>
+<th>重载方法</th>
+<th>重写方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>发生范围</td>
+<td>同一个类</td>
+<td>子类</td>
+</tr>
+<tr>
+<td>参数列表</td>
+<td>必须修改</td>
+<td>一定不能修改</td>
+</tr>
+<tr>
+<td>返回类型</td>
+<td>可修改</td>
+<td>子类方法返回值类型应比父类方法返回值类型更小或相等</td>
+</tr>
+<tr>
+<td>异常</td>
+<td>可修改</td>
+<td>子类方法声明抛出的异常类应比父类方法声明抛出的异常类更小或相等；</td>
+</tr>
+<tr>
+<td>访问修饰符</td>
+<td>可修改</td>
+<td>一定不能做更严格的限制（可以降低限制）</td>
+</tr>
+<tr>
+<td>发生阶段</td>
+<td>编译期</td>
+<td>运行期</td>
+</tr>
+</tbody></table>
+<h2 id="Java-关键字"><a href="#Java-关键字" class="headerlink" title="Java 关键字"></a>Java 关键字</h2><h3 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h3><p>简单点说，就是被transient修饰的成员变量，在序列化的时候其值会被忽略，在被反序列化后， transient 变量的值被设为初始值， 如 int 型的是 0，对象型的是 null。</p>
+<blockquote>
+<p>Java语言的关键字，变量修饰符，如果用transient声明一个实例变量，当对象存储时，它的值不需要维持。这里的对象存储是指，Java的serialization提供的一种持久化对象实例的机制。当一个对象被序列化的时候，transient型变量的值不包括在序列化的表示中，然而非transient型的变量是被包括进去的。使用情况是：当持久化对象时，可能有一个特殊的对象数据成员，我们不想用serialization机制来保存它。为了在一个特定对象的一个域上关闭serialization，可以在这个域前加上关键字transient。</p>
+<p>在关于java的集合类的学习中，我们发现<code>ArrayList</code>类和<code>Vector</code>类都是使用数组实现的，但是在定义数组<code>elementData</code>这个属性时稍有不同，那就是<code>ArrayList</code>使用<code>transient</code>关键字</p>
+</blockquote>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>final 关键字，意思为：最终的、不可修改的。用来修饰类、方法、和变量。具有以下特点：</p>
+<ul>
+<li>final 修饰的类不能被继承，final类中的所有成员方法都会被隐式的指定为final方法</li>
+<li>final 修饰的方法不能被重写</li>
+<li>final 修饰的变量是常量，如果是基本数据类型的变量，则其数值一旦被初始化之后便不能更改。如果是引用类型的变量，则对其初始化之后便不能让其指向另一个对象。（如果是成员变量，由于成员变量具有默认值，所以用了final之后必须手动赋值）</li>
+</ul>
+<p>说明：使用final方法的原因有两个。第一个原因是把方法锁定，以防任何继承类修改它的含义；第二个原因是效率。在早期的Java实现版本中，会将final方法转为内嵌调用。但是如果方法过于庞大，可能看不到内嵌调用带来的任何性能提升（现在的Java版本已经不需要使用final方法进行这些优化了）。类中所有的private方法都隐式地指定为final。</p>
+<h3 id="instance-of"><a href="#instance-of" class="headerlink" title="instance of"></a>instance of</h3><p>instanceof 是 Java 的一个二元操作符，类似于 ==，&gt;，&lt; 等操作符。</p>
+<p>instanceof 是 Java 的保留关键字。它的作用是测试它左边的对象是否是它右边的类的实例，返回 boolean 的数据类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">displayObjectClass</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (o <span class="keyword">instanceof</span> Vector)</span><br><span class="line">     System.out.println(<span class="string">&quot;对象是 java.util.Vector 类的实例&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (o <span class="keyword">instanceof</span> ArrayList)</span><br><span class="line">     System.out.println(<span class="string">&quot;对象是 java.util.ArrayList 类的实例&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    System.out.println(<span class="string">&quot;对象是 &quot;</span> + o.getClass() + <span class="string">&quot; 类的实例&quot;</span>);复制ErrorOK!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const是Java预留关键字，用于后期扩展用，用法跟final相似，不常用</p>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><p>static表示“静态”的意思，用来修饰成员变量和成员方法，也可以形成静态static代码块</p>
+<p><strong>static 关键字主要有以下四种使用场景：</strong></p>
+<ol>
+<li><strong>修饰成员变量和成员方法:</strong> 被 static 修饰的成员属于类，不属于单个这个类的某个对象，被类的所有对象共享，可以并且建议通过类名调用。被static 声明的成员变量属于静态成员变量，静态变量 存放在 Java 内存区域的方法区。调用格式：<code>类名.静态变量名</code> <code>类名.静态方法名()</code></li>
+<li><strong>静态代码块:</strong> 静态代码块定义在类中方法外, 静态代码块在非静态代码块之前执行(静态代码块—&gt;非静态代码块—&gt;构造方法)。 该类不管创建多少对象，静态代码块只执行一次.</li>
+<li><strong>静态内部类（static修饰类的话只能修饰内部类）：</strong> 静态内部类与非静态内部类之间存在一个最大的区别: 非静态内部类在编译完成之后会隐含地保存着一个引用，该引用是指向创建它的外围类，但是静态内部类却没有。没有这个引用就意味着：1. 它的创建是不需要依赖外围类的创建。2. 它不能使用任何外围类的非static成员变量和方法。</li>
+<li><strong>静态导包(用来导入类中的静态资源，1.5之后的新特性):</strong> 格式为：<code>import static</code> 这两个关键字连用可以指定导入某个类中的指定静态资源，并且不需要使用类名调用类中静态成员，可以直接使用类中静态成员变量和成员方法。</li>
+</ol>
+<blockquote>
+<p>非静态代码块与构造函数的区别是： 非静态代码块是给所有对象进行统一初始化，而构造函数是给对应的对象初始化，因为构造函数是可以多个的，运行哪个构造函数就会建立什么样的对象，但无论建立哪个对象，都会先执行相同的构造代码块。也就是说，构造代码块中定义的是不同对象共性的初始化内容。</p>
+</blockquote>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>this关键字用于引用类的当前实例。 例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Manager &#123;</span><br><span class="line">    Employees[] employees;</span><br><span class="line">     </span><br><span class="line">    void manageEmployees() &#123;</span><br><span class="line">        int totalEmp &#x3D; this.employees.length;</span><br><span class="line">        System.out.println(&quot;Total employees: &quot; + totalEmp);</span><br><span class="line">        this.report();</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    void report() &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中，this关键字用于两个地方：</p>
+<ul>
+<li>this.employees.length：访问类Manager的当前实例的变量。</li>
+<li>this.report（）：调用类Manager的当前实例的方法。</li>
+</ul>
+<p>此关键字是可选的，这意味着如果上面的示例在不使用此关键字的情况下表现相同。 但是，使用此关键字可能会使代码更易读或易懂。</p>
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><p>super关键字用于从子类访问父类的变量和方法。 例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Super &#123;</span><br><span class="line">    protected int number;</span><br><span class="line">     </span><br><span class="line">    protected showNumber() &#123;</span><br><span class="line">        System.out.println(&quot;number &#x3D; &quot; + number);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class Sub extends Super &#123;</span><br><span class="line">    void bar() &#123;</span><br><span class="line">        super.number &#x3D; 10;</span><br><span class="line">        super.showNumber();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，Sub 类访问父类成员变量 number 并调用其其父类 Super 的 <code>showNumber（）</code> 方法。</p>
+<p><strong>使用 this 和 super 要注意的问题：</strong></p>
+<ul>
+<li>在构造器中使用 <code>super()</code> 调用父类中的其他构造方法时，该语句必须处于构造器的首行，否则编译器会报错。另外，this 调用本类中的其他构造方法时，也要放在首行。</li>
+<li>this、super不能用在static方法中。</li>
+</ul>
+<p><strong>简单解释一下：</strong></p>
+<p>被 static 修饰的成员属于类，不属于单个这个类的某个对象，被类中所有对象共享。而 this 代表对本类对象的引用，指向本类对象；而 super 代表对父类对象的引用，指向父类对象；所以， <strong>this和super是属于对象范畴的东西，而静态方法是属于类范畴的东西</strong>。</p>
+<h2 id="continue、break、和-return-的区别是什么？"><a href="#continue、break、和-return-的区别是什么？" class="headerlink" title="continue、break、和 return 的区别是什么？"></a>continue、break、和 return 的区别是什么？</h2><p>在循环结构中，当循环条件不满足或者循环次数达到要求时，循环会正常结束。但是，有时候可能需要在循环的过程中，当发生了某种条件之后 ，提前终止循环，这就需要用到下面几个关键词：</p>
+<ol>
+<li>continue ：指跳出当前的这一次循环，继续下一次循环。</li>
+<li>break ：指跳出整个循环体，继续执行循环下面的语句。</li>
+</ol>
+<p>return 用于跳出所在方法，结束该方法的运行。return 一般有两种用法：</p>
+<ol>
+<li><code>return;</code> ：直接使用 return 结束方法执行，用于没有返回值函数的方法</li>
+<li><code>return value;</code> ：return 一个特定值，用于有返回值函数的方法</li>
+</ol>
+<h2 id="🔥Java-泛型了解么？什么是类型擦除？介绍一下常用的通配符？"><a href="#🔥Java-泛型了解么？什么是类型擦除？介绍一下常用的通配符？" class="headerlink" title="🔥Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？"></a>🔥Java 泛型了解么？什么是类型擦除？介绍一下常用的通配符？</h2><p>Java 泛型，是 Java-5 引入的一个新特性，泛型提供了编译时类型安全检测机制，该机制允许程序员在编译时检测到非法的类型。</p>
+<p>泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数。</p>
+<p>泛型的好处就是在编译的时候能够检查类型安全，并且所有的强制转换都是自动和隐式的。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wuqinglong/p/9456193.html">《Java 泛型类型擦除以及类型擦除带来的问题》</a> </p>
+<p><strong>Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">list.add(<span class="number">12</span>);</span><br><span class="line"><span class="comment">//这里直接添加会报错</span></span><br><span class="line">list.add(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">Class&lt;? extends List&gt; clazz = list.getClass();</span><br><span class="line">Method add = clazz.getDeclaredMethod(<span class="string">&quot;add&quot;</span>, Object.class);</span><br><span class="line"><span class="comment">//但是通过反射添加，是可以的</span></span><br><span class="line">add.invoke(list, <span class="string">&quot;kl&quot;</span>);</span><br><span class="line">System.out.println(list)</span><br></pre></td></tr></table></figure>
+
+<p>泛型一般有三种使用方式:泛型类、泛型接口、泛型方法。</p>
+<p><strong>1.泛型类</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型</span></span><br><span class="line"><span class="comment">//在实例化泛型类时，必须指定T的具体类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T key;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如何实例化泛型类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Generic&lt;Integer&gt; genericInteger &#x3D; new Generic&lt;Integer&gt;(123456);</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.泛型接口</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Generator&lt;T&gt; &#123;</span><br><span class="line">    public T method();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现泛型接口，不指定类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class GeneratorImpl&lt;T&gt; implements Generator&lt;T&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public T method() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现泛型接口，指定类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class GeneratorImpl&lt;T&gt; implements Generator&lt;String&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String method() &#123;</span><br><span class="line">        return &quot;hello&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.泛型方法</strong> ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static &lt; E &gt; void printArray( E[] inputArray )</span><br><span class="line">&#123;</span><br><span class="line">      for ( E element : inputArray )&#123;</span><br><span class="line">         System.out.printf( &quot;%s &quot;, element );</span><br><span class="line">      &#125;</span><br><span class="line">      System.out.println();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 创建不同类型数组： Integer, Double 和 Character</span><br><span class="line">Integer[] intArray &#x3D; &#123; 1, 2, 3 &#125;;</span><br><span class="line">String[] stringArray &#x3D; &#123; &quot;Hello&quot;, &quot;World&quot; &#125;;</span><br><span class="line">printArray( intArray  );</span><br><span class="line">printArray( stringArray  );</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用的通配符为： T，E，K，V，？</strong></p>
+<ul>
+<li>？ 表示不确定的 java 类型</li>
+<li>T (type) 表示具体的一个 java 类型</li>
+<li>K V (key value) 分别代表 java 键值中的 Key Value</li>
+<li>E (element) 代表 Element</li>
+</ul>
+<p>更多关于 Java 泛型中的通配符可以查看这篇文章：<a target="_blank" rel="noopener" href="https://juejin.im/post/5d5789d26fb9a06ad0056bd9">《聊一聊-JAVA 泛型中的通配符 T，E，K，V，？》</a></p>
+<h2 id="🔥为什么Java中只有值传递，并没有引用传递。"><a href="#🔥为什么Java中只有值传递，并没有引用传递。" class="headerlink" title="🔥为什么Java中只有值传递，并没有引用传递。"></a>🔥为什么Java中只有值传递，并没有引用传递。</h2><p>值传递（pass by value）是指在调用函数时将实际参数<strong>复制</strong>一份传递到函数中，这样在函数中如果对<strong>参数</strong>进行修改，将不会影响到实际参数。</p>
+<p>引用传递（pass by reference）是指在调用函数时将实际参数的地址<strong>直接</strong>传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数。</p>
+<p><strong>值传递，不论传递的参数类型是值类型还是引用类型，都会在调用栈上创建一个形参的副本。不同的是，对于值类型来说，复制的就是整个原始值的复制。而对于引用类型来说，由于在调用栈中只存储对象的引用，因此复制的只是这个引用，而不是原始对象。</strong></p>
+<p>最后，再次强调一下，传递参数是引用类型，或者说是对象时，并不代表它就是引用传递。引用传递不是用来形容参数的类型的，不要被“引用”这个词本身迷惑了。这就如同我们生活中说的地瓜不是瓜，而是红薯一样。</p>
+<ol>
+<li>参数传递时，是拷贝实参的副本，然后传递给形参。（值传递）</li>
+<li>在函数中，只有修改了<strong>实参</strong>所指向的对象内容，才会影响到实参。以上第三种情况修改的实际上只是形参所指向的对象，因此不会影响实参。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000021529503">https://segmentfault.com/a/1190000021529503</a></p>
+<h2 id="🔥深克隆-vs-浅克隆"><a href="#🔥深克隆-vs-浅克隆" class="headerlink" title="🔥深克隆 vs 浅克隆"></a>🔥深克隆 vs 浅克隆</h2><p>浅克隆（Shadow Clone）是把原型对象中成员变量为值类型的属性都复制给克隆对象，把原型对象中成员变量为引用类型的引用地址也复制给克隆对象，也就是原型对象中如果有成员变量为引用对象，则此引用对象的地址是共享给原型对象和克隆对象的。</p>
+<p>简单来说就是浅克隆只会复制原型对象，但不会复制它所引用的对象，如下图所示：</p>
+<p><img src="../../img/java/3.png"></p>
+<p>深克隆（Deep Clone）是将原型对象中的所有类型，无论是值类型还是引用类型，都复制一份给克隆对象，也就是说深克隆会把原型对象和原型对象所引用的对象，都复制一份给克隆对象，如下图所示：</p>
+<p><img src="../../img/java/4.png"></p>
+<p>在 Java 语言中要实现克隆则需要实现 Cloneable 接口，并重写 Object 类中的 clone() 方法，实现代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CloneExample</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">        <span class="comment">// 创建被赋值对象</span></span><br><span class="line">        People p1 = <span class="keyword">new</span> People();</span><br><span class="line">        p1.setId(<span class="number">1</span>);</span><br><span class="line">        p1.setName(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">        <span class="comment">// 克隆 p1 对象</span></span><br><span class="line">        People p2 = (People) p1.clone();</span><br><span class="line">        <span class="comment">// 打印名称</span></span><br><span class="line">        System.out.println(<span class="string">&quot;p2:&quot;</span> + p2.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 属性</span></span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 重写 clone 方法</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@throws</span> CloneNotSupportedException</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.clone();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> id;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="在-java-lang-Object-中对-clone-方法的约定有哪些？"><a href="#在-java-lang-Object-中对-clone-方法的约定有哪些？" class="headerlink" title="在 java.lang.Object 中对 clone() 方法的约定有哪些？"></a>在 java.lang.Object 中对 clone() 方法的约定有哪些？</h2><p>从源码的注释信息中我们可以看出，Object 对 clone() 方法的约定有三条：</p>
+<ul>
+<li>对于所有对象来说，x.clone() !=x 应当返回 true，因为克隆对象与原对象不是同一个对象；</li>
+<li>对于所有对象来说，x.clone().getClass() == x.getClass() 应当返回 true，因为克隆对象与原对象的类型是一样的；</li>
+<li>对于所有对象来说，x.clone().equals(x) 应当返回 true，因为使用 equals 比较时，它们的值都是相同的。</li>
+</ul>
+<p>除了注释信息外，我们看 clone() 的实现方法，发现 clone() 是使用 native 修饰的本地方法，因此执行的性能会很高，并且它返回的类型为 Object，因此在调用克隆之后要把对象强转为目标类型才行。</p>
+<h2 id="Arrays-copyOf-是深克隆还是浅克隆？"><a href="#Arrays-copyOf-是深克隆还是浅克隆？" class="headerlink" title="Arrays.copyOf() 是深克隆还是浅克隆？"></a>Arrays.copyOf() 是深克隆还是浅克隆？</h2><p><strong>浅克隆</strong></p>
+<p>如果是数组类型，我们可以直接使用 Arrays.copyOf() 来实现克隆，实现代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">People[] o1 &#x3D; &#123;new People(1, &quot;Java&quot;)&#125;;</span><br><span class="line">People[] o2 &#x3D; Arrays.copyOf(o1, o1.length);</span><br><span class="line">&#x2F;&#x2F; 修改原型对象的第一个元素的值</span><br><span class="line">o1[0].setName(&quot;Jdk&quot;);</span><br><span class="line">System.out.println(&quot;o1:&quot; + o1[0].getName());</span><br><span class="line">System.out.println(&quot;o2:&quot; + o2[0].getName());</span><br><span class="line"></span><br><span class="line">o1:Jdk</span><br><span class="line">o2:Jdk</span><br></pre></td></tr></table></figure>
+
+<p>从结果可以看出，我们在修改克隆对象的第一个元素之后，原型对象的第一个元素也跟着被修改了，<strong>这说明 Arrays.copyOf() 其实是一个浅克隆。</strong></p>
+<p>因为数组比较特殊数组本身就是引用类型，因此在使用 Arrays.copyOf() 其实只是把引用地址复制了一份给克隆对象，如果修改了它的引用对象，那么指向它的（引用地址）所有对象都会发生改变，因此看到的结果是，修改了克隆对象的第一个元素，原型对象也跟着被修改了。</p>
+<h2 id="深克隆的实现方式有几种？"><a href="#深克隆的实现方式有几种？" class="headerlink" title="深克隆的实现方式有几种？"></a>深克隆的实现方式有几种？</h2><p>深克隆的实现方式有很多种，大体可以分为以下几类：</p>
+<ul>
+<li>所有对象都实现克隆方法；</li>
+<li>通过构造方法实现深克隆；</li>
+<li>使用 JDK 自带的字节流实现深克隆；</li>
+<li>使用第三方工具实现深克隆，比如 Apache Commons Lang；</li>
+<li>使用 JSON 工具类实现深克隆，比如 Gson、FastJSON 等。</li>
+</ul>
+<p>接下来我们分别来实现以上这些方式，在开始之前先定义一个公共的用户类，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用户类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Address address; <span class="comment">// 包含 Address 引用对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 地址类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String city;</span><br><span class="line">    <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>1.所有对象都实现克隆</strong></p>
+<p>这种方式我们需要修改 People 和 Address 类，让它们都实现 Cloneable 的接口，让所有的引用对象都实现克隆，从而实现 People 类的深克隆，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CloneExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 创建被赋值对象</span></span><br><span class="line">          Address address = <span class="keyword">new</span> Address(<span class="number">110</span>, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">          People p1 = <span class="keyword">new</span> People(<span class="number">1</span>, <span class="string">&quot;Java&quot;</span>, address);</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 克隆 p1 对象</span></span><br><span class="line">          People p2 = p1.clone();</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 修改原型对象</span></span><br><span class="line">          p1.getAddress().setCity(<span class="string">&quot;西安&quot;</span>);</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 输出 p1 和 p2 地址信息</span></span><br><span class="line">          System.out.println(<span class="string">&quot;p1:&quot;</span> + p1.getAddress().getCity() +</span><br><span class="line">                  <span class="string">&quot; p2:&quot;</span> + p2.getAddress().getCity());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> Address address;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 重写 clone 方法</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@throws</span> CloneNotSupportedException</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> People <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">            People people = (People) <span class="keyword">super</span>.clone();</span><br><span class="line">            people.setAddress(<span class="keyword">this</span>.address.clone()); <span class="comment">// 引用类型克隆赋值</span></span><br><span class="line">            <span class="keyword">return</span> people;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 地址类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String city;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 重写 clone 方法</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@throws</span> CloneNotSupportedException</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> Address <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> (Address) <span class="keyword">super</span>.clone();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p1:西安 p2:北京</span><br><span class="line">从结果可以看出，当我们修改了原型对象的引用属性之后，并没有影响克隆对象，这说明此对象已经实现了深克隆。</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.通过构造方法实现深克隆</strong></p>
+<p>《Effective Java》 中推荐使用构造器（Copy Constructor）来实现深克隆，如果构造器的参数为基本数据类型或字符串类型则直接赋值，如果是对象类型，则需要重新 new 一个对象，实现代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建对象</span></span><br><span class="line">        Address address = <span class="keyword">new</span> Address(<span class="number">110</span>, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        People p1 = <span class="keyword">new</span> People(<span class="number">1</span>, <span class="string">&quot;Java&quot;</span>, address);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用构造函数克隆对象</span></span><br><span class="line">        People p2 = <span class="keyword">new</span> People(p1.getId(), p1.getName(),</span><br><span class="line">                <span class="keyword">new</span> Address(p1.getAddress().getId(), p1.getAddress().getCity()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改原型对象</span></span><br><span class="line">        p1.getAddress().setCity(<span class="string">&quot;西安&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出 p1 和 p2 地址信息</span></span><br><span class="line">        System.out.println(<span class="string">&quot;p1:&quot;</span> + p1.getAddress().getCity() +</span><br><span class="line">                <span class="string">&quot; p2:&quot;</span> + p2.getAddress().getCity());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> Address address;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 地址类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String city;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">p1:西安 p2:北京</span><br><span class="line">从结果可以看出，当我们修改了原型对象的引用属性之后，并没有影响克隆对象，这说明此对象已经实现了深克隆。</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.通过字节流实现深克隆</strong></p>
+<p>通过 JDK 自带的字节流实现深克隆的方式，是先将要原型对象写入到内存中的字节流，然后再从这个字节流中读出刚刚存储的信息，来作为一个新的对象返回，那么这个新对象和原型对象就不存在任何地址上的共享，这样就实现了深克隆，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThirdExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建对象</span></span><br><span class="line">        Address address = <span class="keyword">new</span> Address(<span class="number">110</span>, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        People p1 = <span class="keyword">new</span> People(<span class="number">1</span>, <span class="string">&quot;Java&quot;</span>, address);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过字节流实现克隆</span></span><br><span class="line">        People p2 = (People) StreamClone.clone(p1);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改原型对象</span></span><br><span class="line">        p1.getAddress().setCity(<span class="string">&quot;西安&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出 p1 和 p2 地址信息</span></span><br><span class="line">        System.out.println(<span class="string">&quot;p1:&quot;</span> + p1.getAddress().getCity() +</span><br><span class="line">                <span class="string">&quot; p2:&quot;</span> + p2.getAddress().getCity());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过字节流实现克隆</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">StreamClone</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> &lt;T extends Serializable&gt; <span class="function">T <span class="title">clone</span><span class="params">(People obj)</span> </span>&#123;</span><br><span class="line">            T cloneObj = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 写入字节流</span></span><br><span class="line">                ByteArrayOutputStream bo = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">                ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(bo);</span><br><span class="line">                oos.writeObject(obj);</span><br><span class="line">                oos.close();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 分配内存,写入原始对象,生成新对象</span></span><br><span class="line">                ByteArrayInputStream bi = <span class="keyword">new</span> ByteArrayInputStream(bo.toByteArray());<span class="comment">//获取上面的输出字节流</span></span><br><span class="line">                ObjectInputStream oi = <span class="keyword">new</span> ObjectInputStream(bi);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 返回生成的新对象</span></span><br><span class="line">                cloneObj = (T) oi.readObject();</span><br><span class="line">                oi.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> cloneObj;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> Address address;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 地址类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String city;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">p1:西安 p2:北京</span><br><span class="line">此方式需要注意的是，由于是通过字节流序列化实现的深克隆，因此每个对象必须能被序列化，必须实现 Serializable 接口，标识自己可以被序列化，否则会抛出异常 (java.io.NotSerializableException)。</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.通过第三方工具实现深克隆</strong></p>
+<p>本课时使用 Apache Commons Lang 来实现深克隆，实现代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.lang3.SerializationUtils;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 深克隆实现方式四：通过 apache.commons.lang 实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FourthExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建对象</span></span><br><span class="line">        Address address = <span class="keyword">new</span> Address(<span class="number">110</span>, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        People p1 = <span class="keyword">new</span> People(<span class="number">1</span>, <span class="string">&quot;Java&quot;</span>, address);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用 apache.commons.lang 克隆对象</span></span><br><span class="line">        People p2 = (People) SerializationUtils.clone(p1);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改原型对象</span></span><br><span class="line">        p1.getAddress().setCity(<span class="string">&quot;西安&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出 p1 和 p2 地址信息</span></span><br><span class="line">        System.out.println(<span class="string">&quot;p1:&quot;</span> + p1.getAddress().getCity() +</span><br><span class="line">                <span class="string">&quot; p2:&quot;</span> + p2.getAddress().getCity());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> Address address;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 地址类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String city;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">p1:西安 p2:北京</span><br><span class="line">可以看出此方法和第三种实现方式类似，都需要实现 Serializable 接口，都是通过字节流的方式实现的，只不过这种实现方式是第三方提供了现成的方法，让我们可以直接调用。</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.通过 JSON 工具类实现深克隆</strong></p>
+<p>本课时我们使用 Google 提供的 JSON 转化工具 Gson 来实现，其他 JSON 转化工具类也是类似的，实现代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.google.gson.Gson;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 深克隆实现方式五：通过 JSON 工具实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FifthExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建对象</span></span><br><span class="line">        Address address = <span class="keyword">new</span> Address(<span class="number">110</span>, <span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        People p1 = <span class="keyword">new</span> People(<span class="number">1</span>, <span class="string">&quot;Java&quot;</span>, address);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用 Gson 克隆对象</span></span><br><span class="line">        Gson gson = <span class="keyword">new</span> Gson();</span><br><span class="line">        People p2 = gson.fromJson(gson.toJson(p1), People.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改原型对象</span></span><br><span class="line">        p1.getAddress().setCity(<span class="string">&quot;西安&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出 p1 和 p2 地址信息</span></span><br><span class="line">        System.out.println(<span class="string">&quot;p1:&quot;</span> + p1.getAddress().getCity() +</span><br><span class="line">                <span class="string">&quot; p2:&quot;</span> + p2.getAddress().getCity());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 用户类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">People</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line">        <span class="keyword">private</span> Address address;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 地址类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String city;</span><br><span class="line">        <span class="comment">// 忽略构造方法、set、get 方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p1:西安 p2:北京</span><br><span class="line">使用 JSON 工具类会先把对象转化成字符串，再从字符串转化成新的对象，因为新对象是从字符串转化而来的，因此不会和原型对象有任何的关联，这样就实现了深克隆，其他类似的 JSON 工具类实现方式也是一样的。</span><br></pre></td></tr></table></figure>
+
+<h2 id="Java-中的克隆为什么要设计成，既要实现空接口-Cloneable，还要重写-Object-的-clone-方法？"><a href="#Java-中的克隆为什么要设计成，既要实现空接口-Cloneable，还要重写-Object-的-clone-方法？" class="headerlink" title="Java 中的克隆为什么要设计成，既要实现空接口 Cloneable，还要重写 Object 的 clone() 方法？"></a>Java 中的克隆为什么要设计成，既要实现空接口 Cloneable，还要重写 Object 的 clone() 方法？</h2><p>对于克隆为什么要这样设计，官方没有直接给出答案，我们只能凭借一些经验和源码文档来试着回答一下这个问题。Java 中实现克隆需要两个主要的步骤，一是 实现 Cloneable 空接口，二是重写 Object 的 clone() 方法再调用父类的克隆方法 (super.clone())，那为什么要这么做？</p>
+<p>从源码中可以看出 Cloneable 接口诞生的比较早，JDK 1.0 就已经存在了，因此从那个时候就已经有克隆方法了，那我们怎么来标识一个类级别对象拥有克隆方法呢？克隆虽然重要，但我们不能给每个类都默认加上克隆，这显然是不合适的，那我们能使用的手段就只有这几个了：</p>
+<ul>
+<li>在类上新增标识，此标识用于声明某个类拥有克隆的功能，像 final 关键字一样；</li>
+<li>使用 Java 中的注解；</li>
+<li>实现某个接口；</li>
+<li>继承某个类。</li>
+</ul>
+<p>先说第一个，为了一个重要但不常用的克隆功能， 单独新增一个类标识，这显然不合适；再说第二个，因为克隆功能出现的比较早，那时候还没有注解功能，因此也不能使用；第三点基本满足我们的需求，第四点和第一点比较类似，为了一个克隆功能需要牺牲一个基类，并且 Java 只能单继承，因此这个方案也不合适。采用排除法，无疑使用实现接口的方式是那时最合理的方案了，而且在 Java 语言中一个类可以实现多个接口。</p>
+<p>那为什么要在 Object 中添加一个 clone() 方法呢？</p>
+<p>因为 clone() 方法语义的特殊性，因此最好能有 JVM 的直接支持，既然要 JVM 直接支持，就要找一个 API 来把这个方法暴露出来才行，最直接的做法就是把它放入到一个所有类的基类 Object 中，这样所有类就可以很方便地调用到了。</p>
+<h2 id="🔥Java-反射"><a href="#🔥Java-反射" class="headerlink" title="🔥Java 反射"></a>🔥Java 反射</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142593317">https://zhuanlan.zhihu.com/p/142593317</a></p>
+<p>JAVA 反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性（通过<strong>字节码文件</strong>找到其类中的方法和属性）；这种动态获取的信息以及动态调用对象的方法的功能称为 java 语言的反射机制。</p>
+<p><strong>反射机制的作用</strong></p>
+<ul>
+<li>运行时判断对象所属的类</li>
+<li>运行时构造一个类的对象</li>
+<li>运行时，判断一个类所具有的的成员变量和方法</li>
+<li>运行时调用任意一个对象的方法</li>
+</ul>
+<p><strong>原理：</strong></p>
+<p>Java代码在编译之后会生成字节码文件（class文件），反射通过字节码文件找到相应的属性和方法。</p>
+<p><strong>反射机制优缺点</strong></p>
+<ul>
+<li><strong>优点：</strong> 运行期类型的判断，动态加载类，提高代码灵活度。</li>
+<li><strong>缺点：</strong> 1,性能瓶颈：反射相当于一系列解释操作，通知 JVM 要做的事情，性能比直接的 java 代码要慢很多。2,安全问题，让我们可以动态操作改变类的属性同时也增加了类的安全隐患。</li>
+</ul>
+<p><strong>反射的应用场景</strong></p>
+<p>在我们平时的项目开发过程中，基本上很少会直接使用到反射机制，但这不能说明反射机制没有用，实际上有很多设计、开发都与反射机制有关，例如模块化的开发，通过反射去调用对应的字节码；<strong>动态代理</strong>设计模式也采用了反射机制，还有我们日常使用的 Spring／Hibernate 等框架也大量使用到了反射机制。</p>
+<p>举例：</p>
+<ol>
+<li>我们在使用 JDBC 连接数据库时使用 <code>Class.forName()</code>通过反射加载数据库的驱动程序；</li>
+<li>Spring 框架的 IOC（动态加载管理 Bean）创建对象以及 AOP（动态代理）功能都和反射有联系；</li>
+<li>动态配置实例的属性；</li>
+<li>自定义注解实现(phoenix中，spring中都有用到)</li>
+<li>……</li>
+</ol>
+<h2 id="Java-异常"><a href="#Java-异常" class="headerlink" title="Java 异常"></a>Java 异常</h2><p>在 Java 中，所有的异常都有一个共同的祖先 <code>java.lang</code> 包中的 <code>Throwable</code> 类。<code>Throwable</code> 类有两个重要的子类 <code>Exception</code>（异常）和 <code>Error</code>（错误）。<code>Exception</code> 能被程序本身处理(<code>try-catch</code>)， <code>Error</code> 是无法处理的(只能尽量避免)。</p>
+<p><img src="../../img/java/1.png"></p>
+<p><code>Exception</code> 和 <code>Error</code> 二者都是 Java 异常处理的重要子类，各自都包含大量子类。</p>
+<ul>
+<li><strong><code>Exception</code></strong> :程序本身可以处理的异常，可以通过 <code>catch</code> 来进行捕获。<code>Exception</code> 又可以分为 受检查异常(必须处理) 和 不受检查异常(可以不处理)。</li>
+<li><strong><code>Error</code></strong> ：<code>Error</code> 属于程序无法处理的错误 ，我们没办法通过 <code>catch</code> 来进行捕获 。例如，Java 虚拟机运行错误（<code>Virtual MachineError</code>）、虚拟机内存不够错误(<code>OutOfMemoryError</code>)、类定义错误（<code>NoClassDefFoundError</code>）等 。这些异常发生时，Java 虚拟机（JVM）一般会选择线程终止。</li>
+</ul>
+<p><strong>受检查异常</strong></p>
+<p>Java 代码在编译过程中，如果受检查异常没有被 <code>catch</code>/<code>throw</code> 处理的话，就没办法通过编译 。</p>
+<p>除了<code>RuntimeException</code>及其子类以外，其他的<code>Exception</code>类及其子类都属于受检查异常 。常见的受检查异常有： IO 相关的异常、<code>ClassNotFoundException</code> 、<code>SQLException</code>…。</p>
+<p><strong>不受检查异常</strong></p>
+<p>Java 代码在编译过程中 ，我们即使不处理不受检查异常也可以正常通过编译。</p>
+<p><code>RuntimeException</code> 及其子类都统称为非受检查异常，例如：<code>NullPointExecrption</code>、<code>NumberFormatException</code>（字符串转换为数字）、<code>ArrayIndexOutOfBoundsException</code>（数组越界）、<code>ClassCastException</code>（类型转换错误）、<code>ArithmeticException</code>（算术错误）等。</p>
+<p><strong>Throwable 类常用方法</strong></p>
+<ul>
+<li><strong><code>public string getMessage()</code></strong>:返回异常发生时的简要描述</li>
+<li><strong><code>public string toString()</code></strong>:返回异常发生时的详细信息</li>
+<li><strong><code>public string getLocalizedMessage()</code></strong>:返回异常对象的本地化信息。使用 <code>Throwable</code> 的子类覆盖这个方法，可以生成本地化信息。如果子类没有覆盖该方法，则该方法返回的信息与 <code>getMessage（）</code>返回的结果相同</li>
+<li><strong><code>public void printStackTrace()</code></strong>:在控制台上打印 <code>Throwable</code> 对象封装的异常信息</li>
+</ul>
+<p><strong>try-catch-finally</strong></p>
+<ul>
+<li><strong><code>try</code>块：</strong> 用于捕获异常。其后可接零个或多个 <code>catch</code> 块，如果没有 <code>catch</code> 块，则必须跟一个 <code>finally</code> 块。</li>
+<li><strong><code>catch</code>块：</strong> 用于处理 try 捕获到的异常。</li>
+<li><strong><code>finally</code> 块：</strong> 无论是否捕获或处理异常，<code>finally</code> 块里的语句都会被执行。当在 <code>try</code> 块或 <code>catch</code> 块中遇到 <code>return</code> 语句时，<code>finally</code> 语句块将在方法返回之前被执行。</li>
+</ul>
+<p><strong>在以下 3 种特殊情况下，<code>finally</code> 块不会被执行：</strong></p>
+<ol>
+<li>在 <code>try</code> 或 <code>finally </code>块中用了 <code>System.exit(int)</code>退出程序。但是，如果 <code>System.exit(int)</code> 在异常语句之后，<code>finally</code> 还是会被执行</li>
+<li>程序所在的线程死亡。</li>
+<li>关闭 CPU。</li>
+</ol>
+<p><strong>使用 <code>try-with-resources</code> 来代替<code>try-catch-finally</code></strong></p>
+<ol>
+<li><strong>适用范围（资源的定义）：</strong> 任何实现 <code>java.lang.AutoCloseable</code>或者 <code>java.io.Closeable</code> 的对象</li>
+<li><strong>关闭资源和 final 的执行顺序：</strong> 在 <code>try-with-resources</code> 语句中，任何 catch 或 finally 块在声明的资源关闭后运行</li>
+</ol>
+<h2 id="Java-是如何实现线程安全的，哪些数据结构是线程安全的？"><a href="#Java-是如何实现线程安全的，哪些数据结构是线程安全的？" class="headerlink" title="Java 是如何实现线程安全的，哪些数据结构是线程安全的？"></a>Java 是如何实现线程安全的，哪些数据结构是线程安全的？</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903923116048397">https://juejin.cn/post/6844903923116048397</a></p>
+<ul>
+<li><p><strong>无状态实现</strong></p>
+<blockquote>
+<p>在大多数情况下，多线程应用程序中的错误是由于多个线程之间共享状态不正确造成的。因此，我们要研究的第一种方法是使用<strong>无状态</strong>实现线程安全。</p>
+</blockquote>
+</li>
+<li><p><strong>不可变实现</strong></p>
+<blockquote>
+<p>如果我们需要在不同的线程之间共享状态，我们可以通过使它们不可变来创建线程安全的类。</p>
+<p>不变性是一个强大的、与语言无关的概念，它在 Java 中相当容易实现。 简单地说，<strong>当一个类实例的内部状态在构造之后不能被修改时，它就是不可变的</strong>。</p>
+<p>例如：String类</p>
+</blockquote>
+</li>
+<li><p><strong>线程本地变量</strong></p>
+<blockquote>
+<p>在面向对象程序设计中，对象实际上需要通过字段维护状态，并通过一个或多个方法实现行为。</p>
+<p>如果我们实际上需要维护状态，<strong>我们可以创建线程安全的类，通过使它们的字段线程本地化，这样这些类就不会在线程之间共享状态</strong>。</p>
+<p>我们可以通过简单地在 Thread类中定义私有字段来轻松地创建字段是线程本地的类。</p>
+</blockquote>
+</li>
+<li><p><strong>同步集合</strong></p>
+<blockquote>
+<p>通过使用集合框架中包含的一组同步包装器，我们可以轻松地创建线程安全的集合。</p>
+<p>Collections.synchronizedCollection(<strong>new</strong> ArrayList&lt;&gt;());</p>
+<p>Collections.synchronizedMap(<strong>new</strong> ArrayList&lt;&gt;());</p>
+<p>Collections.synchronizedList(<strong>new</strong> ArrayList&lt;&gt;());</p>
+<p>Collections.synchronizedSet(<strong>new</strong> ArrayList&lt;&gt;());</p>
+<p>Vector, HashTable </p>
+</blockquote>
+</li>
+<li><p><strong>并发集合</strong></p>
+<blockquote>
+<p>除了同步集合，我们还可以使用并发集合来创建线程安全的集合。</p>
+<p>Java提供了Java.util.concurrent 包，它包含几个并发集合，比如 ConcurrentHashMap, CopyOnWriteArrayList, CopyOnWriteArraySet</p>
+<p>, ConcurrentHashMap, ConcurrentSkipListMap, ConcurrentSkipListSet</p>
+</blockquote>
+</li>
+<li><p><strong>原子对象</strong>（无锁实现）</p>
+<blockquote>
+<p>还可以使用 Java 提供的一组原子类(包括 AtomicInteger、 AtomicLong、 AtomicBoolean 和 AtomicReference)实现线程安全。</p>
+</blockquote>
+</li>
+<li><p><strong>synchronized &amp; volatile</strong></p>
+</li>
+<li><p><strong>Lock</strong></p>
+</li>
+</ul>
+<h2 id="Java-如何高效进行数组拷贝"><a href="#Java-如何高效进行数组拷贝" class="headerlink" title="Java 如何高效进行数组拷贝"></a>Java 如何高效进行数组拷贝</h2><ul>
+<li>System.arraycopy()</li>
+<li>Arrays.copyOf()</li>
+<li>clone</li>
+<li>for循环逐一赋值</li>
+</ul>
+<blockquote>
+<p>java.util.Arrays类中提供了一个copyOf()方法，通过这个方法可以实现数组复制。这个方法的原理是内部创建了一个数组对象，然后通过System.arraycopy来实现数组复制.<br>System.arraycop方法是通过native方法,Java虚拟机内部实现的。</p>
+</blockquote>
+<p><code>参考文章：</code></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43896318/article/details/104645939">https://blog.csdn.net/weixin_43896318/article/details/104645939</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37346162">https://zhuanlan.zhihu.com/p/37346162</a></li>
+</ul>
+<h2 id="Java-枚举"><a href="#Java-枚举" class="headerlink" title="Java 枚举"></a>Java 枚举</h2><p>Java 5.0引入了枚举，枚举限制变量只能是预先设定好的值。使用枚举可以减少代码中的 bug，方便很多场景使用。</p>
+<p><strong>优点：</strong> 可读性较强，允许进行编译时检查，预先记录可接受值的列表，并避免由于传入无效值而引起的意外行为。</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904183594745870">https://juejin.cn/post/6844904183594745870</a></p>
+<p>。。。</p>
+<h2 id="谈谈对-Java-注解的理解，解决了什么问题？"><a href="#谈谈对-Java-注解的理解，解决了什么问题？" class="headerlink" title="谈谈对 Java 注解的理解，解决了什么问题？"></a>谈谈对 Java 注解的理解，解决了什么问题？</h2><p>从本质上来说，<strong>注解是一种标签，其实质上可以视为一种特殊的注释，这些标记可以在编译、类加载、运行时被读取，并执行相对应的处理。如果没有解析它的代码，它并不比普通注释强。</strong></p>
+<p>解析一个注解往往有两种形式：</p>
+<ul>
+<li><strong>编译期直接的扫描</strong> - 编译器的扫描指的是编译器在对 java 代码编译字节码的过程中会检测到某个类或者方法被一些注解修饰，这时它就会对于这些注解进行某些处理。这种情况只适用于 JDK 内置的注解类。</li>
+<li><strong>运行期的反射</strong> - 如果要自定义注解，Java 编译器无法识别并处理这个注解，它只能根据该注解的作用范围来选择是否编译进字节码文件。如果要处理注解，必须利用反射技术，识别该注解以及它所携带的信息，然后做相应的处理。</li>
+</ul>
+<p><strong>注解原理</strong></p>
+<p>注解本质是一个继承了<code>Annotation</code> 的特殊接口，其具体实现类是 Java 运行时生成的动态代理类。而我们通过反射获取注解时，返回的是 Java 运行时生成的动态代理对象<code>$Proxy1</code>。通过代理对象调用自定义注解（接口）的方法，会最终调用<code>AnnotationInvocationHandler</code> 的<code>invoke</code>方法。该方法会从<code>memberValues</code> 这个 Map 中索引出对应的值。而<code>memberValues</code> 的来源是 Java 常量池。</p>
+<p><strong>注解的作用</strong></p>
+<p>注解有许多用途：</p>
+<ul>
+<li>编译器信息 - 编译器可以使用注解来检测错误或抑制警告。</li>
+<li>编译时和部署时的处理 - 程序可以处理注解信息以生成代码，XML 文件等。</li>
+<li>运行时处理 - 可以在运行时检查某些注解并处理。</li>
+</ul>
+<p>作为 Java 程序员，多多少少都曾经历过被各种配置文件（xml、properties）支配的恐惧。过多的配置文件会使得项目难以维护。个人认为，使用注解以减少配置文件或代码，是注解最大的用处。</p>
+<p><strong>注解的代价</strong></p>
+<p>凡事有得必有失，注解技术同样如此。使用注解也有一定的代价：</p>
+<ul>
+<li>显然，它是一种侵入式编程，那么，自然就存在着增加程序耦合度的问题。</li>
+<li>自定义注解的处理需要在运行时，通过反射技术来获取属性。如果注解所修饰的元素是类的非 public 成员，也可以通过反射获取。这就违背了面向对象的封装性。</li>
+<li>注解所产生的问题，相对而言，更难以 debug 或定位。</li>
+</ul>
+<p>但是，正所谓瑕不掩瑜，注解所付出的代价，相较于它提供的功能而言，还是可以接受的。</p>
+<p><strong>注解的应用范围</strong></p>
+<p>注解可以应用于类、字段、方法和其他程序元素的声明。</p>
+<p><strong>内置注解</strong></p>
+<p>JDK 中内置了以下注解：</p>
+<ul>
+<li><code>@Override</code></li>
+<li><code>@Deprecated</code></li>
+<li><code>@SuppressWarnnings</code></li>
+<li><code>@SafeVarargs</code>（JDK7 引入）</li>
+<li><code>@FunctionalInterface</code>（JDK8 引入）</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lxlmycsdnfree/article/details/79199365">https://blog.csdn.net/lxlmycsdnfree/article/details/79199365</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903813631983623">https://juejin.cn/post/6844903813631983623</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904120873123847">https://juejin.cn/post/6844904120873123847</a></p>
+<h2 id="🔥简述生产者消费者模型"><a href="#🔥简述生产者消费者模型" class="headerlink" title="🔥简述生产者消费者模型"></a>🔥简述生产者消费者模型</h2><p>该模型中有三个元素：生产者，消费者，任务队列</p>
+<p>生产者-消费者模式的核心是一个<strong>任务队列</strong>，生产者往存储空间中添加产品，消费者从存储空间中取走产品，当存储空间为空时，消费者阻塞，当存储空间满时，生产者阻塞。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>解耦</li>
+<li>支持异步，并且能够平衡生产者和消费者的速度差异</li>
+</ul>
+<p>具体实现：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f53fb95b5820">https://www.jianshu.com/p/f53fb95b5820</a></p>
+<h2 id="BIO-NIO-AIO-有什么区别"><a href="#BIO-NIO-AIO-有什么区别" class="headerlink" title="BIO,NIO,AIO 有什么区别?"></a>BIO,NIO,AIO 有什么区别?</h2><ul>
+<li><strong>BIO (Blocking I/O):</strong> 同步阻塞 I/O 模式，数据的读取写入必须阻塞在一个线程内等待其完成。在活动连接数不是特别高（小于单机 1000）的情况下，这种模型是比较不错的，可以让每一个连接专注于自己的 I/O 并且编程模型简单，也不用过多考虑系统的过载、限流等问题。线程池本身就是一个天然的漏斗，可以缓冲一些系统处理不了的连接或请求。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。</li>
+<li><strong>NIO (Non-blocking/New I/O):</strong> NIO 是一种同步非阻塞的 I/O 模型，在 Java 1.4 中引入了 NIO 框架，对应 java.nio 包，提供了 Channel , Selector，Buffer 等抽象。NIO 中的 N 可以理解为 Non-blocking，不单纯是 New。它支持面向缓冲的，基于通道的 I/O 操作方法。 NIO 提供了与传统 BIO 模型中的 <code>Socket</code> 和 <code>ServerSocket</code> 相对应的 <code>SocketChannel</code> 和 <code>ServerSocketChannel</code> 两种不同的套接字通道实现,两种通道都支持阻塞和非阻塞两种模式。阻塞模式使用就像传统中的支持一样，比较简单，但是性能和可靠性都不好；非阻塞模式正好与之相反。对于低负载、低并发的应用程序，可以使用同步阻塞 I/O 来提升开发速率和更好的维护性；对于高负载、高并发的（网络）应用，应使用 NIO 的非阻塞模式来开发</li>
+<li><strong>AIO (Asynchronous I/O):</strong> AIO 也就是 NIO 2。在 Java 7 中引入了 NIO 的改进版 NIO 2,它是异步非阻塞的 IO 模型。异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。AIO 是异步 IO 的缩写，虽然 NIO 在网络操作中，提供了非阻塞的方法，但是 NIO 的 IO 行为还是同步的。对于 NIO 来说，我们的业务线程是在 IO 操作准备好时，得到通知，接着就由这个线程自行进行 IO 操作，IO 操作本身是同步的。查阅网上相关资料，我发现就目前来说 AIO 的应用还不是很广泛，Netty 之前也尝试使用过 AIO，不过又放弃了。</li>
+</ul>
+<h2 id="既然有了字节流-为什么还要有字符流"><a href="#既然有了字节流-为什么还要有字符流" class="headerlink" title="既然有了字节流,为什么还要有字符流?"></a>既然有了字节流,为什么还要有字符流?</h2><p>问题本质想问：<strong>不管是文件读写还是网络发送接收，信息的最小存储单元都是字节，那为什么 I/O 流操作要分为字节流操作和字符流操作呢？</strong></p>
+<p>回答：字符流是由 Java 虚拟机将字节转换得到的，问题就出在这个过程还算是非常耗时，并且，如果我们不知道编码类型就很容易出现乱码问题。所以， I/O 流就干脆提供了一个直接操作字符的接口，方便我们平时对字符进行流操作。如果音频文件、图片等媒体文件用字节流比较好，如果涉及到字符的话使用字符流比较好。</p>
+<h2 id="Java-中-IO-流分为几种"><a href="#Java-中-IO-流分为几种" class="headerlink" title="Java 中 IO 流分为几种?"></a>Java 中 IO 流分为几种?</h2><ul>
+<li>按照流的流向分，可以分为输入流和输出流；</li>
+<li>按照操作单元划分，可以划分为字节流和字符流；</li>
+<li>按照流的角色划分为节点流和处理流。</li>
+</ul>
+<p>Java Io 流共涉及 40 多个类，这些类看上去很杂乱，但实际上很有规则，而且彼此之间存在非常紧密的联系， Java I0 流的 40 多个类都是从如下 4 个抽象类基类中派生出来的。</p>
+<ul>
+<li>InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。</li>
+<li>OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。</li>
+</ul>
+<p><img src="../../img/java/2.png"></p>
+<h2 id="🔥红黑树和平衡二叉树有什么区别？"><a href="#🔥红黑树和平衡二叉树有什么区别？" class="headerlink" title="🔥红黑树和平衡二叉树有什么区别？"></a>🔥红黑树和平衡二叉树有什么区别？</h2><p>二叉树（Binary Tree）是指每个节点最多只有两个分支的树结构，即不存在分支大于 2 的节点，二叉树的数据结构如下图所示：</p>
+<p><img src="../../img/java/43.png"></p>
+<p>这是一棵拥有 6 个节点深度为 2（深度从 0 开始），并且根节点为 3 的二叉树。</p>
+<p>二叉树有两个分支通常被称作“左子树”和“右子树”，而且这些分支具有左右次序不能随意地颠倒。</p>
+<p>一棵空树或者满足以下性质的二叉树被称之为<strong>二叉查找树</strong>：</p>
+<ul>
+<li>若任意节点的左子树不为空，则左子树上所有节点的值均小于它的根节点的值；</li>
+<li>若任意节点的右子树不为空，则右子树上所有节点的值均大于或等于它的根节点的值；</li>
+<li>任意节点的左、右子树分别为二叉查找树。</li>
+</ul>
+<p>红黑树（Red Black Tree）是一种自平衡二叉查找树，</p>
+<p>所谓的平衡树是指一种改进的二叉查找树，顾名思义平衡树就是将二叉查找树平衡均匀地分布，这样的好处就是可以减少二叉查找树的深度。</p>
+<p>一般情况下二叉查找树的查询复杂度取决于目标节点到树根的距离（即深度），当节点的深度普遍较大时，查询的平均复杂度就会上升，因此为了实现更高效的查询就有了平衡树。</p>
+<p>红黑树除了具备二叉查找树的基本特性之外，还具备以下特性：</p>
+<ul>
+<li>节点是红色或黑色；</li>
+<li>根节点是黑色；</li>
+<li>所有叶子都是黑色的空节点（NIL 节点）；</li>
+<li>每个红色节点必须有两个黑色的子节点，也就是说从每个叶子到根的所有路径上，不能有两个连续的红色节点；</li>
+<li>从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑色节点。</li>
+</ul>
+<p><img src="../../img/java/44.png"></p>
+<p>红黑树的优势在于它是一个平衡二叉查找树，对于普通的二叉查找树（非平衡二叉查找树）在极端情况下可能会退化为链表的结构，例如，当我们依次插入 3、4、5、6、7、8 这些数据时，二叉树会退化为如下链表结构：</p>
+<p><img src="../../img/java/45.png"></p>
+<p>当二叉查找树退化为链表数据结构后，再进行元素的添加、删除以及查询时，它的时间复杂度就会退化为 O(n)；而如果使用红黑树的话，它就会将以上数据转化为平衡二叉查找树，这样就可以更加高效的添加、删除以及查询数据了，这就是红黑树的优势。</p>
+<blockquote>
+<p>小贴士：红黑树的高度近似 log2n，它的添加、删除以及查询数据的时间复杂度为 O(logn)。</p>
+</blockquote>
+<h2 id="AVL-树"><a href="#AVL-树" class="headerlink" title="AVL 树"></a>AVL 树</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Jp411R7Sb?p=6">https://www.bilibili.com/video/BV1Jp411R7Sb?p=6</a></p>
+<p>AVL 树是一种自平衡的二叉树，一般是用平衡因子差值判断是否平衡并通过旋转来实现平衡。左右子树<strong>高度差</strong>的绝对值不超过1，空树和左右子树都是AVL树。AVL树是<strong>严格的平衡二叉树</strong>，平衡条件必须满足（所有节点的左右子树高度差的绝对值不超过<strong>1</strong>）。不管我们是执行插入还是删除操作，只要不满足上面的条件，就要通过旋转来保持平衡，而旋转是非常耗时的，由此我们可以知道**AVL树适合用于插入与删除次数比较少，但查找多的情况</p>
+<p><strong>avl树和红黑树的区别</strong></p>
+<p>红黑树的 查询性能略微逊色于AVL树，因为他比avl树会稍微不平衡最多一层，也就是说红黑树的查询性能只比相同内容的avl树最多多一次比较，但是，红黑树在插入和删除上完爆avl树， avl树每次插入删除会进行大量的平衡度计算，而红黑树为了维持红黑性质所做的红黑变换和旋转的开销，相较于avl树为了维持平衡的 开销要小得多</p>
+<h3 id="红黑树是如何保证自平衡的？"><a href="#红黑树是如何保证自平衡的？" class="headerlink" title="红黑树是如何保证自平衡的？"></a>红黑树是如何保证自平衡的？</h3><p>红黑树能够实现自平衡和保持红黑树特征的主要手段是：<strong>变色、左旋和右旋</strong>。</p>
+<p><strong>左旋</strong>指的是围绕某个节点向左旋转，也就是逆时针旋转某个节点，使得父节点被自己的右子节点所替代，如下图所示：</p>
+<p><img src="../../img/java/46.png"></p>
+<p>在 TreeMap 源码中左旋的实现源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源码基于 JDK 1.8</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rotateLeft</span><span class="params">(Entry&lt;K,V&gt; p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 右子节点</span></span><br><span class="line">        Entry&lt;K,V&gt; r = p.right; </span><br><span class="line">        <span class="comment">// p 节点的右子节点为 r 的左子节点</span></span><br><span class="line">        p.right = r.left;</span><br><span class="line">        <span class="comment">// r 左子节点如果非空，r 左子节点的父节点设置为 p 节点</span></span><br><span class="line">        <span class="keyword">if</span> (r.left != <span class="keyword">null</span>) </span><br><span class="line">            r.left.parent = p; </span><br><span class="line">        r.parent = p.parent; <span class="comment">// r 父节点等于 p 父节点</span></span><br><span class="line">        <span class="comment">// p 父节点如果为空，那么讲根节点设置为 r 节点</span></span><br><span class="line">        <span class="keyword">if</span> (p.parent == <span class="keyword">null</span>)</span><br><span class="line">            root = r;</span><br><span class="line">        <span class="comment">// p 父节点的左子节点如果等于 p 节点，那么 p 父节点的左子节点设置 r 节点</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p.parent.left == p)</span><br><span class="line">            p.parent.left = r;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            p.parent.right = r;</span><br><span class="line">        r.left = p; </span><br><span class="line">        p.parent = r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>左旋代码说明：在刚开始时，p 为父节点，r 为子节点，在左旋操作后，r 节点代替 p 节点的位置，p 节点成为 r 节点的左孩子，而 r 节点的左孩子成为 p 节点的右孩子。</p>
+<p><strong>右旋</strong>指的是围绕某个节点向右旋转，也就是顺时针旋转某个节点，此时父节点会被自己的左子节点取代，如下图所示：</p>
+<p><img src="../../img/java/47.png"></p>
+<p>在 TreeMap 源码中右旋的实现源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rotateRight</span><span class="params">(Entry&lt;K,V&gt; p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">        Entry&lt;K,V&gt; l = p.left;</span><br><span class="line">        <span class="comment">// p 节点的左子节点为 l 的右子节点</span></span><br><span class="line">        p.left = l.right;</span><br><span class="line">        <span class="comment">// l 节点的右子节点非空时，设置 l 的右子节点的父节点为 p</span></span><br><span class="line">        <span class="keyword">if</span> (l.right != <span class="keyword">null</span>) l.right.parent = p;</span><br><span class="line">        l.parent = p.parent;</span><br><span class="line">        <span class="comment">// p 节点的父节点为空时，根节点设置成 l 节点</span></span><br><span class="line">        <span class="keyword">if</span> (p.parent == <span class="keyword">null</span>)</span><br><span class="line">            root = l;</span><br><span class="line">        <span class="comment">// p 节点的父节点的右子节点等于 p 节点时，p 的父节点的右子节点设置为 l</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (p.parent.right == p)</span><br><span class="line">            p.parent.right = l;</span><br><span class="line">        <span class="keyword">else</span> p.parent.left = l;</span><br><span class="line">        l.right = p;</span><br><span class="line">        p.parent = l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>右旋代码说明：在刚开始时，p 为父节点 l 为子节点，在右旋操作后，l 节点代替 p 节点，p 节点成为 l 节点的右孩子，l 节点的右孩子成为 p 节点的左孩子。</p>
+<p>对于红黑树来说，如果当前节点的左、右子节点均为红色时，因为需要满足红黑树定义的第四条特征，所以需要执行变色操作，如下图所示：</p>
+<p><img src="../../img/java/48.png"></p>
+
+  
+  
+    <div class="guide-links">
+      
+      
+        <span>← <a href="/java/oop/oop.html">面向对象</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/java/oop/collection.html">集合</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/java/oop/basic.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>

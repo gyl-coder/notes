@@ -1,0 +1,1209 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/data/Java/java_concurrent.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/data/Java/java_concurrent.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/data/Java/java_concurrent.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/data/Java/java_concurrent.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/data/Java/java_concurrent.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/data/Java/java_concurrent.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/data/Java/java_concurrent.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/data/Java/java_concurrent.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = ""
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/data/Java/java_concurrent.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/data/Java/java_concurrent.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/data/Java/java_concurrent.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/data/Java/java_concurrent.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/data/Java/java_concurrent.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/data/Java/java_concurrent.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/data/Java/java_concurrent.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/data/Java/java_concurrent.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/data/Java/java_concurrent.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+  
+  
+    <p>[TOC]</p>
+<p><img src="../img/java/7.png"></p>
+<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>Conmpare And Swap（比较和交换）</p>
+<h3 id="CAS解决什么问题？"><a href="#CAS解决什么问题？" class="headerlink" title="CAS解决什么问题？"></a>CAS解决什么问题？</h3><p>当多个线程对同一个数据进行操作的时候，如果没有同步就会产生线程安全问题。为了解决线程线程安全问题，我们需要加上同步代码块，操作，如加上synchronized。但是某些情况下这并不是最优选择。</p>
+<p>synchronized关键字会让没有得到锁资源的线程进入BLOCKED状态，而后在争夺到锁资源后恢复为RUNNABLE状态，这个过程中涉及到操作系统用户模式和内核模式的转换，代价比较高。这个过程是一个串行的过程，效率很低。</p>
+<p>尽管JAVA 1.6为synchronized做了优化，增加了从偏向锁到轻量级锁再到重量级锁的过过度，但是在最终转变为重量级锁之后，性能仍然比较低。所以面对这种情况，我们就可以使用java中的“原子操作类”。</p>
+<p>而原子操作类的底层正是用到了“CAS机制”。</p>
+<p>CAS是英文单词Compare and Swap的缩写，翻译过来就是比较并替换。</p>
+<p>CAS操作包含三个操作数——内存位置、预期原值及新值。执行CAS操作的时候，将内存位置的值与预期原值比较，如果相匹配，那么处理器会自动将该位置值更新为新值，否则，处理器不做任何操作。我们都知道，CAS是一条CPU的原子指令（cmpxchg指令），不会造成所谓的数据不一致问题，Unsafe提供的CAS方法（如compareAndSwapXXX）底层实现即为CPU指令cmpxchg。</p>
+<p>从思想上来说，synchronized属于悲观锁，悲观的认为程序中的并发情况严重，所以严防死守，CAS属于乐观锁，乐观地认为程序中的并发情况不那么严重，所以让线程不断去重试更新。</p>
+<h3 id="CAS存在的问题"><a href="#CAS存在的问题" class="headerlink" title="CAS存在的问题"></a>CAS存在的问题</h3><p>1） CPU开销过大</p>
+<p>​        在并发量比较高的情况下，如果许多线程反复尝试更新某一个变量，却又一直更新不成功，循环往复，会给CPU带来很到的压力。</p>
+<p>2） 不能保证代码块的原子性</p>
+<p>​        CAS机制所保证的知识一个变量的原子性操作，而不能保证整个代码块的原子性。比如需要保证3个变量共同进行原子性的更新，就不得不使用synchronized了。</p>
+<p>3） ABA问题</p>
+<p>​        这是CAS机制最大的问题所在。</p>
+<h3 id="如何解决ABA问题？"><a href="#如何解决ABA问题？" class="headerlink" title="如何解决ABA问题？"></a>如何解决ABA问题？</h3><p>添加修改版本号  </p>
+<p>AtomicStampedReference 带时间戳的原子引用</p>
+<h3 id="CAS的应用"><a href="#CAS的应用" class="headerlink" title="CAS的应用"></a>CAS的应用</h3><p>CAS在java.util.concurrent.atomic相关类、Java AQS、CurrentHashMap等实现上有非常广泛的应用。</p>
+<h2 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h2><p>AQS 的全称为（AbstractQueuedSynchronizer）抽象的同步队列。AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器，比如我们提到的 <code>ReentrantLock</code>，<code>Semaphore</code>，其他的诸如 <code>ReentrantReadWriteLock</code>，<code>SynchronousQueue</code>，<code>FutureTask</code> 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>AQS 是一个抽象类，不能实例化。只能被继承然后重写指定的方法（线程获取资源和释放资源的方式）。</p>
+<p>AQS 中维护了一个 state 字段，<strong>用来表示同步状态</strong>，由volatile修饰，用于展示当前共享资源的获锁情况。并且提供了相应的 get set方法以及用cas实现的set方法，AQS只是提供了相应的方法（并且是final类型的，子类无法重写），具体什么时间调用，有具体的同步器来决定。</p>
+<blockquote>
+<ul>
+<li>对于ReentrantLock的实现来说，state可以用来表示当前线程获取锁的可重入次数；</li>
+<li>对于读写锁ReentrantReadWriteLock来说，state的高16位表示读状态，也就是获取该读锁的次数，低16位表示获取到写锁的线程的可重入次数；</li>
+<li>对于semaphore来说，state用来表示当前可用信号的个数；</li>
+<li>对于CountDownlatch来说，state用来表示计数器当前的值。</li>
+</ul>
+</blockquote>
+<p>AQS 维护了一个CLH变体的虚拟双向队列（FIFO），将暂时获取不到锁的线程加入到队列中。并且实现了一套阻塞和唤醒机制。AQS核心思想是，如果被请求的共享资源空闲，那么就将当前请求资源的线程设置为有效的工作线程，将共享资源设置为锁定状态；如果共享资源被占用，就需要一定的阻塞等待唤醒机制来保证锁分配。这个机制主要由该队列实现。</p>
+<p>另外，AQS还定义了两组获取和释放资源的方法，独占式获取/释放资源的方法 tryAcquire和tryRelease，以及共享式获取/释放资源的方法tryAcquireShared 和 tryReleaseShared。AQS针对这两组方法没有默认实现，只是定义了两套模板方法，由具体是同步器来实现。</p>
+<blockquote>
+<p><strong>总结起来子类的任务有：</strong></p>
+<ol>
+<li>通过<code>CAS</code>操作维护共享变量<code>state</code>。</li>
+<li>重写资源的获取方式。</li>
+<li>重写资源释放的方式。</li>
+</ol>
+</blockquote>
+<p><img src="../img/java/32.png"></p>
+<p>AQS是一个FIFO的双向队列，其内部通过节点head和tail记录队首和队尾元素，队列元素的类型为Node。Node 中有如下几个变量：</p>
+<ul>
+<li>thread变量：用来存放进入AQS队列里面的线程</li>
+<li>SHARED：用来标记该线程是获取共享资源时被阻塞挂起后放入AQS队列的</li>
+<li>EXCLUSIVE：用来标记线程是获取独占资源时被挂起后放入AQS队列的</li>
+<li>waitStatus：记录当前线程等待状态，可以为CANCELLED（线程被取消了）、SIGNAL（线程需要被唤醒）、CONDITION（线程在条件队列里面等待）、PROPAGATE（释放共享资源时需要通知其他节点）</li>
+<li>prev：记录当前节点的前驱节点</li>
+<li>next：记录当前节点的后继节点。</li>
+</ul>
+<p>对于AQS来说，线程同步的关键是对状态值state进行操作。根据state是否属于一个线程，操作state的方式分为独占方式和共享方式。</p>
+<ul>
+<li>在独占方式下获取和释放资源使用的方法为： void acquire（int arg）void acquireInterruptibly（int arg）boolean release（int arg）。</li>
+<li>在共享方式下获取和释放资源的方法为： void acquireShared（int arg）voidacquireSharedInterruptibly（int arg）boolean releaseShared（int arg）。</li>
+</ul>
+<p><strong>在独占方式下，获取与释放资源的流程如下：</strong></p>
+<ol>
+<li>当一个线程调用acquire（int arg）方法获取独占资源时，会首先使用tryAcquire方法尝试获取资源，具体是设置状态变量state的值，成功则直接返回，失败则将当前线程封装为类型为Node.EXCLUSIVE的Node节点后插入到AQS阻塞队列的尾部，并调用LockSupport.park（this）方法挂起自己。</li>
+<li>当一个线程调用release（int arg）方法时会尝试使用tryRelease操作释放资源，这里是设置状态变量state的值，然后调用LockSupport.unpark（thread）方法激活AQS队列里面被阻塞的一个线程（thread）。被激活的线程则使用tryAcquire尝试，看当前状态变量state的值是否能满足自己的需要，满足则该线程被激活，然后继续向下运行，否则还是会被放入AQS队列并被挂起。</li>
+</ol>
+<p>需要注意的是，AQS类并没有提供可用的tryAcquire和tryRelease方法，正如AQS是锁阻塞和同步器的基础框架一样，tryAcquire和tryRelease需要由具体的子类来实现。子类在实现tryAcquire和tryRelease时要根据具体场景使用CAS算法尝试修改state状态值，成功则返回true，否则返回false。子类还需要定义，在调用acquire和release方法时state状态值的增减代表什么含义。</p>
+<p><strong>在共享方式下，获取与释放资源的流程如下：</strong></p>
+<ol>
+<li><p>当线程调用acquireShared（int arg）获取共享资源时，会首先使用tryAcquireShared尝试获取资源，具体是设置状态变量state的值，成功则直接返回，失败则将当前线程封装为类型为Node.SHARED的Node节点后插入到AQS阻塞队列的尾部，并使用LockSupport.park（this）方法挂起自己。</p>
+</li>
+<li><p>当一个线程调用releaseShared（int arg）时会尝试使用tryReleaseShared操作释放资源，这里是设置状态变量state的值，然后使用LockSupport.unpark（thread）激活AQS队列里面被阻塞的一个线程（thread）。被激活的线程则使用tryReleaseShared查看当前状态变量state的值是否能满足自己的需要，满足则该线程被激活，然后继续向下运行，否则还是会被放入AQS队列并被挂起。</p>
+</li>
+</ol>
+<blockquote>
+<p>独占方式下的void acquire（int arg）和voidacquireInterruptibly（int arg），与共享方式下的void acquireShared（intarg）和void acquireSharedInterruptibly（int arg），这两套函数中都有一个带有Interruptibly关键字的函数，那么带这个关键字和不带有什么区别呢？</p>
+<p>我们来讲讲。其实不带Interruptibly关键字的方法的意思是不对中断进行响应，也就是线程在调用不带Interruptibly关键字的方法获取资源时或者获取资源失败被挂起时，其他线程中断了该线程，那么该线程不会因为被中断而抛出异常，它还是继续获取资源或者被挂起，也就是说不对中断进行响应，忽略中断。而带Interruptibly关键字的方法要对中断进行响应，也就是线程在调用带Interruptibly关键字的方法获取资源时或者获取资源失败被挂起时，其他线程中断了该线程，那么该线程会抛出InterruptedException异常而返回。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html">https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wang-meng/p/12816829.html">https://www.cnblogs.com/wang-meng/p/12816829.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://ddnd.cn/2019/03/15/java-abstractqueuedsynchronizer/">https://ddnd.cn/2019/03/15/java-abstractqueuedsynchronizer/</a></p>
+<h2 id="ReentrantLock-原理"><a href="#ReentrantLock-原理" class="headerlink" title="ReentrantLock 原理"></a>ReentrantLock 原理</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903805683761165">https://juejin.cn/post/6844903805683761165</a></p>
+<p>对 AQS 进行简单介绍</p>
+<p>ReentrantLock实现了 Lock 接口，含有3个内部类，其中Sync内部类继承自AQS 实现了独占式获取和释放资源的方法。另外的两个内部类继承自<code>Sync</code>，这两个类分别是用来<strong>公平锁和非公平锁</strong>的。</p>
+<p><code>ReentrantLock</code>有两个构造方法，无参构造方法默认是创建<strong>非公平锁</strong>，而传入<code>true</code>为参数的构造方法创建的是<strong>公平锁</strong>。</p>
+<h3 id="非公平锁的实现原理"><a href="#非公平锁的实现原理" class="headerlink" title="非公平锁的实现原理"></a>非公平锁的实现原理</h3><p>当我们使用无参构造方法构造的时候即<code>ReentrantLock lock = new ReentrantLock()</code>，创建的就是非公平锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    sync = <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者传入false参数 创建的也是非公平锁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</span><br><span class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>lock 方法获取锁</strong></p>
+<p><code>lock</code>方法调用<code>CAS</code>方法设置<code>state</code>的值，如果<code>state</code>等于期望值<code>0</code>(代表锁没有被占用)，那么就将<code>state</code>更新为<code>1</code>(代表该线程获取锁成功)，然后执行<code>setExclusiveOwnerThread</code>方法直接将该线程设置成锁的所有者。如果<code>CAS</code>设置<code>state</code>的值失败，即<code>state</code>不等于<code>0</code>，代表锁正在被占领着，则执行<code>acquire(1)</code>，即下面的步骤。</p>
+<p><code>nonfairTryAcquire</code>方法首先调用<code>getState</code>方法获取<code>state</code>的值，如果<code>state</code>的值为<code>0</code>(之前占领锁的线程刚好释放了锁)，那么就用<code>CAS</code>设置<code>state</code>的值，设置成功则将该线程设置成锁的所有者，并且返回<code>true</code>。如果<code>state</code>的值不为<code>0</code>，那就<strong>调用<code>getExclusiveOwnerThread</code>方法查看占用锁的线程是不是自己</strong>，如果是的话那就直接将<code>state + 1</code>，然后返回<code>true</code>。如果<code>state</code>不为<code>0</code>且锁的所有者又不是自己，那就返回<code>false</code>，<strong>然后线程会进入到同步队列中</strong>。</p>
+<p><img src="../img/java/57.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//CAS操作设置state的值</span></span><br><span class="line">    <span class="keyword">if</span> (compareAndSetState(<span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line">        <span class="comment">//设置成功 直接将锁的所有者设置为当前线程 流程结束</span></span><br><span class="line">        setExclusiveOwnerThread(Thread.currentThread());</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="comment">//设置失败 则进行后续的加入同步队列准备</span></span><br><span class="line">        acquire(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">acquire</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//调用子类重写的tryAcquire方法 如果tryAcquire方法返回false 那么线程就会进入同步队列</span></span><br><span class="line">    <span class="keyword">if</span> (!tryAcquire(arg) &amp;&amp;</span><br><span class="line">        acquireQueued(addWaiter(Node.EXCLUSIVE), arg))</span><br><span class="line">        selfInterrupt();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子类重写的tryAcquire方法</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//调用nonfairTryAcquire方法</span></span><br><span class="line">    <span class="keyword">return</span> nonfairTryAcquire(acquires);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">nonfairTryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Thread current = Thread.currentThread();</span><br><span class="line">    <span class="keyword">int</span> c = getState();</span><br><span class="line">    <span class="comment">//如果状态state=0，即在这段时间内 锁的所有者把锁释放了 那么这里state就为0</span></span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//使用CAS操作设置state的值</span></span><br><span class="line">        <span class="keyword">if</span> (compareAndSetState(<span class="number">0</span>, acquires)) &#123;</span><br><span class="line">            <span class="comment">//操作成功 则将锁的所有者设置成当前线程 且返回true，也就是当前线程不会进入同步</span></span><br><span class="line">            <span class="comment">//队列。</span></span><br><span class="line">            setExclusiveOwnerThread(current);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果状态state不等于0，也就是有线程正在占用锁，那么先检查一下这个线程是不是自己</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">        <span class="comment">//如果线程就是自己了，那么直接将state+1，返回true，不需要再获取锁 因为锁就在自己</span></span><br><span class="line">        <span class="comment">//身上了。</span></span><br><span class="line">        <span class="keyword">int</span> nextc = c + acquires;</span><br><span class="line">        <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">&quot;Maximum lock count exceeded&quot;</span>);</span><br><span class="line">        setState(nextc);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果state不等于0，且锁的所有者又不是自己，那么线程就会进入到同步队列。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>tryRelease锁的释放</strong></p>
+<ol>
+<li>判断当前线程是不是锁的所有者，如果是则进行步骤<code>2</code>，如果不是则抛出异常。</li>
+<li>判断此次释放锁后<code>state</code>的值是否为0，如果是则代表<strong>锁有没有重入</strong>，然后将锁的所有者设置成<code>null</code>且返回<code>true</code>，然后执行步骤<code>3</code>，如果不是则<strong>代表锁发生了重入</strong>执行步骤<code>4</code>。</li>
+<li>现在锁已经释放完，即<code>state=0</code>，唤醒同步队列中的后继节点进行锁的获取。</li>
+<li>锁还没有释放完，即<code>state!=0</code>，不唤醒同步队列。</li>
+</ol>
+<p><img src="../img/java/58.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    sync.release(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">release</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//子类重写的tryRelease方法，需要等锁的state=0，即tryRelease返回true的时候，才会去唤醒其</span></span><br><span class="line">    <span class="comment">//它线程进行尝试获取锁。</span></span><br><span class="line">    <span class="keyword">if</span> (tryRelease(arg)) &#123;</span><br><span class="line">        Node h = head;</span><br><span class="line">        <span class="keyword">if</span> (h != <span class="keyword">null</span> &amp;&amp; h.waitStatus != <span class="number">0</span>)</span><br><span class="line">            unparkSuccessor(h);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryRelease</span><span class="params">(<span class="keyword">int</span> releases)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//状态的state减去releases</span></span><br><span class="line">    <span class="keyword">int</span> c = getState() - releases;</span><br><span class="line">    <span class="comment">//判断锁的所有者是不是该线程</span></span><br><span class="line">    <span class="keyword">if</span> (Thread.currentThread() != getExclusiveOwnerThread())</span><br><span class="line">        <span class="comment">//如果所的所有者不是该线程 则抛出异常 也就是锁释放的前提是线程拥有这个锁，</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalMonitorStateException();</span><br><span class="line">    <span class="keyword">boolean</span> free = <span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">//如果该线程释放锁之后 状态state=0，即锁没有重入，那么直接将将锁的所有者设置成null</span></span><br><span class="line">    <span class="comment">//并且返回true，即代表可以唤醒其他线程去获取锁了。如果该线程释放锁之后state不等于0，</span></span><br><span class="line">    <span class="comment">//那么代表锁重入了，返回false，代表锁还未正在释放，不用去唤醒其他线程。</span></span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">        free = <span class="keyword">true</span>;</span><br><span class="line">        setExclusiveOwnerThread(<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    setState(c);</span><br><span class="line">    <span class="keyword">return</span> free;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="公平锁的实现原理"><a href="#公平锁的实现原理" class="headerlink" title="公平锁的实现原理"></a>公平锁的实现原理</h3><p><strong>lock方法获取锁</strong></p>
+<ol>
+<li>获取状态的<code>state</code>的值，如果<code>state=0</code>即代表锁没有被其它线程占用(但是并不代表同步队列没有线程在等待)，执行步骤<code>2</code>。如果<code>state!=0</code>则代表锁正在被其它线程占用，执行步骤<code>3</code>。</li>
+<li><strong>判断同步队列是否存在线程(节点)，如果不存在则直接将锁的所有者设置成当前线程，且更新状态state，然后返回true。</strong></li>
+<li><strong>判断锁的所有者是不是当前线程，如果是则更新状态state的值，然后返回true，如果不是，那么返回false，即线程会被加入到同步队列中</strong></li>
+</ol>
+<p>通过步骤<code>2</code><strong>实现了锁获取的公平性，即锁的获取按照先来先得的顺序，后来的不能抢先获取锁，非公平锁和公平锁也正是通过这个区别来实现了锁的公平性。</strong></p>
+<p><img src="../img/java/59.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">lock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    acquire(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">acquire</span><span class="params">(<span class="keyword">int</span> arg)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//同步队列中有线程 且 锁的所有者不是当前线程那么将线程加入到同步队列的尾部，</span></span><br><span class="line">    <span class="comment">//保证了公平性，也就是先来的线程先获得锁，后来的不能抢先获取。</span></span><br><span class="line">    <span class="keyword">if</span> (!tryAcquire(arg) &amp;&amp;</span><br><span class="line">        acquireQueued(addWaiter(Node.EXCLUSIVE), arg))</span><br><span class="line">        selfInterrupt();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">tryAcquire</span><span class="params">(<span class="keyword">int</span> acquires)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> Thread current = Thread.currentThread();</span><br><span class="line">    <span class="keyword">int</span> c = getState();</span><br><span class="line">    <span class="comment">//判断状态state是否等于0，等于0代表锁没有被占用，不等于0则代表锁被占用着。</span></span><br><span class="line">    <span class="keyword">if</span> (c == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">//调用hasQueuedPredecessors方法判断同步队列中是否有线程在等待，如果同步队列中没有</span></span><br><span class="line">        <span class="comment">//线程在等待 则当前线程成为锁的所有者，如果同步队列中有线程在等待，则继续往下执行</span></span><br><span class="line">        <span class="comment">//这个机制就是公平锁的机制，也就是先让先来的线程获取锁，后来的不能抢先获取。</span></span><br><span class="line">        <span class="keyword">if</span> (!hasQueuedPredecessors() &amp;&amp;</span><br><span class="line">            compareAndSetState(<span class="number">0</span>, acquires)) &#123;</span><br><span class="line">            setExclusiveOwnerThread(current);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断当前线程是否为锁的所有者，如果是，那么直接更新状态state，然后返回true。</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (current == getExclusiveOwnerThread()) &#123;</span><br><span class="line">        <span class="keyword">int</span> nextc = c + acquires;</span><br><span class="line">        <span class="keyword">if</span> (nextc &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">&quot;Maximum lock count exceeded&quot;</span>);</span><br><span class="line">        setState(nextc);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果同步队列中有线程存在 且 锁的所有者不是当前线程，则返回false。</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>tryRelease锁的释放</strong></p>
+<p>公平锁的释放和非公平锁的释放一样，这里就不重复。</p>
+<p>公平锁和非公平锁的公平性是在<strong>获取锁</strong>的时候体现出来的，释放的时候都是一样释放的。</p>
+<h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p><a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/239766">https://bbs.huaweicloud.com/blogs/239766</a></p>
+<p>Java语言为了解决并发编程中存在的原子性、可见性和有序性问题，提供了一系列和并发处理相关的关键字，比如<code>synchronized</code>、<code>volatile</code>、<code>final</code>、<code>concurren包</code>等。</p>
+<p><code>volatile</code>这个关键字，不仅仅在Java语言中有，在很多语言中都有的，而且其用法和语义也都是不尽相同的。都可以<strong>用来声明变量或者对象。</strong>下面简单来介绍一下Java语言中的<code>volatile</code>关键字。</p>
+<ul>
+<li>volatile 可以保证可见性</li>
+<li>volatile禁止指令重排优化（一定程度上可以保证有序性）</li>
+<li>volatile 不能保证原子性</li>
+</ul>
+<p>在以下两个场景中可以使用<code>volatile</code>来代替<code>synchronized</code>：</p>
+<blockquote>
+<p>1、运算结果并不依赖变量的当前值，或者能够确保只有单一的线程会修改变量的值。</p>
+<p>2、变量不需要与其他状态变量共同参与不变约束。</p>
+</blockquote>
+<p>除以上场景外，都需要使用其他方式来保证原子性，如<code>synchronized</code>或者<code>concurrent包</code>。</p>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><p><code>volatile</code>通常被比喻成”轻量级的<code>synchronized</code>“，也是Java并发编程中比较重要的一个关键字。和<code>synchronized</code>不同，<code>volatile</code>是一个变量修饰符，<strong>只能用来修饰变量</strong>。无法修饰方法及代码块等。</p>
+<p><code>volatile</code>的用法比较简单，只需要在声明一个可能被多线程同时访问的变量时，使用<code>volatile</code>修饰就可以了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getSingleton</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">synchronized</span> (Singleton.class) &#123;  </span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;  </span><br><span class="line">            singleton = <span class="keyword">new</span> Singleton();  </span><br><span class="line">        &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> singleton;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p><strong>可见性实现原理</strong></p>
+<p>为了提高处理器的执行速度，在处理器和内存之间增加了多级缓存来提升。但是由于引入了多级缓存，就存在缓存数据不一致问题。</p>
+<p>对于<code>volatile</code>变量，当对<code>volatile</code>变量进行写操作的时候，JVM会向处理器发送一条lock前缀的指令，处理器在接收到lock指令的时候会做两件事：</p>
+<ol>
+<li>将<strong>缓存行</strong>缓存的数据写回到系统内存中。</li>
+<li>这个写回到系统内存中的数据，如果在其他CPU的缓存行中存在相同的数据，则将其置为<strong>失效状态</strong>。</li>
+</ol>
+<p><strong>屏蔽指令重排实现原理</strong></p>
+<p>屏蔽指令重排序：指令重排序是编译器和处理器为了高效对程序进行优化的手段，它只能保证程序执行的结果时正确的，但是无法保证程序的操作顺序与代码顺序一致。这在单线程中不会构成问题，但是在多线程中就会出现问题。非常经典的例子是在单例方法中同时对字段加入voliate，就是为了防止指令重排序。</p>
+<p>volatile关键字通过 “<strong>内存屏障</strong>” 的方式来防止指令被重排序，为了实现volatile的内存语义，编译器在生成字节码时，会在指令序列中插入内存屏障来禁止特定类型的处理器重排序。大多数的处理器都支持内存屏障的指令。</p>
+<p>对于编译器来说，发现一个最优布置来最小化插入屏障的总数几乎不可能，为此，Java内存模型采取保守策略。下面是基于保守策略的JMM内存屏障插入策略：</p>
+<ul>
+<li>在每个volatile写操作的前面插入一个StoreStore屏障。</li>
+<li>在每个volatile写操作的后面插入一个StoreLoad屏障。</li>
+<li>在每个volatile读操作的后面插入一个LoadLoad屏障。</li>
+<li>在每个volatile读操作的后面插入一个LoadStore屏障。</li>
+</ul>
+<blockquote>
+<p><strong>内存屏障（Memory Barrier，或有时叫做内存栅栏，Memory Fence）是一种CPU指令，用于控制特定条件下的重排序和内存可见性问题。Java编译器也会根据内存屏障的规则禁止重排序。</strong></p>
+<p>内存屏障可以被分为以下几种类型：</p>
+<p>LoadLoad屏障：对于这样的语句Load1; LoadLoad; Load2，在Load2及后续读取操作要读取的数据被访问前，保证Load1要读取的数据被读取完毕。</p>
+<p>LoadStore屏障：对于这样的语句Load1; LoadStore; Store2，在Store2及后续写入操作被刷出前，保证Load1要读取的数据被读取完毕。</p>
+<p>StoreStore屏障：对于这样的语句Store1; StoreStore; Store2，在Store2及后续写入操作执行前，保证Store1的写入操作对其它处理器可见。</p>
+<p>StoreLoad屏障：对于这样的语句Store1; StoreLoad; Load2，在Load2及后续所有读取操作执行前，保证Store1的写入对所有处理器可见。它的开销是四种屏障中最大的。在大多数处理器的实现中，这个屏障是个万能屏障，兼具其它三种内存屏障的功能。</p>
+</blockquote>
+<h4 id="volatile-与原子性"><a href="#volatile-与原子性" class="headerlink" title="volatile 与原子性"></a>volatile 与原子性</h4><p>原子性是指一个操作是不可中断的，要全部执行完成，要不就都不执行。</p>
+<p>线程是CPU调度的基本单位。CPU有时间片的概念，会根据不同的调度算法进行线程调度。当一个线程获得时间片之后开始执行，在时间片耗尽之后，就会失去CPU使用权。所以在多线程场景下，<strong>由于时间片在线程间轮换，就会发生原子性问题。</strong></p>
+<p><code>synchronized</code> 为了保证原子性，需要通过字节码指令<code>monitorenter</code>和<code>monitorexit</code>，但是<code>volatile</code>和这两个指令之间是没有任何关系的。</p>
+<p><strong>所以，<code>volatile</code>是不能保证原子性的。</strong></p>
+<h2 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h2><p><strong><code>synchronized</code> 关键字解决的是多个线程之间访问资源的同步性，<code>synchronized</code>关键字可以保证被它修饰的方法或者代码块在任意时刻只能有一个线程执行。</strong></p>
+<p>作用主要有三个：</p>
+<ol>
+<li>互斥性：确保线程互斥的访问同步代，锁自动释放，多个线程操作同个代码块或函数必须排队获得锁</li>
+<li>可见性：保证共享变量的修改能够及时可见，获得锁的线程操作完毕后会将所数据刷新到共享内存区</li>
+<li>有序性：不解决重排序，但保证有序性</li>
+</ol>
+<p>用法有三个：</p>
+<ol>
+<li>修饰实例方法</li>
+<li>修饰静态方法</li>
+<li>修饰代码块</li>
+</ol>
+<p><strong>1.修饰实例方法:</strong> 作用于当前对象实例加锁，进入同步代码前要获得 <strong>当前对象实例的锁</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">synchronized void method() &#123;</span><br><span class="line">  &#x2F;&#x2F;业务代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.修饰静态方法:</strong> 会作用于类的所有对象实例 ，也就是给当前类加锁。进入同步代码前要获得 <strong>当前 class 的锁</strong>。因为静态成员不属于任何一个实例对象，是类成员（ <em>static 表明这是该类的一个静态资源，不管 new 了多少个对象，只有一份</em>）。所以，如果一个线程 A 调用一个实例对象的非静态 <code>synchronized</code> 方法，而线程 B 需要调用这个实例对象所属类的静态 <code>synchronized</code> 方法，是允许的，不会发生互斥现象，<strong>因为访问静态 <code>synchronized</code> 方法占用的锁是当前类的锁，而访问非静态 <code>synchronized</code> 方法占用的锁是当前实例对象锁</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">synchronized void staic method() &#123;</span><br><span class="line">  &#x2F;&#x2F;业务代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.修饰代码块</strong> ：指定加锁对象，对给定对象/类加锁。<code>synchronized(this|object)</code> 表示进入同步代码库前要获得<strong>给定对象的锁</strong>。<code>synchronized(类.class)</code> 表示进入同步代码前要获得 <strong>当前 class 的锁</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">synchronized(this) &#123;</span><br><span class="line">  &#x2F;&#x2F;业务代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：</strong></p>
+<ul>
+<li><code>synchronized</code> 关键字加到 <code>static</code> 静态方法和 <code>synchronized(class)</code> 代码块上都是是给 Class 类上锁。</li>
+<li><code>synchronized</code> 关键字加到实例方法上是给对象实例上锁。</li>
+<li>尽量不要使用 <code>synchronized(String a)</code> 因为 JVM 中，字符串常量池具有缓存功能！</li>
+</ul>
+<h4 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h4><p><strong>对象头解析</strong></p>
+<p>Java的JVM内存区域中一个对象在堆区创建，创建后的对象由三部分组成。</p>
+<ul>
+<li>对象头：包括 标记字段 Mark Word   类型指针 Klass Point</li>
+<li>实例变量：存放类的属性数据信息，包括父类的属性信息（这部分内容按4字节对齐）</li>
+<li>填充数据：由于虚拟机要求对象起始地址必须是8字节的整数倍。填充数据不是必须存在的，仅仅是为了<code>字节对齐</code>。</li>
+</ul>
+<blockquote>
+<ol>
+<li><code>Klass Point</code>(类型指针)：是对象指向它的类元数据的指针，虚拟机通过这个指针来确定这个对象是哪个类的实例。</li>
+<li><code>Mark Word</code>(标记字段)：这一部分用于储存对象自身的运行时数据，如<code>哈希码</code>，<code>GC</code>分代年龄，<code>锁状态标志</code>，<code>锁指针</code>等，这部分数据在32bit和64bit的虚拟机中大小分别为32bit和64bit，考虑到虚拟机的空间效率，Mark Word被设计成一个<code>非固定</code>的数据结构以便在极小的空间中存储尽量多的信息，它会根据对象的状态复用自己的存储空间</li>
+</ol>
+</blockquote>
+<p><img src="../../img/java/61.png"></p>
+<p><code>synchronized</code>不论是修饰方法还是代码块，都是通过持有修饰对象的<code>锁</code>来实现同步，<code>synchronized</code>锁对象是存在对象头<code>Mark Word</code>。其中轻量级锁和偏向锁是<code>Java6</code>对<code>synchronized</code>锁进行优化后新增加的，这里我们主要分析一下重量级锁也就是通常说synchronized的对象锁，锁标识位为10，其中指针指向的是<code>monitor</code>对象（也称为管程或监视器锁）的起始地址。每个对象都存在着一个 monitor 与之关联。</p>
+<p><img src="../../img/java/62.png"></p>
+<p><strong>反汇编查看</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class SynchronizedDemo &#123;</span><br><span class="line">	public void method() &#123;</span><br><span class="line">		synchronized (this) &#123;</span><br><span class="line">			System.out.println(&quot;synchronized 代码块&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class SynchronizedDemo2 &#123;</span><br><span class="line">	public synchronized void method() &#123;</span><br><span class="line">		System.out.println(&quot;synchronized 方法&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过 JDK 自带的 <code>javap</code> 命令查看 <code>SynchronizedDemo</code> 类的相关字节码信息：首先切换到类的对应目录执行 <code>javac SynchronizedDemo.java</code> 命令生成编译后的 .class 文件，然后执行<code>javap -c -s -v -l SynchronizedDemo.class</code>。</p>
+<p><img src="../img/java/10.png"></p>
+<p><img src="../img/java/11.png"></p>
+<p>JVM对于同步方法和同步代码块的处理方式不同。对于同步方法，JVM采用<code>ACC_SYNCHRONIZED</code>标记符来实现同步。对于同步代码块。JVM采用<code>monitorenter</code>、<code>monitorexit</code>两个指令来实现同步。</p>
+<p>方法级的同步是<code>隐式</code>的。同步方法的常量池中会有一个<code>ACC_SYNCHRONIZED</code>标志。当某个线程要访问某个方法的时候，会检查是否有<code>ACC_SYNCHRONIZED</code>，如果有设置，则需要先获得<code>监视器锁</code>，然后开始执行方法，方法执行之后再释放监视器锁。这时如果其他线程来请求执行方法，会因为无法获得监视器锁而被阻断住。值得注意的是，如果在方法执行过程中，发生了异常，并且方法内部并没有处理该异常，那么在异常被抛到方法外面之前监视器锁会被自动释放。</p>
+<p>可以把执行<code>monitorenter</code>指令理解为加锁，执行<code>monitorexit</code>理解为释放锁。每个对象维护着一个记录着被锁次数的计数器。未被锁定的对象的该计数器为0，当一个线程获得锁（执行<code>monitorenter</code>）后，该计数器自增变为 1 ，当同一个线程再次获得该对象的锁的时候，计数器再次自增。当同一个线程释放锁（执行<code>monitorexit</code>指令）的时候，计数器再自减。当计数器为0的时候。锁将被释放，其他线程便可以获得锁。</p>
+<p><strong>结论：</strong>同步方法和同步代码块底层都是通过<code>monitor</code>来实现同步的。两者区别：同步方式是通过方法中的<code>access_flags</code>中设置<code>ACC_SYNCHRONIZED</code>标志来实现，同步代码块是通过<code>monitorenter</code>和<code>monitorexit</code>来实现。</p>
+<p><strong>Monitor 对象解析</strong></p>
+<p>每个对象都与一个<code>monitor</code>相关联，而<code>monitor</code>可以被线程拥有或释放，在Java虚拟机(HotSpot)中，<code>monitor</code>是由<code>ObjectMonitor</code>实现的，其主要数据结构如下（位于HotSpot虚拟机源码ObjectMonitor.hpp文件，C++实现的）。</p>
+<p>Monitor可以理解为一个同步工具或一种同步机制，通常被描述为一个对象。每一个Java对象就有一把看不见的锁，称为内部锁或者Monitor锁。</p>
+<p>Monitor是线程私有的数据结构，每一个线程都有一个可用monitor record列表，同时还有一个全局的可用列表。每一个被锁住的对象都会和一个monitor关联，同时monitor中有一个Owner字段存放拥有该锁的线程的唯一标识，表示该锁被这个线程占用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ObjectMonitor() &#123;</span><br><span class="line">    _count        = <span class="number">0</span>;      <span class="comment">//记录数</span></span><br><span class="line">    _recursions   = <span class="number">0</span>;      <span class="comment">//锁的重入次数</span></span><br><span class="line">    _owner        = NULL;   <span class="comment">//指向持有ObjectMonitor对象的线程 </span></span><br><span class="line">    _WaitSet      = NULL;   <span class="comment">//调用wait后，线程会被加入到_WaitSet</span></span><br><span class="line">    _EntryList    = NULL ;  <span class="comment">//等待获取锁的线程，会被加入到该列表</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="../../img/java/63.png"></p>
+<p>对于一个synchronized修饰的方法(代码块)来说：</p>
+<ol>
+<li>当多个线程同时访问该方法，那么这些线程会先被放进<code>_EntryLis</code>t队列，此时线程处于<code>blocked</code>状态</li>
+<li>当一个线程获取到了对象的<code>monitor</code>后，那么就可以进入<code>running</code>状态，执行方法块，此时，<code>ObjectMonitor</code>对象的<code>_owner</code>指向当前线程，<code>_count</code>加1表示当前对象锁被一个线程获取。</li>
+<li>当<code>running</code>状态的线程调用<code>wait()</code>方法，那么当前线程释放<code>monitor</code>对象，进入<code>waiting</code>状态，<code>ObjectMonitor</code>对象的<code>_owner变为</code>null，<code>_count</code>减1，同时线程进入<code>_WaitSet</code>队列，直到有线程调用<code>notify()</code>方法唤醒该线程，则该线程进入<code>_EntryList</code>队列，竞争到锁再进入<code>_owner</code>区。</li>
+<li>如果当前线程执行完毕，那么也释放<code>monitor</code>对象，<code>ObjectMonitor</code>对象的<code>_owner</code>变为null，<code>_count</code>减1。</li>
+</ol>
+<p>因为监视器锁（monitor）是依赖于底层的操作系统的<code>Mutex Lock</code>(互斥锁)来实现的，而操作系统实现线程之间的切换时需要从<code>用户态转换到核心态</code>，这个状态之间的转换需要相对比较长的时间，时间成本相对较高，这也是早期的<code>synchronized</code>效率低的原因。庆幸在Java 6之后Java官方对从JVM层面对<code>synchronized</code>较大优化最终提升显著，Java 6之后，为了减少获得锁和释放锁所带来的性能消耗，引入了锁升级的概念。</p>
+<h4 id="synchronized-与原子性"><a href="#synchronized-与原子性" class="headerlink" title="synchronized 与原子性"></a>synchronized 与原子性</h4><p>原子性是指一个操作是不可中断的，要全部执行完成，要不就都不执行。</p>
+<p>线程是CPU调度的基本单位。CPU有时间片的概念，会根据不同的调度算法进行线程调度。当一个线程获得时间片之后开始执行，在时间片耗尽之后，就会失去CPU使用权。所以在多线程场景下，由于时间片在线程间轮换，就会发生原子性问题。</p>
+<p>在Java中，为了保证原子性，提供了两个高级的字节码指令<code>monitorenter</code>和<code>monitorexit</code>。前面中，介绍过，这两个字节码指令，在Java中对应的关键字就是<code>synchronized</code>。</p>
+<p>通过<code>monitorenter</code>和<code>monitorexit</code>指令，可以保证被<code>synchronized</code>修饰的代码在同一时间只能被一个线程访问，在锁未释放之前，无法被其他线程访问到。因此，在Java中可以使用<code>synchronized</code>来保证方法和代码块内的操作是原子性的。</p>
+<blockquote>
+<p>线程1在执行<code>monitorenter</code>指令的时候，会对Monitor进行加锁，加锁后其他线程无法获得锁，除非线程1主动解锁。即使在执行过程中，由于某种原因，比如CPU时间片用完，线程1放弃了CPU，但是，他并没有进行解锁。而由于<code>synchronized</code>的锁是可重入的，下一个时间片还是只能被他自己获取到，还是会继续执行代码。直到所有代码执行完。这就保证了原子性。</p>
+</blockquote>
+<h4 id="synchronized-与可见性"><a href="#synchronized-与可见性" class="headerlink" title="synchronized 与可见性"></a>synchronized 与可见性</h4><p>可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。</p>
+<p>Java内存模型规定了所有的变量都存储在主内存中，每条线程还有自己的工作内存，线程的工作内存中保存了该线程中是用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量的传递均需要自己的工作内存和主存之间进行数据同步进行。所以，就可能出现线程1改了某个变量的值，但是线程2不可见的情况。</p>
+<p>前面我们介绍过，被<code>synchronized</code>修饰的代码，在开始执行时会加锁，执行完成后会进行解锁。而为了保证可见性，有一条规则是这样的：对一个变量解锁之前，必须先把此变量同步回主存中。这样解锁后，后续线程就可以访问到被修改后的值。</p>
+<p>所以，synchronized关键字锁住的对象，其值是具有可见性的。</p>
+<h4 id="synchronized-与有序性"><a href="#synchronized-与有序性" class="headerlink" title="synchronized 与有序性"></a>synchronized 与有序性</h4><p>有序性即程序执行的顺序按照代码的先后顺序执行。</p>
+<p>除了引入了时间片以外，由于处理器优化和指令重排等，CPU还可能对输入代码进行乱序执行，比如load-&gt;add-&gt;save 有可能被优化成load-&gt;save-&gt;add 。这就是可能存在有序性问题。</p>
+<p>这里需要注意的是，<code>synchronized</code>是无法禁止指令重排和处理器优化的。也就是说，<code>synchronized</code>无法避免上述提到的问题。</p>
+<p>那么，为什么还说<code>synchronized</code>也提供了有序性保证呢？</p>
+<p>这就要再把有序性的概念扩展一下了。Java程序中天然的有序性可以总结为一句话：如果在本线程内观察，所有操作都是天然有序的。如果在一个线程中观察另一个线程，所有操作都是无序的。</p>
+<p>以上这句话也是《深入理解Java虚拟机》中的原句，但是怎么理解呢？周志明并没有详细的解释。这里我简单扩展一下，这其实和<code>as-if-serial语义</code>有关。</p>
+<p><code>as-if-serial</code>语义的意思指：不管怎么重排序（编译器和处理器为了提高并行度），单线程程序的执行结果都不能被改变。编译器和处理器无论如何优化，都必须遵守<code>as-if-serial</code>语义。</p>
+<p>这里不对<code>as-if-serial语义</code>详细展开了，简单说就是，<code>as-if-serial语义</code>保证了单线程中，指令重排是有一定的限制的，而只要编译器和处理器都遵守了这个语义，那么就可以认为单线程程序是按照顺序执行的。当然，实际上还是有重排的，只不过我们无须关心这种重排的干扰。</p>
+<p>所以呢，由于<code>synchronized</code>修饰的代码，同一时间只能被同一线程访问。那么也就是单线程执行的。所以，可以保证其有序性。</p>
+<h4 id="synchronized-锁优化"><a href="#synchronized-锁优化" class="headerlink" title="synchronized 锁优化"></a>synchronized 锁优化</h4><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903590050398216">https://juejin.cn/post/6844903590050398216</a></p>
+<p>synchronized锁有四种状态，<code>无锁</code>、<code>偏向锁</code>、<code>轻量级锁</code>、<code>重量级锁</code>。这几个状态会随着竞争状态逐渐升级，锁可以<code>升级</code>但不能<code>降级</code>，但是偏向锁状态可以被重置为无锁状态。</p>
+<blockquote>
+<p> 无锁状态 → 偏向锁状态 → 轻量级锁 → 重量级锁</p>
+</blockquote>
+<h5 id="无锁"><a href="#无锁" class="headerlink" title="无锁"></a>无锁</h5><p>无锁：没有对资源进行锁定，所有的线程都能访问并修改同一个资源，但同时只有一个线程能修改成功。</p>
+<p>无锁的特点就是修改操作在循环内进行，线程会不断的尝试修改共享资源。如果没有冲突就修改成功并退出，否则就会继续循环尝试。如果有多个线程修改同一个值，必定会有一个线程能修改成功，而其他修改失败的线程会不断重试直到修改成功。</p>
+<p>CAS 即是无锁的实现。无锁无法全面代替有锁，但无锁在某些场合下的性能是非常高的。</p>
+<h5 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h5><p>偏向锁提升性能的经验依据是：<code>对于绝大部分锁，在整个同步周期内不仅不存在竞争，而且总由同一线程多次获得</code>。偏向锁会偏向第一个获得它的线程，如果接下来的执行过程中，该锁没有被其他线程获取，则持有偏向锁的线程不需要再进行同步。这使得线程获取锁的代价更低。</p>
+<p><strong>核心思想：</strong>如果一个线程获得了锁，那么锁就进入偏向模式，此时<code>Mark Word</code> 的结构也变为偏向锁结构，当这个线程再次请求锁时，无需再做任何同步操作，即获取锁的过程，这样就省去了大量有关锁申请的操作，从而也就提供程序的性能。</p>
+<p>所以，对于没有锁竞争的场合，偏向锁有很好的优化效果，毕竟极有可能连续多次是同一个线程申请相同的锁。但是对于锁竞争比较激烈的场合，偏向锁就失效了，因为这样场合极有可能每次申请锁的线程都是不相同的，因此这种场合下不应该使用偏向锁，否则会得不偿失，需要注意的是，偏向锁失败后，并不会立即膨胀为重量级锁，而是先升级为轻量级锁。</p>
+<p>在Jdk1.6中, 偏向锁的开关是默认开启的, 适用于只有一个线程访问同步块的场景。</p>
+<p><strong>具体流程：</strong>当线程1访问代码块并获取锁对象时，会在java对象头和栈帧中记录偏向的锁的<code>threadID</code>，因为<code>偏向锁不会主动释放锁</code>，因此以后线程1再次获取锁的时候，需要<code>比较</code>当前线程的<code>threadID</code>和Java对象头中的<code>threadID</code>是否一致，如果一致（还是线程1获取锁对象），则无需使用CAS来加锁、解锁；如果不一致（其他线程，如线程2要竞争锁对象，而偏向锁不会主动释放因此还是存储的线程1的threadID），那么需要查看Java对象头中记录的线程1<code>是否存活</code>，如果没有存活，那么锁对象被重置为无锁状态，其它线程（线程2）可以竞争将其设置为偏向锁；如果存活，那么立刻查找该线程（线程1）的栈帧信息，如果还是需要继续持有这个锁对象，那么暂停当前线程1，撤销偏向锁，升级为 <code>轻量级锁</code>，如果线程1不再使用该锁对象，那么将锁对象状态设为无锁状态，重新偏向新的线程。</p>
+<p><strong>总结：</strong></p>
+<ol>
+<li>检查 <code>mark word</code> 的<code>线程 id</code> 。</li>
+<li>如果为空则设置 CAS 替换当前线程 id。如果替换成功则获取锁成功，如果失败则撤销偏向锁。</li>
+<li>如果不为空则检查 <code>线程 id</code>为是否为本线程。如果是则获取锁成功，如果失败则撤销偏向锁。</li>
+</ol>
+<p>持有偏向锁的线程以后每次进入这个锁相关的同步块时，只需比对一下 mark word 的线程 id 是否为本线程，如果是则获取锁成功。</p>
+<p>如果发生线程竞争发生 2、3 步失败的情况则需要撤销偏向锁。</p>
+<p><strong>偏向锁的撤销</strong></p>
+<ol>
+<li>偏向锁的撤销动作必须等待全局安全点</li>
+<li>暂停拥有偏向锁的线程，判断锁对象是否处于被锁定状态</li>
+<li>撤销偏向锁恢复到无锁（标志位为 01）或轻量级锁（标志位为 00）的状态</li>
+</ol>
+<p><strong>优点</strong></p>
+<p>只有一个线程执行同步块时进一步提高性能，适用于一个线程反复获得同一锁的情况。偏向锁可以提高带有同步但无竞争的程序性能。</p>
+<p><strong>缺点</strong></p>
+<p>如果存在竞争会带来额外的锁撤销操作。</p>
+<h5 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h5><p>轻量级锁提升性能的经验依据是：<code>对于绝大部分锁，在整个同步周期内都是不存在竞争的</code>。在多线程交替执行同步块的情况下，可以避免重量级锁引起的性能消耗。</p>
+<p>当出现有两个线程来竞争锁的话, 那么偏向锁就失效了, 此时锁就会膨胀, 升级为轻量级锁.</p>
+<p><strong>轻量级锁加锁</strong></p>
+<p>线程在执行同步块之前, JVM会先在当前线程的栈帧中创建用户存储锁记录的空间, 并将对象头中的MarkWord 复制到锁记录中。</p>
+<p>然后线程尝试使用CAS将对象头中的MarkWord替换为指向锁记录的指针. 如果成功, 当前线程获得锁; 如果失败, 表示其它线程竞争锁, 锁膨胀为重量级锁。</p>
+<p><strong>轻量级锁解锁</strong></p>
+<p>轻量级锁解锁时, 会使用原子的CAS操作将当前线程的锁记录替换回到对象头, 如果成功, 表示没有竞争发生; 如果失败, 表示当前锁存在竞争, 锁就会膨胀成重量级锁.</p>
+<p><strong>优点</strong></p>
+<p>其性能提升的依据是对于绝大部分的锁在整个生命周期内都是不会存在竞争。在多线程交替执行同步块的情况下，可以避免重量级锁引起的性能消耗。</p>
+<p><strong>缺点</strong></p>
+<p>在有多线程竞争的情况下轻量级锁增加了额外开销。</p>
+<h5 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h5><p>自旋是一种获取锁的机制并不是一个锁状态。在膨胀为重量级锁的过程中或重入时会多次尝试自旋获取锁以避免线程唤醒的开销，但是它会占用 CPU 的时间因此如果同步代码块执行时间很短自旋等待的效果就很好，反之则浪费了 CPU 资源。默认情况下自旋次数是 10 次用户可以使用参数 <code>-XX : PreBlockSpin</code> 来更改。那么如何优化来避免此情况发生呢？我们来看适应性自旋。</p>
+<h5 id="适应性自旋锁"><a href="#适应性自旋锁" class="headerlink" title="适应性自旋锁"></a>适应性自旋锁</h5><p>JDK 6 引入了自适应自旋锁，意味着自旋的次数不在固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果对于某个锁很少自旋成功那么以后有可能省略掉自旋过程以避免资源浪费。有了自适应自旋随着程序运行和性能监控信息的不断完善，虚拟机对程序锁的状况预测就会越来越准确，虛拟机就会变得越来越“聪明”了。</p>
+<p><strong>优点</strong></p>
+<p>竞争的线程不会阻塞挂起，提高了程序响应速度。避免重量级锁引起的性能消耗。</p>
+<p><strong>缺点</strong></p>
+<p>如果线程始终无法获取锁，自旋消耗 CPU 最终会膨胀为重量级锁。</p>
+<h5 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h5><p>在重量级锁中没有竞争到锁的对象会 park 被挂起，退出同步块时 unpark 唤醒后续线程。唤醒操作涉及到操作系统调度会有额外的开销。</p>
+<p>综上，偏向锁通过对比Mark Word解决加锁问题，避免执行CAS操作。而轻量级锁是通过用CAS操作来解决加锁问题，自旋锁主要适用于同步代码不耗时的场景，通过自旋避免线程阻塞和唤醒而影响性能。重量级锁是将除了拥有锁的线程以外的线程都阻塞。</p>
+<h3 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h3><h4 id="简答"><a href="#简答" class="headerlink" title="简答"></a>简答</h4><p>所谓锁的升级、降级，就是 JVM 优化 synchronized 运行的机制，当 JVM 检测到不同的竞争状况时，会自动切换到适合的锁实现，这种切换就是锁的升级、降级。</p>
+<p>当没有竞争出现时，默认会使用偏斜锁。JVM 会利用 CAS 操作（compare and swap），在对象头上的 Mark Word 部分设置线程 ID，以表示这个对象偏向于当前线程，所以并不涉及真正的互斥锁。这样做的假设是基于在很多应用场景中，大部分对象生命周期中最多会被一个线程锁定，使用偏斜锁可以降低无竞争开销。</p>
+<p>如果有另外的线程试图锁定某个已经被偏斜过的对象，JVM 就需要撤销（revoke）偏斜锁，并切换到轻量级锁实现。轻量级锁依赖 CAS 操作 Mark Word 来试图获取锁，如果重试成功，就使用普通的轻量级锁；否则，进一步升级为重量级锁。</p>
+<h4 id="详答"><a href="#详答" class="headerlink" title="详答"></a>详答</h4><p>当T1线程访问同步代码块并获取锁对象时，会在java对象头和栈帧中记录偏向锁的线程ID，偏向锁不会主动释放锁。当再次有线程访问该锁时，会判断当前线程的ID和对象头中的线程ID是否一致，如果一致则不用再通过CAS来加锁，解锁。如果不一致（表明有其他线程来竞争锁，但是偏向锁不会主动释放，因此对象头中依旧存储的是T1的线程ID），那么就需要查看java对象头中记录的T1线程是否存活，如果没有存活，那么就将锁对象置为无所状态，T2线程可以竞争将其设置为偏向锁。如果存活，则查看T1的栈帧信息，如果还需要继续持有这个锁对象，那么就停止当前线程T1，撤销偏向锁，升级为轻量级锁。如果T1不再使用这个锁对象，那么将锁置为无锁状态，重新偏向新的线程。</p>
+<p>线程1获取轻量级锁时会先把锁对象的对象头MarkWord复制一份到线程1的栈帧中创建的用于存储锁记录的空间（称为DisplacedMarkWord），然后使用CAS把对象头中的内容替换为线程1存储的锁记录（DisplacedMarkWord）的地址；</p>
+<p>如果在线程1复制对象头的同时（在线程1CAS之前），线程2也准备获取锁，复制了对象头到线程2的锁记录空间中，但是在线程2CAS的时候，发现线程1已经把对象头换了，线程2的CAS失败，那么线程2就尝试使用自旋锁来等待线程1释放锁。</p>
+<p>但是如果自旋的时间太长也不行，因为自旋是要消耗CPU的，因此自旋的次数是有限制的，比如10次或者100次，如果自旋次数到了线程1还没有释放锁，或者线程1还在执行，线程2还在自旋等待，这时又有一个线程3过来竞争这个锁对象，那么这个时候轻量级锁就会膨胀为重量级锁。重量级锁把除了拥有锁的线程都阻塞，防止CPU空转。</p>
+<p><strong>注意：</strong>为了避免无用的自旋，轻量级锁一旦膨胀为重量级锁就不会再降级为轻量级锁了；偏向锁升级为轻量级锁也不能再降级为偏向锁。一句话就是锁可以升级不可以降级，但是偏向锁状态可以被重置为无锁状态。</p>
+<table>
+<thead>
+<tr>
+<th>锁</th>
+<th>优点</th>
+<th>缺点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>偏向锁</td>
+<td>加锁和解锁不需要额外的消耗, 和执行非同步代码方法的性能相差无几.</td>
+<td>如果线程间存在锁竞争, 会带来额外的锁撤销的消耗.</td>
+<td>适用于只有一个线程访问的同步场景</td>
+</tr>
+<tr>
+<td>轻量级锁</td>
+<td>竞争的线程不会阻塞, 提高了程序的响应速度</td>
+<td>如果始终得不到锁竞争的线程, 使用自旋会消耗CPU</td>
+<td>追求响应时间, 同步快执行速度非常快</td>
+</tr>
+<tr>
+<td>重量级锁</td>
+<td>线程竞争不适用自旋, 不会消耗CPU</td>
+<td>线程堵塞, 响应时间缓慢</td>
+<td>追求吞吐量, 同步快执行时间速度较长</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wuqinglong/p/9945618.html">https://www.cnblogs.com/wuqinglong/p/9945618.html</a></p>
+<h2 id="Synchronized-和-ReentrantLock-的区别？"><a href="#Synchronized-和-ReentrantLock-的区别？" class="headerlink" title="Synchronized 和 ReentrantLock 的区别？"></a>Synchronized 和 ReentrantLock 的区别？</h2><p>都是可重入锁</p>
+<ul>
+<li>synchronized 是 JVM 隐式实现的，而 ReentrantLock 是 Java 语言提供的 API；</li>
+<li>ReentrantLock 可设置为公平锁，而 synchronized 却不行；</li>
+<li>ReentrantLock 只能修饰代码块，而 synchronized 可以用于修饰方法、修饰代码块等；</li>
+<li>ReentrantLock 需要手动加锁和释放锁，如果忘记释放锁，则会造成资源被永久占用，而 synchronized 无需手动释放锁；</li>
+<li>ReentrantLock 可以知道是否成功获得了锁，而 synchronized  却不行。</li>
+</ul>
+<p><strong>ReentrantLock 比 synchronized 增加了一些高级功能</strong></p>
+<p>相比<code>synchronized</code>，<code>ReentrantLock</code>增加了一些高级功能。主要来说主要有三点：</p>
+<ul>
+<li><strong>等待可中断</strong> : <code>ReentrantLock</code>提供了一种能够中断等待锁的线程的机制，通过 <code>lock.lockInterruptibly()</code> 来实现这个机制。也就是说正在等待的线程可以选择放弃等待，改为处理其他事情。</li>
+<li><strong>可实现公平锁</strong> : <code>ReentrantLock</code>可以指定是公平锁还是非公平锁。而<code>synchronized</code>只能是非公平锁。所谓的公平锁就是先等待的线程先获得锁。<code>ReentrantLock</code>默认情况是非公平的，可以通过 <code>ReentrantLock</code>类的<code>ReentrantLock(boolean fair)</code>构造方法来制定是否是公平的。</li>
+<li><strong>可实现选择性通知（锁可以绑定多个条件）</strong>: <code>synchronized</code>关键字与<code>wait()</code>和<code>notify()</code>/<code>notifyAll()</code>方法相结合可以实现等待/通知机制。<code>ReentrantLock</code>类当然也可以实现，但是需要借助于<code>Condition</code>接口与<code>newCondition()</code>方法。</li>
+</ul>
+<blockquote>
+<p><code>Condition</code>是 JDK1.5 之后才有的，它具有很好的灵活性，比如可以实现多路通知功能也就是在一个<code>Lock</code>对象中可以创建多个<code>Condition</code>实例（即对象监视器），<strong>线程对象可以注册在指定的<code>Condition</code>中，从而可以有选择性的进行线程通知，在调度线程上更加灵活。 在使用<code>notify()/notifyAll()</code>方法进行通知时，被通知的线程是由 JVM 选择的，用<code>ReentrantLock</code>类结合<code>Condition</code>实例可以实现“选择性通知”</strong> ，这个功能非常重要，而且是 Condition 接口默认提供的。而<code>synchronized</code>关键字就相当于整个 Lock 对象中只有一个<code>Condition</code>实例，所有的线程都注册在它一个身上。如果执行<code>notifyAll()</code>方法的话就会通知所有处于等待状态的线程这样会造成很大的效率问题，而<code>Condition</code>实例的<code>signalAll()</code>方法 只会唤醒注册在该<code>Condition</code>实例中的所有等待线程。</p>
+</blockquote>
+<p><strong>如果你想使用上述功能，那么选择 ReentrantLock 是一个不错的选择。性能已不是选择标准</strong></p>
+<h2 id="Synchronized-什么情况是对象锁？-什么时候是全局锁？"><a href="#Synchronized-什么情况是对象锁？-什么时候是全局锁？" class="headerlink" title="Synchronized 什么情况是对象锁？ 什么时候是全局锁？"></a>Synchronized 什么情况是对象锁？ 什么时候是全局锁？</h2><p>对象锁：synchronized(this)  以及非static的synchronized方法 </p>
+<p>全局锁：synchronized 静态方法也相当于全局锁</p>
+<h2 id="说说-synchronized-关键字和-volatile-关键字的区别"><a href="#说说-synchronized-关键字和-volatile-关键字的区别" class="headerlink" title="说说 synchronized 关键字和 volatile 关键字的区别"></a>说说 synchronized 关键字和 volatile 关键字的区别</h2><p><code>synchronized</code> 关键字和 <code>volatile</code> 关键字是两个互补的存在，而不是对立的存在！</p>
+<ul>
+<li><code>volatile</code> 关键字是线程同步的<strong>轻量级实现</strong>，所以<code>volatile </code>性能肯定比<code>synchronized</code>关键字要好。但是 volatile 关键字只能用于变量而 <code>synchronized</code> 关键字可以修饰方法以及代码块。</li>
+<li><code>volatile</code> 关键字能保证数据的可见性，但不能保证数据的原子性。<code>synchronized</code> 关键字两者都能保证。</li>
+<li><code>volatile</code>关键字主要用于解决变量在多个线程之间的可见性，而 <code>synchronized</code> 关键字解决的是多个线程之间访问资源的同步性。</li>
+</ul>
+<h2 id="多线程的优缺点"><a href="#多线程的优缺点" class="headerlink" title="多线程的优缺点"></a>多线程的优缺点</h2><p><strong>优点：</strong></p>
+<ul>
+<li>资源利用率高（IO读取）</li>
+<li>程序响应更快</li>
+<li>某些情况下程序设计更简单</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>上下文切换开销大</li>
+<li>增加资源消耗</li>
+<li>多线程需要更多的内存空间</li>
+<li>设计更复杂</li>
+</ul>
+<p><strong>什么时候需要用到多线程</strong></p>
+<ul>
+<li><p>通过并行计算提升程序性能</p>
+<ul>
+<li>例如：一个大任务或计算逻辑，可以通过拆分成多个小任务并行执行</li>
+</ul>
+</li>
+<li><p>等待网络 IO响应导致的耗时问题</p>
+</li>
+</ul>
+<p><strong>多线程能带来什么问题：</strong></p>
+<ul>
+<li>安全性问题<ul>
+<li>原子性、可见性、有序性</li>
+<li>并发安全</li>
+</ul>
+</li>
+<li>活跃性问题<ul>
+<li>死锁</li>
+<li>活锁</li>
+</ul>
+</li>
+<li>性能问题<ul>
+<li>上下文切换</li>
+<li>资源限制</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是上下文切换"><a href="#什么是上下文切换" class="headerlink" title="什么是上下文切换"></a>什么是上下文切换</h2><p>多线程编程中一般线程的个数都大于 CPU 核心的个数，而一个 CPU 核心在任意时刻只能被一个线程使用，为了让这些线程都能得到有效执行，CPU 采取的策略是为每个线程分配时间片并轮转的形式。当一个线程的时间片用完的时候就会重新处于就绪状态让给其他线程使用，这个过程就属于一次上下文切换。概括来说就是：当前任务在执行完 CPU 时间片切换到另一个任务之前会先保存自己的状态，以便下次再切换回这个任务时，可以再加载这个任务的状态。<strong>任务从保存到再加载的过程就是一次上下文切换</strong>。</p>
+<p>上下文切换通常是计算密集型的。也就是说，它需要相当可观的处理器时间，在每秒几十上百次的切换中，每次切换都需要纳秒量级的时间。所以，上下文切换对系统来说意味着消耗大量的 CPU 时间，事实上，可能是操作系统中时间消耗最大的操作。</p>
+<p>Linux 相比与其他操作系统（包括其他类 Unix 系统）有很多的优点，其中有一项就是，其上下文切换和模式切换的时间消耗非常少。</p>
+<p>上下文切换并不能完全避免，但是可以通过下面几种方式减少上下文切换：</p>
+<ul>
+<li>无锁并发编程 - 多线程竞争锁时，会引起上下文切换，所以多线程处理数据时，可以用一些办法来避免使用锁，如将数据的 ID 按照 Hash 算法取模分段，不同的线程处理不同段的数据。</li>
+<li>CAS 算法 - Java 的 Atomic 包使用 CAS 算法来更新数据，而不需要加锁。</li>
+<li>使用最少线程 - 避免创建不需要的线程，比如任务很少，但是创建了很多线程来处理，这样会造成大量线程都处于等待状态。</li>
+<li>使用协程 - 在单线程里实现多任务的调度，并在单线程里维持多个任务间的切换。</li>
+</ul>
+<h2 id="什么是资源限制"><a href="#什么是资源限制" class="headerlink" title="什么是资源限制"></a>什么是资源限制</h2><p>资源限制是指在进行并发编程时，程序的执行速度受限于计算机硬件资源或软件资源。</p>
+<p><strong>资源限制引发的问题</strong></p>
+<p>在并发编程中，将代码执行速度加快的原则是将代码中串行执行的部分变成并发执行，但是如果将某段串行的代码并发执行，因为受限于资源，仍然在串行执行，这时候程序不仅不会加快执行，反而会更慢，因为增加了上下文切换和资源调度的时间。</p>
+<p><strong>如何解决资源限制的问题</strong></p>
+<p>在资源限制情况下进行并发编程，根据不同的资源限制调整程序的并发度。</p>
+<ul>
+<li>对于硬件资源限制，可以考虑使用集群并行执行程序。</li>
+<li>对于软件资源限制，可以考虑使用资源池将资源复用。</li>
+</ul>
+<h2 id="什么是线程死锁-如何避免死锁"><a href="#什么是线程死锁-如何避免死锁" class="headerlink" title="什么是线程死锁? 如何避免死锁?"></a>什么是线程死锁? 如何避免死锁?</h2><p>多个线程互相等待对方释放锁。死锁是当线程进入无限期等待状态时发生的情况，因为所请求的锁被另一个线程持有，而另一个线程又等待第一个线程持有的另一个锁。</p>
+<p>产生死锁必须具备以下四个条件：</p>
+<ol>
+<li>互斥条件：该资源任意一个时刻只由一个线程占用。</li>
+<li>请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
+<li>不剥夺条件:线程已获得的资源在未使用完之前不能被其他线程强行剥夺，只有自己使用完毕后才释放资源。</li>
+<li>循环等待条件:若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ol>
+<p><img src="../img/java/9.png"></p>
+<p><strong>如何避免死锁？</strong></p>
+<p>按顺序加锁：按照顺序加锁是一种有效的死锁预防机制。但是，这种方式需要你事先知道所有可能会用到的锁(并对这些锁做适当的排序)，但总有些时候是无法预知的。</p>
+<p>超时释放锁：若一个线程没有在给定的时限内成功获得所有需要的锁，则会进行回退并释放所有已经获得的锁，然后等待一段随机的时间再重试。这段随机的等待时间让其它线程有机会尝试获取相同的这些锁，并且让该应用在没有获得锁的时候可以继续运行(译者注：加锁超时后可以先继续运行干点其它事情，再回头来重复之前加锁的逻辑)。</p>
+<p>死锁检测：死锁检测是一个更好的死锁预防机制，它主要是针对那些不可能实现按序加锁并且锁超时也不可行的场景。每当一个线程获得了锁，会在线程和锁相关的数据结构中（map、graph 等等）将其记下。除此之外，每当有线程请求锁，也需要记录在这个数据结构中。当一个线程请求锁失败时，这个线程可以遍历锁的关系图看看是否有死锁发生。</p>
+<p>如果检测出死锁，有两种处理手段：</p>
+<p>释放所有锁，回退，并且等待一段随机的时间后重试。这个和简单的加锁超时类似，不一样的是只有死锁已经发生了才回退，而不会是因为加锁的请求超时了。虽然有回退和等待，但是如果有大量的线程竞争同一批锁，它们还是会重复地死锁（编者注：原因同超时类似，不能从根本上减轻竞争）。</p>
+<p>一个更好的方案是给这些线程设置优先级，让一个（或几个）线程回退，剩下的线程就像没发生死锁一样继续保持着它们需要的锁。如果赋予这些线程的优先级是固定不变的，同一批线程总是会拥有更高的优先级。为避免这个问题，可以在死锁发生的时候设置随机的优先级。</p>
+<blockquote>
+<ol>
+<li><strong>破坏互斥条件</strong> ：这个条件我们没有办法破坏，因为我们用锁本来就是想让他们互斥的（临界资源需要互斥访问）。</li>
+<li><strong>破坏请求与保持条件</strong> ：一次性申请所有的资源。</li>
+<li><strong>破坏不剥夺条件</strong> ：占用部分资源的线程进一步申请其他资源时，如果申请不到，可以主动释放它占有的资源。</li>
+<li><strong>破坏循环等待条件</strong> ：靠按序申请资源来预防。按某一顺序申请资源，释放资源则反序释放。破坏循环等待条件。</li>
+</ol>
+</blockquote>
+<h2 id="活锁"><a href="#活锁" class="headerlink" title="活锁"></a>活锁</h2><p>活锁是一个递归的情况，两个或更多的线程会不断重复一个特定的代码逻辑。预期的逻辑通常为其他线程提供机会继续支持’this’线程。</p>
+<p>想象这样一个例子：两个人在狭窄的走廊里相遇，二者都很礼貌，试图移到旁边让对方先通过。但是他们最终在没有取得任何进展的情况下左右摇摆，因为他们都在同一时间向相同的方向移动。</p>
+<p><strong>避免活锁</strong></p>
+<p>解决“活锁”的方案很简单，谦让时，尝试等待一个随机的时间就可以了。由于等待的时间是随机的，所以同时相撞后再次相撞的概率就很低了。“等待一个随机时间”的方案虽然很简单，却非常有效，Raft 这样知名的分布式一致性算法中也用到了它。</p>
+<h2 id="什么是饥饿"><a href="#什么是饥饿" class="headerlink" title="什么是饥饿"></a>什么是饥饿</h2><ul>
+<li>高优先级线程吞噬所有的低优先级线程的 CPU 时间。</li>
+<li>线程被永久堵塞在一个等待进入同步块的状态，因为其他线程总是能在它之前持续地对该同步块进行访问。</li>
+<li>线程在等待一个本身(在其上调用 wait())也处于永久等待完成的对象，因为其他线程总是被持续地获得唤醒。</li>
+</ul>
+<p><strong>解决饥饿</strong></p>
+<p>Java 不可能实现 100% 的公平性，我们依然可以通过同步结构在线程间实现公平性的提高。</p>
+<p>有三种方案：</p>
+<ul>
+<li>保证资源充足</li>
+<li>公平地分配资源</li>
+<li>避免持有锁的线程长时间执行</li>
+</ul>
+<p>这三个方案中，方案一和方案三的适用场景比较有限，因为很多场景下，资源的稀缺性是没办法解决的，持有锁的线程执行的时间也很难缩短。倒是方案二的适用场景相对来说更多一些。</p>
+<p>那如何公平地分配资源呢？在并发编程里，主要是使用公平锁。所谓公平锁，是一种先来后到的方案，线程的等待是有顺序的，排在等待队列前面的线程会优先获得资源。</p>
+<h2 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h2><ul>
+<li>并发：一段时间内可以执行多个任务，但不一定要同时执行（拥有处理过个任务的能力，不一定同时）</li>
+<li>并行：同时处理多个任务（拥有同时处理多个任务的能力）</li>
+</ul>
+<p>关键： 并发和并行都可以处理多个任务，关键点是：是否同时</p>
+<h2 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h2><p>同步：所谓同步，就是在发起一次调用时，在没有得到结果之前，该调用就不返回。但是一旦调用返回，就要得到返回值。</p>
+<p>异步：异步则恰恰相反，调用发出之后，这次调用就直接返回了。所以没有返回值。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在调用发出后，被调用者通过状态、通知来通知调用者，或通过回调函数处理这个调用。</p>
+<h2 id="阻塞和非阻塞"><a href="#阻塞和非阻塞" class="headerlink" title="阻塞和非阻塞"></a>阻塞和非阻塞</h2><p>阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态.</p>
+<p>阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。</p>
+<p>非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。</p>
+<h2 id="竞态条件和临界区"><a href="#竞态条件和临界区" class="headerlink" title="竞态条件和临界区"></a>竞态条件和临界区</h2><p>竞态条件（Race Condition）：当两个线程竞争同一资源时，如果对资源的访问顺序敏感，就称存在竞态条件。</p>
+<p>临界区（Critical Sections）：导致竞态条件发生的代码区称作临界区。</p>
+<h2 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h2><p>管程，对应的英文是 Monitor，很多 Java 领域的同学都喜欢将其翻译成“监视器”，这是直译。操作系统领域一般都翻译成“管程”，这个是意译，而我自己也更倾向于使用“管程”。</p>
+<p>所谓管程，指的是管理共享变量以及对共享变量的操作过程，让他们支持并发。翻译为 Java 领域的语言，就是管理类的成员变量和成员方法，让这个类是线程安全的。</p>
+<p>Java 采用的是管程技术，synchronized 关键字及 wait()、notify()、notifyAll() 这三个方法都是管程的组成部分。而管程和信号量是等价的，所谓等价指的是用管程能够实现信号量，也能用信号量实现管程。</p>
+<h2 id="保证并发安全的思路"><a href="#保证并发安全的思路" class="headerlink" title="保证并发安全的思路"></a>保证并发安全的思路</h2><p><strong>互斥同步（阻塞同步）</strong></p>
+<p>同步是指多线程并发访问共享资源时，保证共享数据同一时刻只能被一个线程访问。互斥是实现同步的一种手段。临界区（Critical Sections）、互斥量（Mutex）和信号量（Semaphore）都是主要的互斥实现方式。最典型的案例是使用 synchronized 或 Lock 。<br>互斥同步最主要的问题是线程阻塞和唤醒所带来的性能问题，互斥同步属于一种悲观的并发策略，总是认为只要不去做正确的同步措施，那就肯定会出现问题。无论共享数据是否真的会出现竞争，它都要进行加锁、用户态核心态转换、维护锁计数器和检查是否有被阻塞的线程需要唤醒等操作。</p>
+<p><strong>非阻塞同步</strong></p>
+<p>随着硬件指令集的发展，我们可以使用基于冲突检测的乐观并发策略：先进行操作，如果没有其它线程争用共享数据，那操作就成功了，否则采取补偿措施（不断地重试，直到成功为止）。这种乐观的并发策略的许多实现都不需要将线程阻塞，因此这种同步操作称为非阻塞同步。</p>
+<p>为什么说乐观锁需要 <strong>硬件指令集的发展</strong> 才能进行？</p>
+<p>因为需要操作和冲突检测这两个步骤具备原子性。而这点是由硬件来完成，如果再使用互斥同步来保证就失去意义了。</p>
+<p>Java 典型应用场景：J.U.C 包中的原子类（基于 Unsafe 类的 CAS 操作）</p>
+<p>要保证线程安全，不一定非要进行同步。同步只是保证共享数据争用时的正确性，如果一个方法本来就不涉及共享数据，那么自然无须同步。</p>
+<p>Java 中的 无同步方案 有：</p>
+<ul>
+<li>可重入代码 - 也叫纯代码。如果一个方法，它的 返回结果是可以预测的，即只要输入了相同的数据，就能返回相同的结果，那它就满足可重入性，当然也是线程安全的。</li>
+<li>线程本地存储 - 使用 ThreadLocal 为共享变量在每个线程中都创建了一个本地副本，这个副本只能被当前线程访问，其他线程无法访问，那么自然是线程安全的。</li>
+</ul>
+<ul>
+<li></li>
+</ul>
+<h2 id="创建线程有哪些方式"><a href="#创建线程有哪些方式" class="headerlink" title="创建线程有哪些方式"></a>创建线程有哪些方式</h2><ul>
+<li>继承 Thread 类</li>
+<li>实现 Runnable 接口</li>
+<li>通过Callable和Future创建线程</li>
+<li>线程池</li>
+</ul>
+<p>实现 Runnable 接口优于继承 Thread 类，因为：</p>
+<ul>
+<li>Java 不支持多重继承，所有的类都只允许继承一个父类，但可以实现多个接口。如果继承了 Thread 类就无法继承其它类，这不利于扩展。</li>
+<li>类可能只要求可执行就行，继承整个 Thread 类开销过大。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012973218/article/details/51280044">https://blog.csdn.net/u012973218/article/details/51280044</a></p>
+<h2 id="说说线程的生命周期和状态"><a href="#说说线程的生命周期和状态" class="headerlink" title="说说线程的生命周期和状态?"></a>说说线程的生命周期和状态?</h2><p><strong>状态：</strong></p>
+<ul>
+<li>new（新建）</li>
+<li>runnnable（可运行）</li>
+<li>blocked（阻塞）</li>
+<li>waiting（等待）</li>
+<li>time waiting （定时等待）</li>
+<li>terminated（终止）</li>
+</ul>
+<p>线程状态流程如下：</p>
+<ol>
+<li>线程创建后，进入 new 状态</li>
+<li>调用 start 或者 run 方法，进入 runnable 状态</li>
+<li>JVM 按照线程优先级及时间分片等执行 runnable 状态的线程。开始执行时，进入 running 状态</li>
+<li>如果线程执行 sleep、wait、join，或者进入 IO 阻塞等。进入 wait 或者 blocked 状态</li>
+<li>线程执行完毕后，线程被线程队列移除。最后为 terminated 状态</li>
+</ol>
+<p><img src="../img/java/8.png"></p>
+<h2 id="说说-sleep-方法和-wait-方法区别和共同点"><a href="#说说-sleep-方法和-wait-方法区别和共同点" class="headerlink" title="说说 sleep() 方法和 wait() 方法区别和共同点?"></a>说说 sleep() 方法和 wait() 方法区别和共同点?</h2><ul>
+<li>两者最主要的区别在于：**<code>sleep()</code> 方法没有释放锁，而 <code>wait()</code> 方法释放了锁** 。</li>
+<li>两者都可以暂停线程的执行。</li>
+<li><code>wait()</code> 通常被用于线程间交互/通信，<code>sleep() </code>通常被用于暂停执行。</li>
+<li><code>wait()</code> 方法被调用后，线程不会自动苏醒，需要别的线程调用同一个对象上的 <code>notify() </code>或者 <code>notifyAll()</code> 方法。<code>sleep() </code>方法执行完成后，线程会自动苏醒。或者可以使用 <code>wait(long timeout)</code> 超时后线程会自动苏醒。</li>
+</ul>
+<h2 id="BLOCKED-和-WAITING-的区别"><a href="#BLOCKED-和-WAITING-的区别" class="headerlink" title="BLOCKED 和 WAITING 的区别"></a>BLOCKED 和 WAITING 的区别</h2><p>虽然 BLOCKED 和 WAITING 都有等待的含义，但二者有着本质的区别。</p>
+<p>首先它们状态形成的调用方法不同，其次 BLOCKED 可以理解为当前线程还处于活跃状态，只是在阻塞等待其他线程使用完某个锁资源；而 WAITING 则是因为自身调用了 Object.wait() 或着是 Thread.join() 又或者是 LockSupport.park() 而进入等待状态，只能等待其他线程执行某个特定的动作才能被继续唤醒，比如当线程因为调用了 Object.wait() 而进入 WAITING 状态之后，则需要等待另一个线程执行 Object.notify() 或 Object.notifyAll() 才能被唤醒。</p>
+<h2 id="start-和-run-的区别"><a href="#start-和-run-的区别" class="headerlink" title="start() 和 run() 的区别"></a>start() 和 run() 的区别</h2><p>首先从 Thread 源码来看，start() 方法属于 Thread 自身的方法，并且使用了 synchronized 来保证线程安全.</p>
+<p>run() 方法为 Runnable 的抽象方法，必须由调用类重写此方法，重写的 run() 方法其实就是此线程要执行的业务方法.</p>
+<p>从执行的效果来说，start() 方法可以开启多线程，让线程从 NEW 状态转换成 RUNNABLE 状态，而 run() 方法只是一个普通的方法。</p>
+<p>其次，它们可调用的次数不同，start() 方法不能被多次调用，否则会抛出 java.lang.IllegalStateException；而 run() 方法可以进行多次调用，因为它只是一个普通的方法而已。</p>
+<h2 id="为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？"><a href="#为什么我们调用-start-方法时会执行-run-方法，为什么我们不能直接调用-run-方法？" class="headerlink" title="为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？"></a>为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？</h2><p>new 一个 Thread，线程进入了新建状态。调用 <code>start()</code>方法，会启动一个线程并使线程进入了就绪状态，当分配到时间片后就可以开始运行了。 <code>start()</code> 会执行线程的相应准备工作，然后自动执行 <code>run()</code> 方法的内容，这是真正的多线程工作。 但是，直接执行 <code>run()</code> 方法，会把 <code>run()</code> 方法当成一个 main 线程下的普通方法去执行，并不会在某个线程中执行它，所以这并不是多线程工作。</p>
+<p><strong>总结： 调用 <code>start()</code> 方法方可启动线程并使线程进入就绪状态，直接执行 <code>run()</code> 方法的话不会以多线程的方式执行。</strong></p>
+<h2 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h2><p>在 Thread 源码中和线程优先级相关的属性有 3 个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 线程可以拥有的最小优先级</span><br><span class="line">public final static int MIN_PRIORITY &#x3D; 1;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 线程默认优先级</span><br><span class="line">public final static int NORM_PRIORITY &#x3D; 5;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 线程可以拥有的最大优先级</span><br><span class="line">public final static int MAX_PRIORITY &#x3D; 10</span><br></pre></td></tr></table></figure>
+
+<p>线程的优先级可以理解为线程抢占 CPU 时间片的概率，优先级越高的线程优先执行的概率就越大，但并不能保证优先级高的线程一定先执行。</p>
+<p>在程序中我们可以通过 Thread.setPriority() 来设置优先级</p>
+<h2 id="执行两次start方法会如何？"><a href="#执行两次start方法会如何？" class="headerlink" title="执行两次start方法会如何？"></a>执行两次start方法会如何？</h2><p>Java的线程是不允许启动两次的，第二次调用必然会抛岀 IllegalThreadStateEXception，这是一种运行时异常，多次调用 start 被认为是编程错误。</p>
+<h2 id="实现-Runnable-接口和-Callable-接口的区别"><a href="#实现-Runnable-接口和-Callable-接口的区别" class="headerlink" title="实现 Runnable 接口和 Callable 接口的区别"></a>实现 Runnable 接口和 Callable 接口的区别</h2><p><code>Runnable</code>自 Java 1.0 以来一直存在，但<code>Callable</code>仅在 Java 1.5 中引入,目的就是为了来处理<code>Runnable</code>不支持的用例。**<code>Runnable</code> 接口<strong>不会返回结果或抛出检查异常，但是</strong><code>Callable</code> 接口**可以。所以，如果任务不需要返回结果或抛出异常推荐使用 <strong><code>Runnable</code> 接口</strong>，这样代码看起来会更加简洁。</p>
+<p>工具类 <code>Executors</code> 可以实现 <code>Runnable</code> 对象和 <code>Callable</code> 对象之间的相互转换。（<code>Executors.callable（Runnable task</code>）或 <code>Executors.callable（Runnable task，Object resule）</code>）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Runnable.java</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 被线程执行，没有返回值也无法抛出异常</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Callable.java</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callable</span>&lt;<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算结果，或在无法这样做时抛出异常。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 计算得出的结果</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> 如果无法计算结果，则抛出异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">V <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造方法可以使用-synchronized-关键字修饰么？"><a href="#构造方法可以使用-synchronized-关键字修饰么？" class="headerlink" title="构造方法可以使用 synchronized 关键字修饰么？"></a>构造方法可以使用 synchronized 关键字修饰么？</h3><p>先说结论：<strong>构造方法不能使用 synchronized 关键字修饰。</strong></p>
+<p>构造方法本身就属于线程安全的，不存在同步的构造方法一说。</p>
+<h3 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h3><p>锁消除理解起来很简单，它指的就是虚拟机即使编译器在运行时，如果检测到那些共享数据不可能存在竞争，那么就执行锁消除。锁消除可以节省毫无意义的请求锁的时间。</p>
+<p>例如：字符串的拼接操作，javac编译器会对String连接做自动优化。在JDK1.5之前会转化为StringBuffer对象做append操作。在JDK1.5之后的版本会转化为StringBuilder的连续append操作。</p>
+<p>StringBuffer.append（）方法中都有一个同步块，锁就是sb对象。虚拟机会观察变量sb，发现他的动态作用域被限制在concatString方法内部，永远不会逃逸到concatString方法之外，其他线程无法访问。因此这里有锁，但是会被安全的消除掉。</p>
+<h3 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h3><p>原则上，我们在编写代码的时候，总是推荐将同步块的作用范围限制得尽量小，——直在共享数据的实际作用域才进行同步，这样是为了使得需要同步的操作数量尽可能变小，如果存在锁竞争，那等待线程也能尽快拿到锁。</p>
+<p>大部分情况下，上面的原则都是没有问题的，但是如果一系列的连续操作都对同一个对象反复加锁和解锁，甚至加锁操作出现在循环体中，那即是没有线程竞争，频繁的进行同步操作也会导致不必要的性能消耗。</p>
+<p>字符串拼接方法中连续的append操作就属于这种情况。如果虚拟机探测到有这样一串零碎的操作都对同一个对象加锁，将会把加锁同步的范围扩展（粗化）到整个操作序列的外面，这样可以减少加锁的次数。</p>
+<h2 id="自旋锁和适应性自旋锁"><a href="#自旋锁和适应性自旋锁" class="headerlink" title="自旋锁和适应性自旋锁"></a>自旋锁和适应性自旋锁</h2><p>阻塞或唤醒一个Java线程需要操作系统切换CPU状态来完成，这种状态转换需要耗费处理器时间。如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比用户代码执行的时间还要长。</p>
+<p>在许多场景中，同步资源的锁定时间很短，为了这一小段时间去切换线程，线程挂起和恢复现场的花费可能会让系统得不偿失。如果物理机器有多个处理器，能够让两个或以上的线程同时并行执行，我们就可以让后面那个请求锁的线程不放弃CPU的执行时间，看看持有锁的线程是否很快就会释放锁。</p>
+<p>而为了让当前线程“稍等一下”，我们需让当前线程进行自旋，如果在自旋完成后前面锁定同步资源的线程已经释放了锁，那么当前线程就可以不必阻塞而是直接获取同步资源，从而避免切换线程的开销。这就是自旋锁。</p>
+<p><img src="../img/java/6.png"></p>
+<p>自旋锁本身是有缺点的，它不能代替阻塞。自旋等待虽然避免了线程切换的开销，但它要占用处理器时间。如果锁被占用的时间很短，自旋等待的效果就会非常好。反之，如果锁被占用的时间很长，那么自旋的线程只会白浪费处理器资源。所以，自旋等待的时间必须要有一定的限度，如果自旋超过了限定次数（默认是10次，可以使用-XX:PreBlockSpin来更改）没有成功获得锁，就应当挂起线程。</p>
+<p>自旋锁在JDK1.4.2中引入，使用-XX:+UseSpinning来开启。JDK 6中变为默认开启，并且引入了自适应的自旋锁（适应性自旋锁）。</p>
+<p>自适应意味着自旋的时间（次数）不再固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很有可能再次成功，进而它将允许自旋等待持续相对更长的时间。如果对于某个锁，自旋很少成功获得过，那在以后尝试获取这个锁时将可能省略掉自旋过程，直接阻塞线程，避免浪费处理器资源。</p>
+<h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p>Java 内存模型（JMM）是一种抽象的概念，并不真实存在，它描述了一组规则或规范，通过这组规范定义了程序中各个变量（包括实例字段、静态字段和构成数组对象的元素）的访问方式。试图屏蔽各种硬件和操作系统的内存访问差异，以实现让 Java 程序在各种平台下都能达到一致的内存访问效果。</p>
+<blockquote>
+<p>注意JMM与JVM内存区域划分的区别：</p>
+<ul>
+<li>JMM描述的是一组规则，围绕原子性、有序性和可见性展开；</li>
+<li>相似点：存在共享区域和私有区域</li>
+</ul>
+</blockquote>
+<p>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903845152325639">https://juejin.cn/post/6844903845152325639</a></p>
+<h2 id="JMM-如何解决原子性-一致性-可见性-问题"><a href="#JMM-如何解决原子性-一致性-可见性-问题" class="headerlink" title="JMM 如何解决原子性 一致性 可见性 问题"></a>JMM 如何解决原子性 一致性 可见性 问题</h2><blockquote>
+<p>在Java中提供了一系列和并发处理相关的关键字，比如volatile、Synchronized、ﬁnal、juc等，这些就是Java内存 模型封装了底层的实现后提供给开发人员使用的关键字，在开发多线程代码的时候，我们可以直接使用 synchronized等关键词来控制并发，使得我们不需要关心底层的编译器优化、缓存一致性的问题了，所以在Java内 存模型中，除了定义了一套规范，还提供了开放的指令在底层进行封装后，提供给开发人员使用。</p>
+</blockquote>
+<p><strong>原子性</strong></p>
+<p>在java中提供了两个高级的字节码指令monitorenter和monitorexit，在Java中对应的Synchronized来保证代码块 内的操作是原子的</p>
+<p><strong>可见性</strong></p>
+<p>Java中的volatile关键字提供了一个功能，那就是被其修饰的变量在被修改后可以立即同步到主内存，被其修饰的变 量在每次是用之前都从主内存刷新。因此，可以使用volatile来保证多线程操作时变量的可见性。</p>
+<p>除了volatile，Java中的synchronized和ﬁnal两个关键字也可以实现可见性</p>
+<p><strong>有序性</strong></p>
+<p>在Java中，可以使用synchronized和volatile来保证多线程之间操作的有序性（编译器和处理器不会改变存在数据依赖关系的两个操作的执行顺序）。实现方式有所区别：</p>
+<p>volatile关键字会禁止指令重排。synchronized关键字保证同一时刻只允许一条线程操作。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/659737">https://developer.aliyun.com/article/659737</a></p>
+<h2 id="各种锁"><a href="#各种锁" class="headerlink" title="各种锁"></a>各种锁</h2><p><img src="../img/java/33.png"></p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2018/11/15/java-lock.html">https://tech.meituan.com/2018/11/15/java-lock.html</a></p>
+<h3 id="乐观锁-amp-悲观锁"><a href="#乐观锁-amp-悲观锁" class="headerlink" title="乐观锁 &amp; 悲观锁"></a>乐观锁 &amp; 悲观锁</h3><p>这个分类不是具体锁的分类，而是看待并发同步的角度；</p>
+<p>悲观锁认为对于同一个数据的并发操作一定是会发生修改的（哪怕实质没修改也认为会修改），因此对于同一个数据的并发操作，悲观锁采取加锁的形式，因为悲观锁认为不加锁的操作一定有问题；</p>
+<p>乐观锁则认为对于同一个数据的并发操作是不会发生修改的，在更新数据的时候会采用不断的尝试更新，乐观锁认为不加锁的并发操作是没事的；</p>
+<p>由此可以看出悲观锁适合写操作非常多的场景，乐观锁适合读操作非常多的场景，不加锁会带来大量的性能提升，悲观锁在 java 中很常见（synchronized关键字和Lock的实现类都是悲观锁），乐观锁其实就是基于 CAS 的无锁编程，譬如 java 的原子类就是通过 CAS 自旋实现的。</p>
+<h3 id="公平锁-VS-非公平锁"><a href="#公平锁-VS-非公平锁" class="headerlink" title="公平锁 VS 非公平锁"></a>公平锁 VS 非公平锁</h3><p>公平锁指多个线程按照申请锁的顺序来获取锁，非公平锁就是没有顺序完全随机，所以能会造成优先级反转或者饥饿现象；</p>
+<p>synchronized 实现的是非公平锁，ReentrantLock 通过构造参数可以决定是非公平锁还是公平锁，默认构造是非公平锁；非公平锁的吞吐量性能比公平锁大好。</p>
+<p>ReentrantLock的实现中：公平锁与非公平锁的lock()方法唯一的区别就在于公平锁在获取同步状态时多了一个限制条件：hasQueuedPredecessors()。</p>
+<p><img src="../img/java/34.png"></p>
+<h3 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h3><p>可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者class），不会因为之前已经获取过还没释放而阻塞。</p>
+<p>Java中ReentrantLock和synchronized都是可重入锁，可重入锁的一个优点是可一定程度避免死锁。</p>
+<blockquote>
+<p>synchronized 重入的实现机制</p>
+<p>每个锁对象都拥有：</p>
+<ol>
+<li>锁计数器  </li>
+<li>指向拥有该锁的线程的指针</li>
+</ol>
+<p>当执行monitorenter时，如果目标锁对象的计数器为0 ，那么说明他没有被其他线程持有。这时，JVM会将该锁对象的持有线程设置为当前线程，并将计数器加1.</p>
+<p>在目标锁对象的计数器不为0的情况下，如果锁对象的持有线程是当前线程那么JVM可以将其计数器加1，否则需要等待，直至持有线程释放锁。</p>
+<p>当执行monitorexit时，JVM则需要将锁对象的计数器减1，计数器数值为0代表锁已被释放。</p>
+</blockquote>
+<h3 id="独享锁-amp-共享锁"><a href="#独享锁-amp-共享锁" class="headerlink" title="独享锁 &amp; 共享锁"></a>独享锁 &amp; 共享锁</h3><p>独享锁也叫排他锁，是指该锁一次只能被一个线程所持有。如果线程T对数据A加上排它锁后，则其他线程不能再对A加任何类型的锁。获得排它锁的线程即能读数据又能修改数据。JDK中的synchronized和JUC中Lock的实现类就是互斥锁。</p>
+<p>共享锁是指该锁可被多个线程所持有。如果线程T对数据A加上共享锁后，则其他线程只能对A再加共享锁，不能加排它锁。获得共享锁的线程只能读数据，不能修改数据。</p>
+<p>独享锁与共享锁也是通过AQS来实现的，通过实现不同的方法，来实现独享或者共享。</p>
+<h2 id="Lock-amp-Condition"><a href="#Lock-amp-Condition" class="headerlink" title="Lock &amp; Condition"></a>Lock &amp; Condition</h2><p>在传统的synchronized中，可以通过wait/notify/notifyAll进行等待通知操作，但synchronized只提供了一个同步队列和一个等待/通知队列，Lock则提供了一个同步队列和多个等待/通知队列模型。</p>
+<p>Condition对象是从Lock中获取，其返回的实际上是AQS的内部类ConditionObject，因为Condition机制依赖于AQS基于状态的同步机制。在使用时，可以创建多个Condition对象，每个Condition对象都对应一个等待队列，队列中的数据是AQS的Node节点类型。</p>
+<p>当调用await()方法时，因为当前线程一定的获取了Lock锁的线程，也就算同步队列的头节点，所以会把这个节点从同步队列中移除，构造一个新的节点并加入到等待队列中(没有利用cas，因为当前线程就数获取锁的线程)，当调用signal()/signalAll()时，将等待队列中的当前线程节点移除，重新加入到同步队列进行同步状态的竞争（如果是非公平锁，则进行同步状态的抢占，如果抢占失败，则加入到同步队列尾部，如果是公平锁，那么就老老实实的利用cas将节点加入到同步队列的尾部）</p>
+<h2 id="让线程等待-amp-唤醒的方法"><a href="#让线程等待-amp-唤醒的方法" class="headerlink" title="让线程等待&amp;唤醒的方法"></a>让线程等待&amp;唤醒的方法</h2><ul>
+<li>方式一：使用 Object 中的 wait() 方法让线程等待，使用 Object 中的 notify() 方法唤醒线程</li>
+<li>方式二：使用 JUC 包中 Condition 的 await() 方法让线程等待，使用 signal() 方法唤醒线程</li>
+<li>方式三：LockSupport 类可以阻塞当前线程以及唤醒指定被阻塞的线程。</li>
+</ul>
+<p><code>Object.wait()</code>、<code>Object.notify()</code>方法必须再<code>synchronized</code>修饰的代码块中才能正常使用，否则会报异常(<code>语法不会显示有错误</code>)</p>
+<p>Condition需要在ReentrantLock下使用，也就是需要上锁和释放锁，否则也会报<code>java.lang.IllegalMonitorStateException</code></p>
+<h2 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h2><p>LookSupport 是用来创建锁和其他同步类的线程阻塞原语。</p>
+<p>LookSupport 是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞，阻塞之后也有对应的唤醒方法。</p>
+<p>LookSupport 调用的是 Unsafe的native 代码。</p>
+<p>通过 park（）和 unpark（）方法来实现，线程的阻塞和释放操作。</p>
+<p>LockSupport就是通过控制变量<code>_counter</code>（类似于pemit许可证，默认为0）来对线程阻塞唤醒进行控制的。原理有点类似于信号量机制。</p>
+<ul>
+<li>当调用<code>park()</code>方法时，会将_counter置为0，同时判断前值，等于1说明前面被<code>unpark</code>过,则直接退出，否则将使该线程阻塞。</li>
+<li>当调用<code>unpark()</code>方法时，会将_counter置为1，同时判断前值，小于1会进行线程唤醒，否则直接退出。<br>形象的理解，线程阻塞需要消耗凭证(permit)，这个凭证最多只有1个。当调用park方法时，如果有凭证，则会直接消耗掉这个凭证然后正常退出；但是如果没有凭证，就必须阻塞等待凭证可用；而unpark则相反，它会增加一个凭证，但凭证最多只能有1个。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread a = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;----- come in&quot;</span>);</span><br><span class="line">        LockSupport.park();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;----- 被唤醒&quot;</span>);</span><br><span class="line">    &#125;, <span class="string">&quot;a&quot;</span>);</span><br><span class="line">    a.start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">3L</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Thread b = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        LockSupport.unpark(a);</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;----- 通知 a&quot;</span>);</span><br><span class="line">    &#125;, <span class="string">&quot;b&quot;</span>);</span><br><span class="line">    b.start();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a	----- come in</span><br><span class="line">b	----- 通知 a </span><br><span class="line">a	----- 被唤醒</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread t1 = <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">1L</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">&quot;\t&quot;</span> + System.currentTimeMillis() + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;----- come in&quot;</span>);</span><br><span class="line">        LockSupport.park();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + <span class="string">&quot;\t&quot;</span> + System.currentTimeMillis() + <span class="string">&quot;\t&quot;</span> + <span class="string">&quot;----- 被唤醒&quot;</span>);</span><br><span class="line">    &#125;, <span class="string">&quot;t1&quot;</span>);</span><br><span class="line">    t1.start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">3L</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    LockSupport.unpark(t1);</span><br><span class="line">    System.out.println(Thread.currentThread().getName() + <span class="string">&quot;\t&quot;</span> + System.currentTimeMillis() + <span class="string">&quot;----- unpark over&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">t1	<span class="number">1612934983962</span>	----- come in</span><br><span class="line">main	<span class="number">1612934985962</span>----- unpark over</span><br><span class="line">t1	<span class="number">1612934985962</span>	----- 被唤醒</span><br></pre></td></tr></table></figure>
+
+<h3 id="为什么可以先唤醒线程后阻塞线程？"><a href="#为什么可以先唤醒线程后阻塞线程？" class="headerlink" title="为什么可以先唤醒线程后阻塞线程？"></a>为什么可以先唤醒线程后阻塞线程？</h3><p>因为unpark获得了一个凭证,之后调用park因为有凭证消费，故不会阻塞。</p>
+<h3 id="为什么唤醒两次后阻塞两次会阻塞线程。"><a href="#为什么唤醒两次后阻塞两次会阻塞线程。" class="headerlink" title="为什么唤醒两次后阻塞两次会阻塞线程。"></a>为什么唤醒两次后阻塞两次会阻塞线程。</h3><p>因为凭证的数量最多为1，连续调用两次unpark和调用一次unpark效果一样，只会增加一个凭证；而调用两次park却需要消费两个凭证。</p>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/377bb840802f">https://www.jianshu.com/p/377bb840802f</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wupeixuan/p/12638203.html">https://www.cnblogs.com/wupeixuan/p/12638203.html</a></p>
+<p>通常情况下，我们创建的变量是可以被任何一个线程访问并修改的。如果想实现每一个线程都有自己的专属本地变量该如何解决呢？JDK 中提供的<code>ThreadLocal</code>类正是为了解决这样的问题。</p>
+<p> <strong><code>ThreadLocal</code>类主要解决的就是让每个线程绑定自己的值，可以将<code>ThreadLocal</code>类形象的比喻成存放数据的盒子，盒子中可以存储每个线程的私有数据。</strong></p>
+<p>如果你创建了一个<code>ThreadLocal</code>变量，那么访问这个变量的每个线程都会有这个变量的本地副本，这也是<code>ThreadLocal</code>变量名的由来。他们可以使用 <code>get（）</code> 和 <code>set（）</code> 方法来获取默认值或将其值更改为当前线程所存的副本的值，从而避免了线程安全问题。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadLocalExample</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">// SimpleDateFormat 不是线程安全的，所以每个线程都要有自己独立的副本</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;SimpleDateFormat&gt; formatter = ThreadLocal.withInitial(() -&gt; <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyyMMdd HHmm&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ThreadLocalExample obj = <span class="keyword">new</span> ThreadLocalExample();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span> ; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">            Thread t = <span class="keyword">new</span> Thread(obj, <span class="string">&quot;&quot;</span>+i);</span><br><span class="line">            Thread.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">1000</span>));</span><br><span class="line">            t.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Thread Name= &quot;</span>+Thread.currentThread().getName()+<span class="string">&quot; default Formatter = &quot;</span>+formatter.get().toPattern());</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">1000</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//formatter pattern is changed here by thread, but it won&#x27;t reflect to other threads</span></span><br><span class="line">        formatter.set(<span class="keyword">new</span> SimpleDateFormat());</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;Thread Name= &quot;</span>+Thread.currentThread().getName()+<span class="string">&quot; formatter = &quot;</span>+formatter.get().toPattern());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Thread Name= <span class="number">0</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">0</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">1</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">2</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">1</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">3</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">2</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">4</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">3</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">4</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">5</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">5</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">6</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">6</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">7</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">7</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">8</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">9</span> <span class="keyword">default</span> Formatter = yyyyMMdd HHmm</span><br><span class="line">Thread Name= <span class="number">8</span> formatter = yy-M-d ah:mm</span><br><span class="line">Thread Name= <span class="number">9</span> formatter = yy-M-d ah:mm</span><br></pre></td></tr></table></figure>
+
+<p>从输出中可以看出，Thread-0 已经改变了 formatter 的值，但仍然是 thread-2 默认格式化程序与初始化值相同，其他线程也一样。</p>
+<p>上面有一段代码用到了创建 <code>ThreadLocal</code> 变量的那段代码用到了 Java8 的知识，它等于下面这段代码，如果你写了下面这段代码的话，IDEA 会提示你转换为 Java8 的格式(IDEA 真的不错！)。因为 ThreadLocal 类在 Java 8 中扩展，使用一个新的方法<code>withInitial()</code>，将 Supplier 功能接口作为参数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;SimpleDateFormat&gt; formatter = <span class="keyword">new</span> ThreadLocal&lt;SimpleDateFormat&gt;()&#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">protected</span> SimpleDateFormat <span class="title">initialValue</span><span class="params">()</span></span></span><br><span class="line"><span class="function">       </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyyMMdd HHmm&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原理-3"><a href="#原理-3" class="headerlink" title="原理"></a>原理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"> ......</span><br><span class="line"><span class="comment">//与此线程有关的ThreadLocal值。由ThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap threadLocals = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//与此线程有关的InheritableThreadLocal值。由InheritableThreadLocal类维护</span></span><br><span class="line">ThreadLocal.ThreadLocalMap inheritableThreadLocals = <span class="keyword">null</span>;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面<code>Thread</code>类 源代码可以看出<code>Thread</code> 类中有一个 <code>threadLocals</code> 和 一个 <code>inheritableThreadLocals</code> 变量，它们都是 <code>ThreadLocalMap</code> 类型的变量,我们可以把 <code>ThreadLocalMap</code> 理解为<code>ThreadLocal</code> 类实现的定制化的 <code>HashMap</code>。默认情况下这两个变量都是 null，只有当前线程调用 <code>ThreadLocal</code> 类的 <code>set</code>或<code>get</code>方法时才创建它们，实际上调用这两个方法的时候，我们调用的是<code>ThreadLocalMap</code>类对应的 <code>get()</code>、<code>set()</code>方法。</p>
+<p><code>ThreadLocal</code>类的<code>set()</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    Thread t = Thread.currentThread();</span><br><span class="line">    ThreadLocalMap map = getMap(t);</span><br><span class="line">    <span class="keyword">if</span> (map != <span class="keyword">null</span>)</span><br><span class="line">        map.set(<span class="keyword">this</span>, value);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        createMap(t, value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ThreadLocalMap <span class="title">getMap</span><span class="params">(Thread t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t.threadLocals;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面这些内容，我们足以通过猜测得出结论：<strong>最终的变量是放在了当前线程的 <code>ThreadLocalMap</code> 中，并不是存在 <code>ThreadLocal</code> 上，<code>ThreadLocal</code> 可以理解为只是<code>ThreadLocalMap</code>的封装，传递了变量值。</strong> <code>ThrealLocal</code> 类中可以通过<code>Thread.currentThread()</code>获取到当前线程对象后，直接通过<code>getMap(Thread t)</code>可以访问到该线程的<code>ThreadLocalMap</code>对象。</p>
+<p><strong>每个<code>Thread</code>中都具备一个<code>ThreadLocalMap</code>，而<code>ThreadLocalMap</code>可以存储以<code>ThreadLocal</code>为 key ，Object 对象为 value 的键值对。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocalMap(ThreadLocal&lt;?&gt; firstKey, Object firstValue) &#123;</span><br><span class="line"> ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如我们在同一个线程中声明了两个 <code>ThreadLocal</code> 对象的话，会使用 <code>Thread</code>内部都是使用仅有那个<code>ThreadLocalMap</code> 存放数据的，<code>ThreadLocalMap</code>的 key 就是 <code>ThreadLocal</code>对象，value 就是 <code>ThreadLocal</code> 对象调用<code>set</code>方法设置的值。</p>
+<p><img src="../img/java/12.png"></p>
+<p><code>ThreadLocalMap</code>是<code>ThreadLocal</code>的静态内部类。</p>
+<h3 id="ThreadLocal-内存泄露问题"><a href="#ThreadLocal-内存泄露问题" class="headerlink" title="ThreadLocal 内存泄露问题"></a>ThreadLocal 内存泄露问题</h3><p><code>ThreadLocalMap</code> 中使用的 key 为 <code>ThreadLocal</code> 的弱引用,而 value 是强引用。所以，如果 <code>ThreadLocal</code> 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。这样一来，<code>ThreadLocalMap</code> 中就会出现 key 为 null 的 Entry。假如我们不做任何措施的话，value 永远无法被 GC 回收，这个时候就可能会产生内存泄露。ThreadLocalMap 实现中已经考虑了这种情况，在调用 <code>set()</code>、<code>get()</code>、<code>remove()</code> 方法的时候，会清理掉 key 为 null 的记录。使用完 <code>ThreadLocal</code>方法后 最好手动调用<code>remove()</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">ThreadLocal</span>&lt;?&gt;&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/** The value associated with this ThreadLocal. */</span></span><br><span class="line">    Object value;</span><br><span class="line"></span><br><span class="line">    Entry(ThreadLocal&lt;?&gt; k, Object v) &#123;</span><br><span class="line">        <span class="keyword">super</span>(k);</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Atomic-原子类"><a href="#Atomic-原子类" class="headerlink" title="Atomic 原子类"></a>Atomic 原子类</h2><p><code>Atomic</code> 翻译成中文是原子的意思。在化学上，我们知道原子是构成一般物质的最小单位，在化学反应中是不可分割的。在我们这里 Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。</p>
+<p>所以，所谓原子类说简单点就是具有原子/原子操作特征的类。</p>
+<p>并发包 <code>java.util.concurrent</code> 的原子类都存放在<code>java.util.concurrent.atomic</code>下。</p>
+<p><strong>基本类型</strong></p>
+<p>使用原子的方式更新基本类型</p>
+<ul>
+<li><code>AtomicInteger</code>：整形原子类</li>
+<li><code>AtomicLong</code>：长整型原子类</li>
+<li><code>AtomicBoolean</code>：布尔型原子类</li>
+</ul>
+<p><strong>数组类型</strong></p>
+<p>使用原子的方式更新数组里的某个元素</p>
+<ul>
+<li><code>AtomicIntegerArray</code>：整形数组原子类</li>
+<li><code>AtomicLongArray</code>：长整形数组原子类</li>
+<li><code>AtomicReferenceArray</code>：引用类型数组原子类</li>
+</ul>
+<p><strong>引用类型</strong></p>
+<ul>
+<li><code>AtomicReference</code>：引用类型原子类</li>
+<li><code>AtomicStampedReference</code>：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于解决原子的更新数据和数据的版本号，可以解决使用 CAS 进行原子更新时可能出现的 ABA 问题。</li>
+<li><code>AtomicMarkableReference</code> ：原子更新带有标记位的引用类型</li>
+</ul>
+<p><strong>对象的属性修改类型</strong></p>
+<ul>
+<li><code>AtomicIntegerFieldUpdater</code>：原子更新整形字段的更新器</li>
+<li><code>AtomicLongFieldUpdater</code>：原子更新长整形字段的更新器</li>
+<li><code>AtomicReferenceFieldUpdater</code>：原子更新引用类型字段的更新器</li>
+</ul>
+<h3 id="AtomicInteger-的使用"><a href="#AtomicInteger-的使用" class="headerlink" title="AtomicInteger 的使用"></a>AtomicInteger 的使用</h3><p><strong>AtomicInteger 类常用方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public final int get() &#x2F;&#x2F;获取当前的值</span><br><span class="line">public final int getAndSet(int newValue)&#x2F;&#x2F;获取当前的值，并设置新的值</span><br><span class="line">public final int getAndIncrement()&#x2F;&#x2F;获取当前的值，并自增</span><br><span class="line">public final int getAndDecrement() &#x2F;&#x2F;获取当前的值，并自减</span><br><span class="line">public final int getAndAdd(int delta) &#x2F;&#x2F;获取当前的值，并加上预期的值</span><br><span class="line">boolean compareAndSet(int expect, int update) &#x2F;&#x2F;如果输入的数值等于预期值，则以原子方式将该值设置为输入值（update）</span><br><span class="line">public final void lazySet(int newValue)&#x2F;&#x2F;最终设置为newValue,使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。</span><br></pre></td></tr></table></figure>
+
+<p><strong>AtomicInteger 类的使用示例</strong></p>
+<p>使用 AtomicInteger 之后，不用对 increment() 方法加锁也可以保证线程安全。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class AtomicIntegerTest &#123;</span><br><span class="line">        private AtomicInteger count &#x3D; new AtomicInteger();</span><br><span class="line">      &#x2F;&#x2F;使用AtomicInteger之后，不需要对该方法加锁，也可以实现线程安全。</span><br><span class="line">        public void increment() &#123;</span><br><span class="line">                  count.incrementAndGet();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">       public int getCount() &#123;</span><br><span class="line">                return count.get();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="介绍一下-AtomicInteger-类的原理"><a href="#介绍一下-AtomicInteger-类的原理" class="headerlink" title="介绍一下 AtomicInteger 类的原理"></a>介绍一下 AtomicInteger 类的原理</h3><p>AtomicInteger 类的部分源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; setup to use Unsafe.compareAndSwapInt for updates（更新操作时提供“比较并替换”的作用）</span><br><span class="line">private static final Unsafe unsafe &#x3D; Unsafe.getUnsafe();</span><br><span class="line">private static final long valueOffset;</span><br><span class="line"></span><br><span class="line">static &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        valueOffset &#x3D; unsafe.objectFieldOffset</span><br><span class="line">            (AtomicInteger.class.getDeclaredField(&quot;value&quot;));</span><br><span class="line">    &#125; catch (Exception ex) &#123; throw new Error(ex); &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private volatile int value;</span><br></pre></td></tr></table></figure>
+
+<p>AtomicInteger 类主要利用 <strong>CAS (compare and swap) + volatile 和 native 方法</strong>来保证原子操作，从而避免 synchronized 的高开销，执行效率大为提升。</p>
+<p>CAS 的原理是拿期望的值和原本的一个值作比较，如果相同则更新成新的值。UnSafe 类的 objectFieldOffset() 方法是一个本地方法，这个方法是用来拿到“原来的值”的内存地址，返回值是 valueOffset。另外 value 是一个 volatile 变量，在内存中可见，因此 JVM 可以保证任何时刻任何线程总能拿到该变量的最新值。</p>
+<h3 id="AtomicInteger-为什么用CAS而不是synchronized"><a href="#AtomicInteger-为什么用CAS而不是synchronized" class="headerlink" title="AtomicInteger 为什么用CAS而不是synchronized"></a>AtomicInteger 为什么用CAS而不是synchronized</h3><p>synchronized采用的是悲观锁，是一种独占锁，独占锁就意味着 其他线程只能依靠阻塞[就是其他线程不停的询问]来等待线程释放锁。而在 CPU 转换线程阻塞时会引起线程上下文切换，当有很多线程竞争锁的时候，会引起 CPU 频繁的上下文切换导致效率很低</p>
+<p>CAS采用的是一种乐观锁的机制，它不会阻塞任何线程，所以在效率上，它会比 synchronized 要高。所谓乐观锁就是：每次不加锁而是假设没有冲突而去完成某项操作，如果因为冲突失败就重试，直到成功为止。</p>
+<h3 id="AtomicLong-可否被-LongAdder-替代？"><a href="#AtomicLong-可否被-LongAdder-替代？" class="headerlink" title="AtomicLong 可否被 LongAdder 替代？"></a>AtomicLong 可否被 LongAdder 替代？</h3><p>有了更高效的 <code>LongAdder</code>，那<code> AtomicLong</code> 可否不使用了呢？是否凡是用到 <code>AtomicLong </code>的地方，都可以用<code>LongAdder</code>替换掉呢？答案是不是的，这需要区分场景。</p>
+<p><code>LongAdder</code> 只提供了 <code>add</code>、<code>increment</code> 等简单的方法，适合的是统计求和计数的场景，场景比较单一，而 <code>AtomicLong</code> 还具有 <code>compareAndSet</code> 等高级方法，可以应对除了加减之外的更复杂的需要<code> CAS</code> 的场景。</p>
+<p>结论：如果我们的场景仅仅是需要用到加和减操作的话，那么可以直接使用更高效的 <code>LongAdder</code>，但如果我们需要利用 <code>CAS</code> 比如<code>compareAndSet</code> 等操作的话，就需要使用 <code>AtomicLong</code> 来完成。</p>
+<blockquote>
+<p>直达链接：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5hDtf7siTCX3QPEAsbNPCA">突击并发编程JUC系列-JDK1.8 扩展类型 LongAdder</a></p>
+</blockquote>
+<h2 id="并发工具-JUC"><a href="#并发工具-JUC" class="headerlink" title="并发工具 JUC"></a>并发工具 JUC</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000037600050">https://segmentfault.com/a/1190000037600050</a></p>
+<h3 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h3><p><code>CountDownLatch</code>基于线程计数器来实现并发访问控制，主要用于主线程等待其他子线程都执行完毕后执行相关操作。其使用过程为：在主线程中定义<code>CountDownLatch</code>，并将线程计数器的初始值设置为子线程的个数，多个子线程并发执行，每个子线程在执行完毕后都会调用<code>countDown</code>函数将计数器的值减1，直到线程计数器为0，表示所有的子线程任务都已执行完毕，此时在<code>CountDownLatch</code>上等待的主线程将被唤醒并继续执行。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/unPaVioEQIcW1Co1uyUpCg">突击并发编程JUC系列-并发工具 CountDownLatch</a></p>
+</blockquote>
+<h3 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h3><p><code>CyclicBarrier</code>（循环屏障）是一个同步工具，可以实现让一组线程等待至某个状态之后再全部同时执行。在所有等待线程都被释放之后，<code>CyclicBarrier</code>可以被重用。<code>CyclicBarrier</code>的运行状态叫作<code>Barrier</code>状态，在调用<code>await</code>方法后，线程就处于<code>Barrier</code>状态。</p>
+<p><code>CyclicBarrier</code>中最重要的方法是await方法，它有两种实现。</p>
+<ul>
+<li><code>public int await()</code>：挂起当前线程直到所有线程都为Barrier状态再同时执行后续的任务。</li>
+<li><code>public int await(long timeout, TimeUnit unit)</code>：设置一个超时时间，在超时时间过后，如果还有线程未达到<code>Barrier</code>状态，则不再等待，让达到Barrier状态的线程继续执行后续的任务。</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/tvb3w1muV_qV9UJD99QDyw">突击并发编程JUC系列-并发工具 CyclicBarrier</a></p>
+</blockquote>
+<h3 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h3><p><code>Semaphore</code>指信号量，用于控制同时访问某些资源的线程个数，具体做法为通过调用<code>acquire()</code>获取一个许可，如果没有许可，则等待，在许可使用完毕后通过<code>release()</code>释放该许可，以便其他线程使用。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DipflI2wQghzx6LwT3OhRA">突击并发编程JUC系列-并发工具 Semaphore</a></p>
+</blockquote>
+<h4 id="CyclicBarrier-和-CountdownLatch-有什么异同？"><a href="#CyclicBarrier-和-CountdownLatch-有什么异同？" class="headerlink" title="CyclicBarrier 和 CountdownLatch 有什么异同？"></a>CyclicBarrier 和 CountdownLatch 有什么异同？</h4><p>相同点：都能阻塞一个或一组线程，直到某个预设的条件达成发生，再统一出发。<br>但是它们也有很多不同点，具体如下。</p>
+<ul>
+<li>作用对象不同：<code>CyclicBarrier</code> 要等固定数量的线程都到达了栅栏位置才能继续执行，而 <code>CountDownLatch</code> 只需等待数字倒数到 0，也就是说 <code>CountDownLatch</code> 作用于事件，但 <code>CyclicBarrier</code> 作用于线程；<code>CountDownLatch</code> 是在调用了 <code>countDown</code> 方法之后把数字倒数减 1，而 <code>CyclicBarrier</code> 是在某线程开始等待后把计数减 1。</li>
+<li>可重用性不同：<code>CountDownLatch</code> 在倒数到 0 并且触发门闩打开后，就不能再次使用了，除非新建一个新的实例；而 <strong><code>CyclicBarrier</code> 可以重复使用</strong>。<code>CyclicBarrier </code>还可以随时调用 reset 方法进行重置，如果重置时有线程已经调用了 await 方法并开始等待，那么这些线程则会抛出 <code>BrokenBarrierException </code>异常。</li>
+<li>执行动作不同：<code>CyclicBarrier</code> 有执行动作 <code>barrierAction</code>，而 <code>CountDownLatch </code>没这个功能。</li>
+</ul>
+<h3 id="CountDownLatch、CyclicBarrier、Semaphore的区别如下。"><a href="#CountDownLatch、CyclicBarrier、Semaphore的区别如下。" class="headerlink" title="CountDownLatch、CyclicBarrier、Semaphore的区别如下。"></a>CountDownLatch、CyclicBarrier、Semaphore的区别如下。</h3><ul>
+<li><code>CountDownLatch</code>和<code>CyclicBarrier</code>都用于实现多线程之间的相互等待，但二者的关注点不同。<code>CountDownLatch</code>主要用于主线程等待其他子线程任务均执行完毕后再执行接下来的业务逻辑单元，而<code>CyclicBarrier</code>主要用于一组线程互相等待大家都达到某个状态后，再同时执行接下来的业务逻辑单元。此外，<code>CountDownLatch</code>是不可以重用的，而<code>CyclicBarrier</code>是可以重用的。</li>
+<li><code>Semaphore</code>和<code>Java</code>中的锁功能类似，主要用于控制资源的并发访问。</li>
+</ul>
+<h2 id="并发相关题目"><a href="#并发相关题目" class="headerlink" title="并发相关题目"></a>并发相关题目</h2><p>多线程之间按顺序调用，实现 A –&gt; B –&gt; C 三个线程启动，要求如下：</p>
+<p>A打印5次，B打印10次，C打印15次</p>
+<p>接着</p>
+<p>A打印5次，B打印10次，C打印15次</p>
+<p>。。。</p>
+<p>来10轮</p>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/data/Java/java_concurrent.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>

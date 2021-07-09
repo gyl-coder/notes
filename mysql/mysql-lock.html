@@ -1,0 +1,584 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>Mysql 锁相关 — Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/mysql/mysql-lock.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/mysql/mysql-lock.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/mysql/mysql-lock.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/mysql/mysql-lock.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/mysql/mysql-lock.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/mysql/mysql-lock.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/mysql/mysql-lock.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/mysql/mysql-lock.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mysql 锁相关 — Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mysql 锁相关 — Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "api"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/mysql/mysql-lock.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/mysql/mysql-lock.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/mysql/mysql-lock.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/mysql/mysql-lock.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/mysql/mysql-lock.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/mysql/mysql-lock.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/mysql/mysql-lock.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/mysql/mysql-lock.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/mysql/mysql-lock.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      <!-- <div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <span>Special Sponsor</span>
+    <div>
+    <a href="https://autocode.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/autocode.svg" alt="Autocode">
+    </a>
+    </div>
+  </div>
+</div>
+
+ -->
+      
+        <!-- <h2>
+          
+          API
+          
+            <select class="version-select">
+              <option value="v3">3.x</option>
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+        </h2> -->
+        <ul class="menu-root">
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!-- 
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>Platinum Sponsors</span>
+    <div>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://retool.com/?utm_source=sponsor&utm_campaign=vue" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/retool.png" alt="Retool">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/ionic.png" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/nuxt.png" alt="Nuxt">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    Become a Sponsor
+  </a>
+</div>
+
+ -->
+
+
+<div class="content api with-sidebar ">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js">
+  </script>
+</div>
+
+
+    
+  
+  
+    <h1>Mysql 锁相关</h1>
+  
+  
+    <h2 id="MySQL-中的锁分类"><a href="#MySQL-中的锁分类" class="headerlink" title="MySQL 中的锁分类"></a>MySQL 中的锁分类</h2><p><strong>从锁的属性来分</strong>，锁分为两种：共享锁（S 锁）和独占锁（X 锁）。一个事务获取到了一些记录的 S 锁，其他事务还可以继续获取这些记录的 S 锁，但是不可以获取这些记录的 X 锁。而当一个事务获取到了一些记录的 X 锁，那么其他事务就不能再获取这些记录的 S 锁和 X 锁。也就是 S 锁和 X 锁互斥，同时 X 锁与 X 锁也互斥，只有 S 锁与 S 锁能够共存。</p>
+<ul>
+<li><p>共享锁也称为S（Share Lock）锁，用于所有的只读数据操作。共享锁是非独占的，允许多个并发事务读取其锁定的资源。它具有以下性质：多个事务可封锁一个共享页；任何事务都不能修改该页；通常是该页被读取完毕，S锁立即被释放。在SQL Server中，默认情况下，数据被读取后，立即释放共享锁。</p>
+</li>
+<li><p>排他锁（Exclusive Lock，也叫X锁）也叫写锁（X）。表示对数据进行写操作。如果一个事务对对象加了排他锁，其他事务就不能再给它加任何锁了。排他锁具有以下几点性质：仅允许一个事务封锁此页；其他任何事务必须等到X锁被释放才能对该页进行访问；X锁一直到事务结束才能被释放。</p>
+</li>
+</ul>
+<p><strong>从锁的粒度来分</strong>，锁可以分为行锁和表锁。如果给一个表加了 S 锁，那么其他事务可以继续获取该表或者该表中某些记录的 S 锁，但是不能获取该表或者该表中某些记录的 X 锁。而如果给一个表加了 X 锁，那么其他事务既不能给该表或者该表中的某些记录加 S 锁，也不能给该表或者该表中的某些记录加 X 锁。</p>
+<p>有的时候我们需要在给表上锁之前检查表中有没有行锁，此时不可能依次遍历每一条记录，因此 InnoDB 提供了一种称为意向锁的表锁。意向锁可以分为意向共享锁（Intention Shared Lock）和意向独占锁（Intention Exclusive Lock）。</p>
+<p>意向共享锁也叫 IS 锁，当事务准备给某条记录加 S 锁时，需要先给表加一个 IS 锁。而意向独占锁也叫 IX 锁，当事务准备给某条记录加 X 锁时，需要先给表加一个 IX 锁。有了这两种锁，如果我们需要给表加 S 锁，那么就需要检查该表有没有 IX 锁，如果没有则可以给表加 S 锁，否则需要等 IX 锁释放。同样，如果我们需要给表加 X 锁，需要先看该表有没有 IS 锁和 IX 锁，如果没有则可以直接给表加 X 锁，否则需要等待锁释放。</p>
+<p>虽然 IS 和 IX 是表锁，但是它们仅仅是为了在给表加锁时可以快速判断表中的记录是否上锁，因此 IS 与 IX 是可以共存的。</p>
+<h3 id="InnoDB-中的表锁"><a href="#InnoDB-中的表锁" class="headerlink" title="InnoDB 中的表锁"></a>InnoDB 中的表锁</h3><p>InnoDB 中的表锁除了之前所说的 S 锁和 X 锁，IS 锁和 IX 锁，还有 AUTO-INC 锁，该锁只有在某个列添加了 AUTO_INCREMENT 属性，之后插入记录时才会使用。</p>
+<p>在对某个表执行增删改查操作时，InnoDB 存储引擎是不会为该表添加 S 锁或者 X 锁的。只有在一些特殊场景下才会使用，比如崩溃恢复。当然我们也可以手工获取，比如先设置 <code>autocommit=0, innodb_table_locks=1</code>，然后通过 <code>LOCK TABLES t READ</code> 和 <code>LOCK TABLES t WRITE</code> 来分别获取表 t 的 S 锁和 X 锁。另外对于一些 DDL 操作，比如 ALTER TABLE、DROP TABLE 等操作，其实是在 MySQL 的 Server 层使用了一种称为元数据锁（Metadata Locks）的东西来实现的。</p>
+<h3 id="InnoDB-中的行锁"><a href="#InnoDB-中的行锁" class="headerlink" title="InnoDB 中的行锁"></a>InnoDB 中的行锁</h3><p>InnoDB 中的行锁有很多种，包括普通的记录锁（官方名称为 <code>LOCK_REC_NOT_GAP</code>）、GAP 锁（又叫间隙锁，官方名称为 <code>LOCK_GAP</code>）、Next-Key Lock（官方名称为 <code>LOCK_ORDINARY</code>）、插入意向锁（官方称为 <code>LOCK_INSERT_INTENTION</code>）。</p>
+<p>接下来为了说明方便，先创建一个表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE hero (</span><br><span class="line">    number INT,</span><br><span class="line">    name VARCHAR(100),</span><br><span class="line">    country VARCHAR(100),</span><br><span class="line">    PRIMARY KEY (number)</span><br><span class="line">) Engine&#x3D;InnoDB CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">INSERT INTO hero VALUES</span><br><span class="line">    (1, &#39;l刘备&#39;, &#39;蜀&#39;),</span><br><span class="line">    (3, &#39;z诸葛亮&#39;, &#39;蜀&#39;),</span><br><span class="line">    (8, &#39;c曹操&#39;, &#39;魏&#39;),</span><br><span class="line">    (15, &#39;x荀彧&#39;, &#39;魏&#39;),</span><br><span class="line">    (20, &#39;s孙权&#39;, &#39;吴&#39;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Record-Lock"><a href="#Record-Lock" class="headerlink" title="Record Lock"></a>Record Lock</h2><p>普通的记录锁只会锁住当前行，它有 S 锁和 X 锁之分，它们之间的关系与之前讲的一样，S 锁之间可以共存，S 锁与 X 锁之间、X 锁与 X 锁之间不能共存。在 READ COMMITTED 隔离级别下的当前读大多使用该锁，在 REPEATABLE READ 隔离级别下，唯一索引上的等值当前读也会给索引键对应的行加普通的记录锁。比如下面这个例子：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Time</th>
+<th align="left">Session A</th>
+<th align="left">Session B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>BEGIN;</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><code>SELECT * FROM hero WHERE number = 8 FOR UPDATE;</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"><code>BEGIN;</code></td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"></td>
+<td align="left"><code>INSERT INTO hero VALUES (4, &#39;g关羽&#39;, &#39;蜀&#39;);</code></td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left"></td>
+<td align="left"><code>COMMIT;</code></td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left"><code>COMMIT;</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>由于 number 是主键，因此在会话 A 中只会给 number = 8 的记录加 X 锁，而不是 <code>(3, 8)</code> 这个范围，这样会话 B 中的插入操作可以立即执行而不会阻塞。</p>
+<p>如果加锁查询时使用的是辅助索引，那么就需要分别锁定辅助索引和聚簇索引，我们假设上面的例子中 name 是辅助索引。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Time</th>
+<th align="left">Session A</th>
+<th align="left">Session B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>BEGIN;</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><code>SELECT * FROM hero WHERE name = &#39;c曹操&#39; FOR UPDATE;</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"><code>BEGIN;</code></td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"></td>
+<td align="left"><code>INSERT INTO hero VALUES (4, &#39;b&#39;, &#39;蜀&#39;); # 阻塞</code></td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left"></td>
+<td align="left"><code>INSERT INTO hero VALUES (4, &#39;d&#39;, &#39;蜀&#39;); # 阻塞</code></td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left"></td>
+<td align="left"><code>INSERT INTO hero VALUES (4, &#39;t&#39;, &#39;蜀&#39;); # 立即执行</code></td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left"></td>
+<td align="left"><code>COMMIT;</code></td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left"><code>COMMIT;</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>上面的例子中，对于聚簇索引，其仅对列 number = 8 的行加普通的记录锁；而对于辅助索引，其使用的是 Next-Key 锁，锁定的范围为 <code>(-∞, c曹操)</code>，需要注意的是，InnoDB 存储引擎还会对辅助索引的下一个键值加入 GAP Lock，即还有一个辅助索引范围为 <code>(c曹操, s孙权)</code> 的锁。</p>
+<blockquote>
+<p>在辅助索引中，“c曹操”的前面没有键值，因此这个间隙是从负无穷开始。后面的键值是“s孙权”，原因是在已有的数据当中，name 列按照字典顺序排序，c 字母的下一个就是 s。由于 t 字母不在这个范围内，因此可以立即执行。只有当首字母相同时，才会使用后面的数据继续排序。</p>
+</blockquote>
+<h2 id="GAP-Lock"><a href="#GAP-Lock" class="headerlink" title="GAP Lock"></a>GAP Lock</h2><p>间隙锁，锁定一个范围，但不包括记录本身。GAP锁的目的，是为了防止同一事务的两次当前读，出现幻读的情况。</p>
+<p>由于在事务第一次执行读取操作时，那些幻影记录并不存在，因此我们无法给这些记录加上普通的记录锁，这时就可以使用 GAP 锁。如果我们给 number 为 8 的那条记录加一个 GAP 锁，那么就不允许别的事务在 number 值为 8 的记录前的<strong>间隙</strong>插入新的记录，也就是 <code>(3, 8)</code> 这个区间内是不允许立即插入新记录的。比如一个 number 为 4 记录就无法插入到该间隙中。</p>
+<p>可以看到，给一条记录添加一个 <strong>GAP 锁，只是不允许其他事务在这条记录前的间隙插入新记录</strong>，那么如果向最后一条记录之后的间隙插入新记录又该怎么办呢？答案就是给表中最后一条记录，也就是 number 值为 20 的记录所在页面的 Supremum 记录加上一个 GAP 锁。由于 Supremum 记录总是比该数据页中最大的行记录还大，因此可以阻止其他事务向 <code>(20, +∞)</code> 这个区间插入新记录。</p>
+<h2 id="Next-Key-Lock"><a href="#Next-Key-Lock" class="headerlink" title="Next-Key Lock"></a>Next-Key Lock</h2><p>锁定一个范围，并且锁定记录本身。对于行的查询，都是采用该方法，主要目的是解决幻读的问题。</p>
+<p>我们说 MySQL 在 REPEATABLE READ 隔离级别下是可以解决幻读问题的，具体来说是通过 MVCC 机制解决了快照读时可能产生的幻读问题，通过 Next-Key Lock 解决了使用当前读时可能产生的幻读问题。</p>
+<p>Next-Key 锁本质上就是一个普通的记录锁与一个 GAP 锁的结合，它既能保护该条记录，又能阻止其他事务将新记录插入到当前记录前边的间隙中。因此在上面提供的数据中，可以被 Next-Key Lock 锁住的区间包括：(-∞, 1]、(1, 3]、(3, 8]、(8, 15]、(15, 20]、(20, +∞)。下面通过一个例子来说明 InnoDB 是如何使用 Next-Key 锁来避免当前读可能出现的幻读问题的：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Time</th>
+<th align="left">Session A</th>
+<th align="left">Session B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left"><code>BEGIN;</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left"><code>SELECT * FROM hero WHERE number &gt; 3 FOR UPDATE;</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"><code>BEGIN;</code></td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left"></td>
+<td align="left"><code>INSERT INTO hero VALUES (4, &#39;g关羽&#39;, &#39;蜀&#39;);</code></td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left"></td>
+<td align="left"><code>COMMIT;</code></td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left"><code>SELECT * FORM hero WHERE number &gt; 3 FOR UPDATE;</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>会话 A 中的查询语句，锁的范围为 <code>(3, +∞)</code>，这就意味着在会话 B 中的插入操作会被阻塞，这样就可以避免出现幻影行。</p>
+<h2 id="Insert-Intention-Lock"><a href="#Insert-Intention-Lock" class="headerlink" title="Insert Intention Lock"></a>Insert Intention Lock</h2><p>一个事务在插入一条记录时需要判断插入位置是否被别的事务添加了 GAP 锁或者 Next-key 锁，如果有，那么就需要等待锁释放。该事务在等待的同时，也会生成一个锁结构，表明该事务想在某个间隙中插入新记录，但是现在处于等待状态，这个锁就是插入意向锁。插入意向锁并不会阻止别的事务继续获取该记录上任何类型的锁。</p>
+<h2 id="InnoDB引擎的行锁是怎么实现的"><a href="#InnoDB引擎的行锁是怎么实现的" class="headerlink" title="InnoDB引擎的行锁是怎么实现的?"></a>InnoDB引擎的行锁是怎么实现的?</h2><p>InnoDB行锁是通过给索引上的索引项加锁来实现的，这一点MySQL与Oracle不同，Oracle是通过在数据块中对相应数据行加锁来实现的。InnoDB这种行锁实现特点意味着：只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁！</p>
+<h2 id="Mysql-锁"><a href="#Mysql-锁" class="headerlink" title="Mysql 锁"></a>Mysql 锁</h2><p>并发事务访问相同记录的情况大致可以分为三种：读读、读写和写写。</p>
+<p>读读的情况并不会产生并发问题，真正会产生问题的是并发的读写或者写写。并发的写写可能会产生脏写和丢失更新的问题，由于这类问题比较严重，数据库会通过加锁的方式阻塞并发的修改，因此在任何隔离级别下数据库都不会出现脏写和丢失更新的情况，但是在应用层面，还是有可能出现逻辑意义上的丢失更新。</p>
+<p>并发的读写可能会产生脏读、不可重复读以及幻读的问题。处理这类问题有两种可选的方案，一种是对写操作加锁，读操作则利用 MVCC 机制。</p>
+<p>在 READ COMMITTED 隔离级别中，一个事务中每次执行普通的 SELECT 操作都会生成一个 ReadView，这样就保证了每次的读操作都只能读到已经提交的事务的更改。而在 REPEATABLE READ 隔离级别中，一个事务中只有第一次执行普通的 SELECT 操作才会生成一个 ReadView，之后的读操作都会复用该 ReadView，因此也就避免了不可重复读和幻读的问题。</p>
+<p>另一种就是对读操作和写操作都加锁，如果一些业务场景中不允许读取记录的旧版本，而是每次都需要读取记录的最新版本，那么就需要在读的时候加锁，同时写操作也需要加锁，这也就意味着读写操作也像写写操作那样排队执行。很明显，因为使用 MVCC 可以使读写操作并发执行，因此性能更好。在一般情况下，我们都采用默认的方式，也就是读操作利用 MVCC，写操作加锁。当一些业务需要的时候，再手动给读操作加锁。</p>
+<h3 id="MySQL-中的数据操作"><a href="#MySQL-中的数据操作" class="headerlink" title="MySQL 中的数据操作"></a>MySQL 中的数据操作</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141862443">https://zhuanlan.zhihu.com/p/141862443</a></p>
+<p>在 MySQL 中，读操作分为两种。一种是快照读（Snapshot Read），也叫做一致性读（Consistent Read）或者一致性无锁读。快照读通过 MySQL 的 MVCC 机制实现，不需要加锁，读取的是当前记录的快照。所有普通的 SELECT（plain SELECT）语句在读提交和可重复读隔离级别下都是快照读。</p>
+<p>另一种就是锁定读（Locking Read），也叫做当前读（Current Read）。当前读可以看作是一种特殊的读操作，它读取的是最新的记录，包括隐含当前读逻辑的插入、更新和删除，以及一些手工添加锁的读都是当前读。使用 <code>SELECT ... LOCK IN SHARE MODE</code> 语句会为读取到的数据加入 S 锁，这样别的事务可以继续获取这些记录的 S 锁，但是不能获取这些记录的 X 锁。使用 <code>SELECT ... FOR UPDATE</code> 语句会为读取到的数据加入 X 锁，这样别的事务就无法再获取这些记录的 S 锁和 X 锁。</p>
+<p>在 MySQL 中，写操作无非就是 DELETE、UPDATE 和 INSERT 这三种。对一条记录进行 DELETE 操作的过程实际上是先在 B+树中定位到这条记录的位置，然后获取该记录的 X 锁，最后再执行设置删除标记位的操作。因此我们可以把删除操作看作是一个获取 X 锁的锁定读。</p>
+<p>对一条记录进行 UPDATE 操作时可以分为三种情况。第一种就是没有修改该记录的键值，并且更新后的列占用的存储空间没有发生变化，那么只需要在 B+树中定位该记录，然后获取该记录的 X 锁，最后完成修改操作即可。因此这个过程可以看作是一个获取 X 锁的锁定读。第二种就是没有修改该记录的键值，但是更新后至少有一个列占用的存储空间发生了变化，那么就需要在 B+树中定位该记录，然后获取该记录的 X 锁，接下来将该记录删除掉，最后再插入一条新的记录。这个定位记录的过程可以看作是一个获取 X 锁的锁定读，而接下来新插入的记录由 INSERT 操作提供的隐式锁来保护。第三种就是修改了该记录的键值，此时相当于在原记录上做了 DELETE 操作后又进行了一次 INSERT 操作。</p>
+<p>对于 INSERT 操作来说，新插入一条记录的操作会通过隐式锁来保护这条插入的记录在本事务提交之前不会被其他事务访问。</p>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/mysql/mysql-lock.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>

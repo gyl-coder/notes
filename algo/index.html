@@ -1,0 +1,1017 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>算法 — Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/algo/index.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/algo/index.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/algo/index.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/algo/index.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/algo/index.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/algo/index.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/algo/index.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/algo/index.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="算法 — Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="算法 — Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "api"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/algo/index.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/algo/index.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/algo/index.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/algo/index.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/algo/index.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/algo/index.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/algo/index.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/algo/index.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/algo/index.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      <!-- <div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <span>Special Sponsor</span>
+    <div>
+    <a href="https://autocode.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/autocode.svg" alt="Autocode">
+    </a>
+    </div>
+  </div>
+</div>
+
+ -->
+      
+        <!-- <h2>
+          
+          API
+          
+            <select class="version-select">
+              <option value="v3">3.x</option>
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+        </h2> -->
+        <ul class="menu-root">
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!-- 
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>Platinum Sponsors</span>
+    <div>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://retool.com/?utm_source=sponsor&utm_campaign=vue" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/retool.png" alt="Retool">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/ionic.png" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/nuxt.png" alt="Nuxt">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    Become a Sponsor
+  </a>
+</div>
+
+ -->
+
+
+<div class="content api with-sidebar ">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js">
+  </script>
+</div>
+
+
+    
+  
+  
+    <h1>算法</h1>
+  
+  
+    <p>CodeTop：  <a target="_blank" rel="noopener" href="https://codetop.cc/#/home">https://codetop.cc/#/home</a></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-rand10-using-rand7/">470. 用 Rand7() 实现 Rand10()</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">53. 最大子序和</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum/">112. 路径总和</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-ii/">113. 路径总和 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">141. 环形链表</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142. 环形链表 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">剑指 Offer 09. 用两个栈实现队列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-stack-using-queues/">225. 用队列实现栈</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-queue-using-stacks/">232. 用栈实现队列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/">剑指 Offer 31. 栈的压入、弹出序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-array/">189. 旋转数组</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300. 最长递增子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-harmonious-subsequence/">594. 最长和谐子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143. 最长公共子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">516. 最长回文子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-arithmetic-subsequence-of-given-difference/">1218. 最长定差子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/">673. 最长递增子序列的个数</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/">521. 最长特殊序列 Ⅰ</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-ii/">522. 最长特殊序列 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/">674. 最长连续递增序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/">718. 最长重复子数组</a></p>
+</li>
+</ul>
+<ul>
+<li><p><input disabled="" type="checkbox">  常用的限流算法有哪些？简述令牌桶算法原理</p>
+</li>
+<li><p><input disabled="" type="checkbox">  有序链表插入的时间复杂度是多少？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  实现快速排序</p>
+</li>
+<li><p><input disabled="" type="checkbox">  10亿个数中如何高效地找到最大的一个数以及最大的第 K 个数</p>
+</li>
+<li><p><input disabled="" type="checkbox">  AVL 树和红黑树有什么区别？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  给定一个包含 40亿 个无符号整数的大型文件，使用最多 1G 内存，对此文件进行排序</p>
+</li>
+<li><p><input disabled="" type="checkbox">  10亿条数据包括 id，上线时间，下线时间，请绘制每一秒在线人数的曲线图</p>
+</li>
+<li><p><input disabled="" type="checkbox">  如果通过一个不均匀的硬币得到公平的结果？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  Hash 表常见操作的时间复杂度是多少？遇到 Hash 冲突是如何解决的？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  使用递归及非递归两种方式实现快速排序</p>
+</li>
+<li><p><input disabled="" type="checkbox">  10亿个数中如何高效地找到最大的一个数以及最大的第 K 个数</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="141">
+<li>环形链表</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="146">
+<li>LRU 缓存机制</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="206">
+<li>反转链表</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="21">
+<li>合并两个有序链表</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  快速排序的空间复杂度是多少？时间复杂度的最好最坏的情况是多少，有哪些优化方案？</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="19">
+<li>删除链表的倒数第 N 个结点</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="53">
+<li>最大子序和</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="112">
+<li>路径总和</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  给定 100G 的 URL 磁盘数据，使用最多 1G 内存，统计出现频率最高的 Top K 个 URL</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="232">
+<li>用栈实现队列</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="470">
+<li>用 Rand7() 实现 Rand10()</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="215">
+<li>数组中的第K个最大元素</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="33">
+<li>搜索旋转排序数组</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="70">
+<li>爬楼梯</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="102">
+<li>二叉树的层序遍历</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="300">
+<li>最长递增子序列</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  常用的排序方式有哪些，时间复杂度是多少？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  AVL 树和红黑树有什么区别？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  两个 10G 大小包含 URL 数据的文件，最多使用 1G 内存，将这两个文件合并，并找到相同的 URL</p>
+</li>
+<li><p><input disabled="" type="checkbox">  多数元素 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="236">
+<li>二叉树的最近公共祖先</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="1114">
+<li>按序打印</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  剑指 Offer 10- II. 青蛙跳台阶问题</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="1143">
+<li>最长公共子序列</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="155">
+<li>最小栈</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="25">
+<li>K 个一组翻转链表</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="153">
+<li>寻找旋转排序数组中的最小值</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  简述布隆过滤器原理及其使用场景</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="3">
+<li>无重复字符的最长子串</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  合并两个有序数组 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="103">
+<li>二叉树的锯齿形层序遍历</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  64 匹马，8 个赛道，找出前 4 匹马最少需要比几次</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="81">
+<li>搜索旋转排序数组 II</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  给定一个包含 40 亿个无符号整数的大型文件，使用最多 1G 内存，对此文件进行排序</p>
+</li>
+<li><p><input disabled="" type="checkbox">  如何从一个数组输出随机数组（洗牌算法）</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="189">
+<li>旋转数组</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  10亿条数据包括 id，上线时间，下线时间，请绘制每一秒在线人数的曲线图</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="445">
+<li>两数相加 II</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  如何通过一个不均匀的硬币得到公平的结果？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉树的前序遍历 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  如何随机生成不重复的 10 个 100 以内的数字？</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="83">
+<li>删除排序链表中的重复元素</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  旋转图像 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  常用的限流算法有哪些？简述令牌桶算法原理</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="394">
+<li>字符串解码</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="142">
+<li>环形链表 II</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉树的后序遍历 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  简述你熟悉的几个排序算法以及优缺点</p>
+</li>
+<li><p><input disabled="" type="checkbox">  有序链表插入的时间复杂度是多少？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  给定一个 foo 函数，60%的概率返回0，40%的概率返回1，如何利用 foo 函数实现一个 50% 返回 0 的函数？</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="125">
+<li>验证回文串</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  两数相加 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="34">
+<li>在排序数组中查找元素的第一个和最后一个位置</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="179">
+<li>最大数</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  Hash 表常见操作的时间复杂度是多少？遇到 Hash 冲突是如何解决的？</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="128">
+<li>最长连续序列</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  堆排序的时间复杂度是多少？说几个堆排序的应用场景</p>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉树的中序遍历 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  一手顺子 (Leetcode 846)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  红黑树是怎么实现平衡的？它的优点是什么？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  按奇偶排序数组 II (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  翻转二叉树 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="105">
+<li>从前序与中序遍历序列构造二叉树</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="23">
+<li>合并K个升序链表</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="264">
+<li>丑数 II</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  手写冒泡排序</p>
+</li>
+<li><p><input disabled="" type="checkbox">  手写判断电话号码的正则表达式</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="69">
+<li>x 的平方根</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  如何实现大数运算</p>
+</li>
+<li><p><input disabled="" type="checkbox">  用队列实现栈 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="5">
+<li>最长回文子串</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="143">
+<li>重排链表</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="121">
+<li>买卖股票的最佳时机</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  从上到下打印二叉树 III (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  什么是排序算法中的稳定性？</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="4">
+<li>寻找两个正序数组的中位数</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉树的右视图 (Leetcode 199)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  翻转对 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  数字转换为中文 (例如 1008 = 一千零八)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  颜色分类 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  验证IP地址 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  1000 个苹果放在 10 个箱子里，保证 1-1000 中的任意数量的苹果都等于其中 N 个箱子苹果数量的总和，请问应该如何分配苹果在箱子中？</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="92">
+<li>反转链表 II</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  实现二分查找</p>
+</li>
+<li><p><input disabled="" type="checkbox">  岛屿的最大面积 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="210">
+<li>Course Schedule II</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  1000 台机器，每台机器 1000 个文件，每个文件存储了 10 亿个整数，如何找到其中最小的 1000 个值？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  实现归并排序</p>
+</li>
+<li><p><input disabled="" type="checkbox">  对角线遍历 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="54">
+<li>螺旋矩阵</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  验证二叉搜索树 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  搜索二维矩阵 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  有序数组转二叉搜索树 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  数组中的逆序对 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉树的直径 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  不稳定的排序算法有哪些？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  有效的括号 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  合并二叉树 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  不同路径 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  面试题 04.04. 检查平衡性</p>
+</li>
+<li><p><input disabled="" type="checkbox">  哪些排序算法是稳定排序？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  缺失的第一个正数 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  岛屿数量 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="146">
+<li>LRU Cache</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  全排列 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="56">
+<li>合并区间</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  第一个只出现一次的字符 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉树的最大深度 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  回文子串 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  简述内部排序以及外部排序的常见算法</p>
+</li>
+<li><p><input disabled="" type="checkbox">  移掉K位数字 (Leetcode 402)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  链表的中间结点 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  最小覆盖子串 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  最大栈 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  接雨水 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  扑克牌中的顺子 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉搜索树的第k大节点（剑指 Offer 54）</p>
+</li>
+<li><p><input disabled="" type="checkbox">  只出现一次的数字 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  移除元素 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  两数之和 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  整数反转 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  区间合并 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  相同的树 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  简述银行家算法</p>
+</li>
+<li><p><input disabled="" type="checkbox">  找零钱 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  二叉树的最大和 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  二进制反转 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  按权重随机选择 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  每秒有 5万个 QQ 号登陆，怎么找出每小时登录区间在 5-10次 的所有 QQ 号</p>
+</li>
+<li><p><input disabled="" type="checkbox">  如何获得抖音小视频每日点击量最高的 10个 视频</p>
+</li>
+<li><p><input disabled="" type="checkbox">  反转字符串 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  两个文件包含无序的数字，数字的大小范围是0-500w左右。如何求两个文件中的重复的数据？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  1000 盏灯开着，1000 个人标号 1~1000 依次进入，每个人进去按一下自己标号倍数的开关，最后哪些灯亮着？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  对称二叉树 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  和为 K 的子数组 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  迪杰斯特拉算法 和 A*算法区别</p>
+</li>
+<li><p><input disabled="" type="checkbox">  拓扑排序是唯一的吗？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  最长和谐子序列 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  手写无锁队列</p>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="14">
+<li>最长公共前缀</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox"> </p>
+<ol start="165">
+<li>比较版本号</li>
+</ol>
+</li>
+<li><p><input disabled="" type="checkbox">  统计封闭岛屿的数目 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  切棍子的最小成本 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  删除注释 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  序列化和反序列化二叉搜索树 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  分发糖果 (Leetcode)</p>
+</li>
+<li><p><input disabled="" type="checkbox">  随机数索引 (Leetcode)</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-rand10-using-rand7/">470. 用 Rand7() 实现 Rand10()</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">53. 最大子序和</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum/">112. 路径总和</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-ii/">113. 路径总和 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">141. 环形链表</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142. 环形链表 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">剑指 Offer 09. 用两个栈实现队列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-stack-using-queues/">225. 用队列实现栈</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-queue-using-stacks/">232. 用栈实现队列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/">剑指 Offer 31. 栈的压入、弹出序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-array/">189. 旋转数组</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300. 最长递增子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-harmonious-subsequence/">594. 最长和谐子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143. 最长公共子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">516. 最长回文子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-arithmetic-subsequence-of-given-difference/">1218. 最长定差子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/">673. 最长递增子序列的个数</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/">521. 最长特殊序列 Ⅰ</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-ii/">522. 最长特殊序列 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/">674. 最长连续递增序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/">718. 最长重复子数组</a></p>
+</li>
+<li><p><input disabled="" type="checkbox">  常用的限流算法有哪些？简述令牌桶算法原理</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a59c13e70582">https://www.jianshu.com/p/a59c13e70582</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015967922">https://segmentfault.com/a/1190000015967922</a></li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  实现快速排序</p>
+</li>
+<li><p><input disabled="" type="checkbox">  10亿个数中如何高效地找到最大的一个数以及最大的第 K 个数</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1154735">https://cloud.tencent.com/developer/article/1154735</a></li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  给定一个包含 40亿 个无符号整数的大型文件，使用最多 1G 内存，对此文件进行排序</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904003998842887">https://juejin.cn/post/6844904003998842887</a></li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  10亿条数据包括 id，上线时间，下线时间，请绘制每一秒在线人数的曲线图</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mermaidz/article/details/11214851">https://blog.csdn.net/mermaidz/article/details/11214851</a></li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  AVL 树和红黑树有什么区别？</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010899985/article/details/80981053">https://blog.csdn.net/u010899985/article/details/80981053</a></li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  如果通过一个不均匀的硬币得到公平的结果？</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.gocalf.com/unbalanced-coin">https://blog.gocalf.com/unbalanced-coin</a></li>
+</ul>
+</li>
+<li><p><input disabled="" type="checkbox">  Hash 表常见操作的时间复杂度是多少？遇到 Hash 冲突是如何解决的？</p>
+<ul>
+<li>O(1)</li>
+</ul>
+</li>
+</ul>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/algo/index.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>

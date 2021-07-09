@@ -1,0 +1,525 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>Mysql MVCC — Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/mysql/mysql-mvcc.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/mysql/mysql-mvcc.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/mysql/mysql-mvcc.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/mysql/mysql-mvcc.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/mysql/mysql-mvcc.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/mysql/mysql-mvcc.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/mysql/mysql-mvcc.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/mysql/mysql-mvcc.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mysql MVCC — Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mysql MVCC — Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "api"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/mysql/mysql-mvcc.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/mysql/mysql-mvcc.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      <!-- <div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <span>Special Sponsor</span>
+    <div>
+    <a href="https://autocode.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/autocode.svg" alt="Autocode">
+    </a>
+    </div>
+  </div>
+</div>
+
+ -->
+      
+        <!-- <h2>
+          
+          API
+          
+            <select class="version-select">
+              <option value="v3">3.x</option>
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+        </h2> -->
+        <ul class="menu-root">
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!-- 
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>Platinum Sponsors</span>
+    <div>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://retool.com/?utm_source=sponsor&utm_campaign=vue" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/retool.png" alt="Retool">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/ionic.png" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="/images/nuxt.png" alt="Nuxt">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    Become a Sponsor
+  </a>
+</div>
+
+ -->
+
+
+<div class="content api with-sidebar ">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js">
+  </script>
+</div>
+
+
+    
+  
+  
+    <h1>Mysql MVCC</h1>
+  
+  
+    <p>多版本并发控制(Multi-Version Concurrency Control, MVCC) ，是MySQL中基于乐观锁理论实现隔离级别的方式，用于实现读已提交和可重复读取隔离级别的实现。</p>
+<p>数据库中为了实现高并发的数据访问，对数据进行多版本处理，并通过事务的可见性来保证事务能看到自己应该看到的数据版本。多版本控制很巧妙地将稀缺资源的独占互斥转换为并发，大大提高了数据库的吞吐量及读写性能。 </p>
+<p>MVCC最大的优势：读不加锁，读写不冲突。在读多写少的系统应用中，读写不冲突是非常重要的，极大的增加了系统的并发性能</p>
+<h2 id="MVCC-实现"><a href="#MVCC-实现" class="headerlink" title="MVCC 实现"></a>MVCC 实现</h2><p>在 MVCC 并发控制中，读操作可以分为两类: 快照读（Snapshot Read）与当前读 （Current Read）。</p>
+<p>MVCC的实现，是通过保存数据在某个时间点的快照来实现的。每个事务读到的数据项都是一个历史快照，被称为快照读，不同于当前读的是快照读读到的数据可能不是最新的，但是快照隔离能使得在整个事务看到的数据都是它启动时的数据状态。而写操作不覆盖已有数据项，而是创建一个新的版本，直至所在事务提交时才变为可见。</p>
+<p><strong>当前读</strong></p>
+<p>像select lock in share mode(共享锁), select for update ; update, insert ,delete(排他锁)这些操作都是一种当前读，为什么叫当前读？就是它读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。</p>
+<p><strong>快照读</strong></p>
+<p>读取的是记录的快照版本（有可能是历史版本），不用加锁。</p>
+<p>像不加锁的select操作就是快照读，即不加锁的非阻塞读；快照读的前提是隔离级别不是未提交读和串行化级别，因为未提交读总是读取最新的数据行，而不是符合当前事务版本的数据行。而串行化则会对所有读取的行都加锁</p>
+<p>MVCC 使大多数读操作都可以不用加锁，这样设计使得读数据操作很简单，性能很好，并且也能保证只会读取到符合标准的行。不足之处是每行记录都需要额外的存储空间，需要做更多的行检查工作，以及一些额外的维护工作。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><blockquote>
+<p>系统版本号：一个递增的数字，每开始一个新的事务，系统版本号就会自动递增。</p>
+<p>事务版本号：事务开始时的系统版本号。</p>
+</blockquote>
+<p>MVCC是通过在每行记录后面保存两个隐藏的列：DB_TRX_ID（trx_id）和 DB_ROLL_PTR（roll_pointer）来实现的。每次事务对某条记录进行修改时，都会把该事务的事务 ID 赋值给 trx_id 隐藏列，同时还会把该条记录的旧版本写入到 undo log 中，而这个 roll_pointer 就相当于一个指针，通过它可以找到该记录修改前的信息。</p>
+<blockquote>
+<p>在这里需要着重说明下事务id，当我们开启一个事务，并不会马上获得事务id，哪怕我们在事务中执行select语句，也是没有事务id的（事务id为0），只有执行insert/update/delete语句才能获得事务id，这一点尤为重要。</p>
+<h5 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h5><p>select时读取数据的规则为：创建版本号&lt;=当前事务版本号</p>
+<p>删除版本号为空或&gt;当前事务版本号保证了至少在该事务开启之前数据没有被删除，是应该被查出来的数据。</p>
+<h5 id="INSERT"><a href="#INSERT" class="headerlink" title="INSERT"></a>INSERT</h5><p>insert时将当前的系统版本号赋值给创建版本号字段。</p>
+<h5 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h5><p>插入一条新纪录，保存当前事务版本号为行创建版本号，同时保存当前事务版本号到原来删除的行，实际上这里的更新是通过delete和insert实现的。</p>
+<h5 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h5><p>删除时将当前的系统版本号赋值给删除版本号字段，标识该行数据在那一个事务中会被删除，即使实际上在位commit时该数据没有被删除。根据select的规则后开启懂数据也不会查询到该数据。</p>
+</blockquote>
+<h3 id="版本链"><a href="#版本链" class="headerlink" title="版本链"></a>版本链</h3><p>每次对记录进行改动，都会写一条 undo log，同时每条 undo log 也都有一个 old_trx_id 属性和一个 old_roll_pointer 属性（INSERT 操作对应的 undo log 没有这些属性，因为该记录没有更早的版本）用于记录自身版本和上一个 undo log 的回滚段指针。最终这些 undo log 就连接起来形成了一个链表，这个链表称之为版本链，版本链的头节点就是当前记录的最新值。</p>
+<p><img src="../img/mysql/15.png"></p>
+<h3 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h3><p>对于使用 READ UNCOMMITTED 隔离级别的事务来说，由于可以读到未提交事务修改过的记录，因此直接读取记录的最新版本即可。对于使用 SERIALIZABLE 隔离级别的事务来说，InnoDB 规定必须使用加锁的方式来访问记录。而对于使用 READ COMMITTED 和 REPEATABLE READ 隔离级别的事务来说，如果一个事务修改了记录但尚未提交，其他事务是不能读取记录的最新版本的。此时就需要判断版本链中的哪个版本是可以被当前事务访问的，为此 InnoDB 的设计人员提出了 ReadView 的概念。</p>
+<table>
+<thead>
+<tr>
+<th align="left">ReadView 组成部分</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">m_ids</td>
+<td align="left">在生成 ReadView 时当前系统中活跃的读写事务（区别于只读事务，默认的事务就是读写事务）的事务 ID 列表</td>
+</tr>
+<tr>
+<td align="left">min_trx_id</td>
+<td align="left">在生成 ReadView 时当前系统中活跃的读写事务中最小的事务 ID，也就是 m_ids 中的最小值</td>
+</tr>
+<tr>
+<td align="left">max_trx_id</td>
+<td align="left">系统应该给下一个事务分配的 ID 值</td>
+</tr>
+<tr>
+<td align="left">creator_trx_id</td>
+<td align="left">生成该 ReadView 的事务 ID 值</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>只有在对记录做改动（INSERT、DELETE、UPDATE）时才会为事务分配事务 ID，否则在一个只读事务中的事务 ID 默认都是 0。</p>
+</blockquote>
+<p>有了这个 ReadView，这样在访问某条记录时，只需要按照以下规则判断记录的某个版本是否可见：</p>
+<ol>
+<li><p>被访问版本的 trx_id 与 ReadView 中的 creator_trx_id 相同，说明当前事务在访问自己修改过的记录，因此该版本可以被当前事务访问。</p>
+</li>
+<li><p> 被访问版本的 trx_id 小于 ReadView 中的 min_trx_id 值，说明该版本的事务在当前事务生成 ReadView 前已经提交，所以该版本可以被当前事务访问。</p>
+</li>
+<li><p>被访问版本的 trx_id 在 min_trx_id 与 max_trx_id 之间，说明需要判断 trx_id 值是否在 m_ids 列表中，如果在，说明创建 ReadView 的事务还是活跃的，该版本不可以被当前事务访问；如果不在，说明创建 ReadView 时生成该版本的事务已经提交，那么该版本可以被当前事务访问。</p>
+</li>
+<li><p>被访问版本的 trx_id 大于或等于 ReadView 中的 max_trx_id 值，说明生成该版本的事务在当前事务生成 ReadView 之后才开启，所以该版本不可以被当前事务访问。</p>
+</li>
+</ol>
+<p>在 MySQL 中，READ COMMITTED 隔离级别与 REPEATABLE READ 隔离级别的一个很大的区别就是它们生成 ReadView 的时机不同。</p>
+<ul>
+<li><p>在读提交隔离级别中，每次读取数据前都会生成一个 ReadView。</p>
+</li>
+<li><p>在使用 REPEATABLE READ 隔离级别的事务中，只会在第一次执行查询语句时生成一个 ReadView，之后该事务中所有的查询操作都会重复使用这个 ReadView。</p>
+</li>
+</ul>
+<p>为了方便说明，这里先创建一张表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> hero (</span><br><span class="line">    number <span class="type">INT</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    country <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (number)</span><br><span class="line">) Engine<span class="operator">=</span>InnoDB CHARSET<span class="operator">=</span>utf8;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> hero <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;刘备&#x27;</span>, <span class="string">&#x27;蜀&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="READ-COMMITTED"><a href="#READ-COMMITTED" class="headerlink" title="READ COMMITTED"></a>READ COMMITTED</h4><p><strong>在读提交隔离级别中，每次读取数据前都会生成一个 ReadView。</strong></p>
+<p>假如现在系统中有两个事务 ID 分别为 100、200 的事务在运行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 事务 100</span><br><span class="line">BEGIN;</span><br><span class="line">UPDATE hero SET name &#x3D; &#39;关羽&#39; WHERE number &#x3D; 1;</span><br><span class="line">UPDATE hero SET name &#x3D; &#39;张飞&#39; WHERE number &#x3D; 1;</span><br><span class="line"></span><br><span class="line">-- 事务 200</span><br><span class="line">BEGIN;</span><br><span class="line">-- 更新了其他表的一些记录，这里这么做是因为只有修改操作才会生成事务 ID</span><br></pre></td></tr></table></figure>
+
+<p>此时 hero 表中主键值为 1 的记录的版本链类似下面这样：</p>
+<p><img src="../img/mysql/16.png"></p>
+<p>假设此时有一个 READ COMMITTED 隔离级别的事务开始执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BEGIN;</span><br><span class="line">-- 事务 100、200 还未提交，得到的是刘备的信息</span><br><span class="line">SELECT * FROM hero WHERE number &#x3D; 1;</span><br></pre></td></tr></table></figure>
+
+<p>那么这个查询的执行过程大概是这样：</p>
+<p>首先在执行 SELECT 语句时会生成一个 ReadView，m_ids 列表的内容就是 <code>[100, 200]</code>，min_trx_id 为 100，而 max_trx_id 为 201，creator_trx_id 则为 0。</p>
+<p>然后开始从版本链中寻找可见的记录，由于最新版本的 trx_id 为 100，处于 min_trx_id 与 max_trx_id 之间，而同时 trx_id 为 100 的事务还处于活跃状态，所以该版本不能被当前事务访问。那么此时就根据 roll_pointer 跳到下一个版本中。同样的，这个版本的 trx_id 值也是 100，因此继续到下一个版本。这个版本中的 trx_id 为 80，小于 ReadView 中的 min_trx_id，因此这个版本是符合要求的，所以返回的就是该版本的信息。</p>
+<p>接下来我们把事务 100 提交，然后在事务 200 中更新一下记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 事务 100</span><br><span class="line">BEGIN;</span><br><span class="line">UPDATE hero SET name &#x3D; &#39;关羽&#39; WHERE number &#x3D; 1;</span><br><span class="line">UPDATE hero SET name &#x3D; &#39;张飞&#39; WHERE number &#x3D; 1;</span><br><span class="line">COMMIT;</span><br><span class="line"></span><br><span class="line">-- 事务 200</span><br><span class="line">BEGIN;</span><br><span class="line">-- 更新了其他表的一些记录，这里这么做是因为只有修改操作才会生成事务 ID</span><br><span class="line">UPDATE hero SET name &#x3D; &#39;赵云&#39; WHERE number &#x3D; 1;</span><br><span class="line">UPDATE hero SET name &#x3D; &#39;诸葛亮&#39; WHERE number &#x3D; 1;</span><br></pre></td></tr></table></figure>
+
+<p>此时的 hero 表中，主键值为 1 的记录的版本链类似下面这样：</p>
+<p><img src="../img/mysql/17.png"></p>
+<p>然后我们再到刚才的事务中继续查找主键值为 1 的记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BEGIN;</span><br><span class="line">-- 事务 100、200 还未提交，得到的是刘备的信息</span><br><span class="line">SELECT * FROM hero WHERE number &#x3D; 1;</span><br><span class="line"></span><br><span class="line">-- 再次查询，此时事务 100 已经提交，事务 200 还未提交，得到的是张飞的信息</span><br><span class="line">SELECT * FROM hero WHERE number &#x3D; 1;</span><br></pre></td></tr></table></figure>
+
+<p>这个查询的执行过程大概是这样的：</p>
+<p>首先<strong>在执行查询时会再次生成一个 ReadView</strong>，m_ids 的值为 <code>[200]</code>，min_trx_id 变成了 200，而 max_trx_id 为 201，creator_trx_id 为 0。</p>
+<p>然后从版本链中查询可见的记录，最新版本记录的 trx_id 为 200，在事务活跃列表中，因此不符合规则。以此类推，只有 trx_id 为 100、name 列的内容为“张飞”的版本符合规则。</p>
+<h4 id="REPEATABLE-READ"><a href="#REPEATABLE-READ" class="headerlink" title="REPEATABLE READ"></a>REPEATABLE READ</h4><p>与 READ COMMITTED 隔离级别不同，在使用 REPEATABLE READ 隔离级别的事务中，只会在第一次执行查询语句时生成一个 ReadView，之后该事务中所有的查询操作都会重复使用这个 ReadView。</p>
+<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h2><p>其实在 InnoDB 中，读操作可以分为两种：快照读（Snapshot Read/Consistent Read）和当前读（Current Read/Locking Read）。</p>
+<p>快照读就是简单的 SELECT 操作，不需要加锁，读取的是当前记录的快照。</p>
+<p>而当前读则是特殊的读操作，读取的是记录的最新数据，包括隐含当前读逻辑的插入、更新和删除，以及一些手工添加锁的读，比如 <code>SELECT ... FOR UPDATE</code>、<code>SELECT ... LOCK IN SHARE MODE</code>，它们都属于当前读，需要加锁。</p>
+<p><strong>对于快照读来说，不存在幻读的问题；而对于当前读来说，会出现幻读的问题。</strong></p>
+<p>如果我们的项目中需要解决幻读的话也有两个办法：</p>
+<ul>
+<li>使用串行化读的隔离级别</li>
+<li>MVCC+next-key locks：next-key locks由record locks(索引加锁) 和 gap locks(间隙锁，每次锁住的不光是需要使用的数据，还会锁住这些数据附近的数据)</li>
+</ul>
+<p>实际上很多的项目中是不会使用到上面的两种方法的，串行化读的性能太差，而且其实幻读很多时候是我们完全可以接受的。</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903799534911496">https://juejin.cn/post/6844903799534911496</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.nekolr.com/2020/07/14/MySQL%20MVCC%20%E5%8E%9F%E7%90%86/">https://blog.nekolr.com/2020/07/14/MySQL%20MVCC%20%E5%8E%9F%E7%90%86/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/CodeBear/p/12710670.html">https://www.cnblogs.com/CodeBear/p/12710670.html</a></p>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/mysql/mysql-mvcc.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>

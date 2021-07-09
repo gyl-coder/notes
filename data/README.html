@@ -1,0 +1,654 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="with-v3-banner">
+  <head>
+    <title>Notes</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Notes - Personal review warehouse">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/data/README.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/data/README.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/data/README.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/data/README.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/data/README.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/data/README.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/data/README.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/data/README.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Notes">
+    <meta property="og:description" content="Notes - Personal review warehouse">
+    <meta property="og:image" content="https://vuejs.org//images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Notes">
+    <meta name="twitter:description" content="Notes - Personal review warehouse">
+    <meta name="twitter:image" content="https://vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.png" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = ""
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-1', 'vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body class="docs">
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <span class="hidden-sm">Welcome to yanliang's notes</span>
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.png" alt="vue logo">
+      <span>Notes - personal review warehouse</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/data/README.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/data/README.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/data/README.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/data/README.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/data/README.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/data/README.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/data/README.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/data/README.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/data/README.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  <div class="sidebar">
+    <ul class="main-menu">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-sidebar" class="search-query st-default-search-input" aria-label="Search">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">⭐️Java</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>Documentation</h4></li>
+    <li>
+      <ul>
+        <li><a href="/java/oop/" class="nav-link">OOP</a></li>
+        <li><a href="/v2/api" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide" class="nav-link">Style Guide</a></li>
+        <li><a href="/v2/examples" class="nav-link">Examples</a></li>
+        <li><a href="/v2/cookbook" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">网络</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/network">Review List</a></li>
+        <li><a href="/network/tcp/">🔥TCP</a></li>
+        <li><a href="/network/http/">HTTP</a></li>
+        <li><a href="/network/ip/">IP</a></li>
+      </ul>
+    </li>
+    <li><h4>Video Courses</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/os/">操作系统</a>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link">数据库</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <!-- <li><h4>Documentation</h4></li> -->
+    <li>
+      <ul>
+        <li><a href="/mysql">Review List</a></li>
+        <li><a href="/mysql/mysql-index">索引相关</a></li>
+        <li><a href="/mysql/mysql-index-operation">索引操作相关</a></li>
+        <li><a href="/mysql/mysql-lock">锁相关</a></li>
+        <li><a href="/mysql/mysql-logs">日志相关</a></li>
+        <li><a href="/mysql/mysql-mvcc">MVCC</a></li>
+        <li><a href="/mysql/mysql-trans">事务相关</a></li>
+        <li><a href="/mysql/other">其他</a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="/algo/">算法</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">Resources</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">Partners</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">Themes</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">Browse packages for Vue</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">Support Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">One-time Donations</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">Recurring Pledges</a></li>
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T-Shirt Shop</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">Translations</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/data/README.html" class="nav-link">中文</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/data/README.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/data/README.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/data/README.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/data/README.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/data/README.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/data/README.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/data/README.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/data/README.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+
+    </ul>
+  </div>
+
+<div class="content  ">
+  <p class="tip warning v3-warning">
+    Welcome to yanliang's notes.
+  </p>
+
+  
+  
+  
+    <h1 id="复习列表"><a href="#复习列表" class="headerlink" title="复习列表"></a>复习列表</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> String 类能不能被继承？为什么？</li>
+<li><input checked="" disabled="" type="checkbox"> 实现单例设计模式（懒汉，饿汉）</li>
+<li><input checked="" disabled="" type="checkbox"> == 和 equals() 的区别？</li>
+<li><input disabled="" type="checkbox"> 简述 BIO, NIO, AIO 的区别</li>
+<li><input checked="" disabled="" type="checkbox"> 简述 Java 的反射机制及其应用场景</li>
+<li><input checked="" disabled="" type="checkbox"> 什么是内存泄漏，怎么确定内存泄漏？</li>
+<li><input checked="" disabled="" type="checkbox"> 简述动态代理与静态代理</li>
+<li><input checked="" disabled="" type="checkbox"> java的异常体系介绍一下</li>
+<li><input checked="" disabled="" type="checkbox"> Java 是如何实现线程安全的，哪些数据结构是线程安全的？</li>
+<li><input checked="" disabled="" type="checkbox"> Java 中接口和抽象类的区别</li>
+<li><input checked="" disabled="" type="checkbox"> hashcode 和 equals 方法的联系</li>
+<li><input checked="" disabled="" type="checkbox"> 简述常见的工厂模式以及单例模式的使用场景</li>
+<li><input checked="" disabled="" type="checkbox"> 简述生产者消费者模型</li>
+<li><input checked="" disabled="" type="checkbox"> Java 如何高效进行数组拷贝</li>
+<li><input disabled="" type="checkbox"> 成员变量和方法的区别？</li>
+<li><input disabled="" type="checkbox"> </li>
+</ul>
+<h2 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> volatile 关键字解决了什么问题，它的实现原理是什么？</li>
+<li><input checked="" disabled="" type="checkbox"> synchronized 关键字底层是如何实现的？它与 Lock 相比优缺点分别是什么？</li>
+<li><input checked="" disabled="" type="checkbox"> 简述 Synchronized，Volatile，可重入锁（ReetrantLock） 的不同使用场景及优缺点？</li>
+<li><input checked="" disabled="" type="checkbox"> ThreadLocal 实现原理是什么？</li>
+<li><input checked="" disabled="" type="checkbox"> Java 常见锁有哪些？ReetrantLock 是怎么实现的？</li>
+<li><input disabled="" type="checkbox"> Java 线程和操作系统的线程是怎么对应的？Java线程是怎样进行调度的?</li>
+<li><input checked="" disabled="" type="checkbox"> Java 中 sleep() 与 wait() 的区别</li>
+<li><input checked="" disabled="" type="checkbox"> Java 线程池里的 arrayblockingqueue 与 linkedblockingqueue 的使用场景和区别</li>
+<li><input checked="" disabled="" type="checkbox"> 线程池是如何实现的？简述线程池的任务策略</li>
+<li><input checked="" disabled="" type="checkbox"> Java 线程间有多少通信方式？</li>
+<li><input checked="" disabled="" type="checkbox"> CAS 实现原理是什么？</li>
+<li><input checked="" disabled="" type="checkbox"> 谈谈对AQS的理解</li>
+<li><input disabled="" type="checkbox"> 简述乐观锁以及悲观锁的区别以及使用场景</li>
+<li><input disabled="" type="checkbox"> 什么情况下会发生死锁，如何解决死锁？</li>
+</ul>
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><ul>
+<li><p><input checked="" disabled="" type="checkbox">  Java 容器有哪些？ 哪些是同步容器？ 哪些是并发容器？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  HashMap 与 ConcurrentHashMap 的实现原理是怎样的？ConcurrentHashMap 是如何保证线程安全的？</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  集合类中的 List 和 Map 的线程安全版本是什么，如何保证线程安全的？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  简述 HashMap 和 TreeMap 的实现原理以及常见操作的时间复杂度</p>
+</li>
+<li><p><input disabled="" type="checkbox">  简述 ArrayList 与 LinkedList 的底层实现以及常见操作的时间复杂度</p>
+</li>
+<li><p><input disabled="" type="checkbox">  hashmap 和 hashtable 的区别是什么？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  HashMap 实现原理，为什么使用红黑树？</p>
+</li>
+<li><p><input disabled="" type="checkbox">  hashMap 1.7 / 1.8 的实现区别</p>
+</li>
+</ul>
+<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><ul>
+<li><input disabled="" type="checkbox"> Java 中垃圾回收机制中如何判断对象需要回收？常见的 GC 回收算法有哪些？</li>
+<li><input disabled="" type="checkbox"> 简述 JVM 的内存模型 JVM 内存是如何对应到操作系统内存的？</li>
+<li><input disabled="" type="checkbox"> JVM 中内存模型是怎样的，简述新生代与老年代的区别？</li>
+<li><input disabled="" type="checkbox"> Java 类的加载流程是怎样的？什么是双亲委派机制？</li>
+<li><input disabled="" type="checkbox"> JVM 是怎么去调优的？简述过程和调优的结果</li>
+<li><input disabled="" type="checkbox"> </li>
+</ul>
+<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>Kafka 发送消息是如何保证可靠性的？</p>
+<p><a target="_blank" rel="noopener" href="https://gyl-coder.top/kafka/kafka-concept/">Kafka中的基本概念</a></p>
+<p><a target="_blank" rel="noopener" href="https://gyl-coder.top/kafka/kafka-concept/">Kafka中的ISR、AR又代表什么？ISR的伸缩又指什么？</a></p>
+<p><a target="_blank" rel="noopener" href="https://gyl-coder.top/kafka/kafka-concept/">Kafka中的HW、LEO、LSO等分别代表什么？</a></p>
+<p><a target="_blank" rel="noopener" href="https://gyl-coder.top/kafka/kafka-reliability/">kafka如何保证数据可靠性和数据一致性</a></p>
+<p><a target="_blank" rel="noopener" href="https://gyl-coder.top/kafka/kafka-rebalance/">Kafka Rebalance机制分析</a></p>
+<p><a target="_blank" rel="noopener" href="https://gyl-coder.top/kafka/kafka-topic-manage/">kafka 主题管理</a></p>
+<p><a target="_blank" rel="noopener" href="https://gyl-coder.top/kafka/kafka-partition-alocation/">Kafka有哪几处地方有分区分配的概念？简述大致的过程及原理</a></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>简述一致性哈希算法的实现方式及原理</p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><ul>
+<li><input disabled="" type="checkbox"> 简述 TCP 三次握手以及四次挥手的流程。为什么需要三次握手以及四次挥手？</li>
+<li><input disabled="" type="checkbox"> RestFul 与 RPC 的区别是什么？RestFul 的优点在哪里？</li>
+<li><input disabled="" type="checkbox"> RestFul 是什么？RestFul 请求的 URL 有什么特点？</li>
+<li><input disabled="" type="checkbox"> 简述 RPC 的调用过程</li>
+<li><input disabled="" type="checkbox"> HTTP 与 HTTPS 有哪些区别？</li>
+<li><input disabled="" type="checkbox"> 简述 HTTPS 的加密与认证过程</li>
+<li><input disabled="" type="checkbox"> 从输入 URL 到展现页面的全过程？</li>
+<li><input disabled="" type="checkbox"> TCP 怎么保证可靠传输？</li>
+<li><input disabled="" type="checkbox"> TCP 与 UDP 在网络协议中的哪一层，他们之间有什么区别？</li>
+<li><input disabled="" type="checkbox"> TCP 中常见的拥塞控制算法有哪些？</li>
+<li><input disabled="" type="checkbox"> DNS 查询服务器的基本流程是什么？DNS 劫持是什么？</li>
+<li><input disabled="" type="checkbox"> Cookie 和 Session 的关系和区别是什么？</li>
+<li><input disabled="" type="checkbox"> 简述 JWT 的原理和校验机制</li>
+<li><input disabled="" type="checkbox"> HTTP 的方法有哪些？</li>
+<li><input disabled="" type="checkbox"> 简述常见的 HTTP 状态码的含义（301，304，401，403）</li>
+<li><input disabled="" type="checkbox"> TCP的拥塞控制具体是怎么实现的？UDP有拥塞控制吗？</li>
+<li><input disabled="" type="checkbox"> 简述 OSI 七层模型，TCP，IP 属于哪一层？</li>
+<li><input disabled="" type="checkbox"> 什么是跨域，什么情况下会发生跨域请求？</li>
+<li><input disabled="" type="checkbox"> 简述 WebSocket 是如何进行传输的</li>
+<li><input disabled="" type="checkbox"> 从系统层面上，UDP如何保证尽量可靠？</li>
+<li><input disabled="" type="checkbox"> 简述 HTTP 1.0，1.1，2.0 的主要区别</li>
+<li><input disabled="" type="checkbox"> 简述 TCP 的 TIME_WAIT</li>
+<li><input disabled="" type="checkbox"> 简述 TCP 滑动窗口以及重传机制</li>
+<li><input disabled="" type="checkbox"> TCP 四次挥手的时候 CLOSE_WAIT 的话怎么处理？</li>
+<li><input disabled="" type="checkbox"> TCP 的 keepalive 了解吗？说一说它和 HTTP 的 keepalive 的区别？</li>
+<li><input disabled="" type="checkbox"> HTTP 的方法有哪些？</li>
+<li><input disabled="" type="checkbox"> 什么是 TCP 粘包和拆包？</li>
+<li><input disabled="" type="checkbox"> TCP四次挥手过程以及所处状态，为什么还需要有 time_wait？</li>
+<li><input disabled="" type="checkbox"> 简述 TCP 协议的延迟 ACK 和累计应答</li>
+<li><input disabled="" type="checkbox"> 简述对称与非对称加密的概念</li>
+<li><input disabled="" type="checkbox"> 什么是中间人攻击？如何防止攻击？</li>
+<li><input disabled="" type="checkbox"> TCP 中 SYN 攻击是什么？如何防止？</li>
+<li><input disabled="" type="checkbox"> TCP 四次挥手的时候 CLOSE_WAIT 的话怎么处理？</li>
+<li><input disabled="" type="checkbox"> 为什么需要序列化？有什么序列化的方式？</li>
+<li><input disabled="" type="checkbox"> </li>
+</ul>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
+<li><input disabled="" type="checkbox"> Spring mvc 流程</li>
+<li><input disabled="" type="checkbox"> 简述 Spring AOP 的原理</li>
+<li><input disabled="" type="checkbox"> 简述 Spring 的初始化流程</li>
+</ul>
+<h2 id="手写"><a href="#手写" class="headerlink" title="手写"></a>手写</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 手写生产者消费者模型</li>
+</ul>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-rand10-using-rand7/">470. 用 Rand7() 实现 Rand10()</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">53. 最大子序和</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">21. 合并两个有序链表</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum/">112. 路径总和</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-ii/">113. 路径总和 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle/">141. 环形链表</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">142. 环形链表 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/">剑指 Offer 09. 用两个栈实现队列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-stack-using-queues/">225. 用队列实现栈</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-queue-using-stacks/">232. 用栈实现队列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/">剑指 Offer 31. 栈的压入、弹出序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-array/">189. 旋转数组</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300. 最长递增子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-harmonious-subsequence/">594. 最长和谐子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143. 最长公共子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/">516. 最长回文子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-arithmetic-subsequence-of-given-difference/">1218. 最长定差子序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/">673. 最长递增子序列的个数</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/">521. 最长特殊序列 Ⅰ</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-uncommon-subsequence-ii/">522. 最长特殊序列 II</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/">674. 最长连续递增序列</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray/">718. 最长重复子数组</a></p>
+</li>
+</ul>
+<ul>
+<li><input disabled="" type="checkbox"> 常用的限流算法有哪些？简述令牌桶算法原理</li>
+<li><input disabled="" type="checkbox"> 有序链表插入的时间复杂度是多少？</li>
+<li><input disabled="" type="checkbox"> 实现快速排序</li>
+<li><input disabled="" type="checkbox"> 10亿个数中如何高效地找到最大的一个数以及最大的第 K 个数</li>
+<li><input disabled="" type="checkbox"> AVL 树和红黑树有什么区别？</li>
+<li><input disabled="" type="checkbox"> 给定一个包含 40亿 个无符号整数的大型文件，使用最多 1G 内存，对此文件进行排序</li>
+<li><input disabled="" type="checkbox"> 10亿条数据包括 id，上线时间，下线时间，请绘制每一秒在线人数的曲线图</li>
+<li><input disabled="" type="checkbox"> 如果通过一个不均匀的硬币得到公平的结果？</li>
+<li><input disabled="" type="checkbox"> Hash 表常见操作的时间复杂度是多少？遇到 Hash 冲突是如何解决的？</li>
+</ul>
+<h2 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h2><h3 id="幸福里"><a href="#幸福里" class="headerlink" title="幸福里"></a>幸福里</h3><h4 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h4><ul>
+<li>现在要做个分布式自增计数器，要怎么写？要无锁的方案？</li>
+<li>老鼠吃毒药？</li>
+<li>双栈实现队列？要最优的。</li>
+<li>线程的上下文是什么、进程的上下文是什么<br>流量控制用的协议，拥塞控制用的协议（不知道啥协议，讲了下原理）<br>mysql的幻读，怎么解决幻读<br>mysql怎么提高效率（索引是有效的）<br>二叉树找第k大怎么做，空间复杂度多少<br>用快排做topk怎么做，时间复杂度怎么算<br>二叉搜索树找第k大怎么做，空间复杂度多少</li>
+</ul>
+<p>3.a.jd.com能否共享jd.com的Cookie？a. jd.com和b.jd.com呢？<br>4.TCP如何保证有序传输？<br>5.TCP的滑动窗口如何实现的？  答：报文中有的窗口字段表示窗口的大小，请求和响应窗口大小一增一减表示窗口的滑动。<br>6.Java多线程安全问题是什么？如何避免？<br>7.进程通信方式。<br>8.JVM栈和堆都是存放哪些内容的？<br>9.讲几个你熟悉的HTTP方法。<br>10.问几个HTTP状态码表示的意思， 201，302，401，405，504。<br>11.数据库事务特性，分别表示的意思。<br>12.MySQL的隔离级别，可重复读怎么解决幻读问题？<br>13. MySQL的B+ Tree索引有什么优势？<br>14.Redis的数据类型， ZSET的底层数据结构是什么？<br>15. Redis除了定期删除，还有什么处理key的方式？<br>16.Kafka如何保证有序性？<br>17.Linux查看大文件的头10行的命令，具体到参数？<br>18.Cookie和Session的区别。<br>剑指Offer48.最长不含重复字符的子字符串<br>作者：windwj000<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/629209">https://www.nowcoder.com/discuss/629209</a><br>来源：牛客网</p>
+<p>4.MySQL聚簇索引和非 聚簇索引的区别。<br>5. MySQL的隔离级别，可重复读是怎么实现的？  答：MVCC机制。<br>6. JVM栈和堆内存有什么区别？<br>7.内存泄漏是怎么回事？什么情况会引起 内存泄漏？<br>8.讲一下Java内存回收机制。<br>9. HTTP常用的状态码有哪些？<br>10.除了TCP、UDP、HTTP，你还知道哪些网络协议？<br>K 个一组翻转链表 。<br>作者：Nakagami<br>链接：<a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/628912">https://www.nowcoder.com/discuss/628912</a><br>来源：牛客网</p>
+<p>在new子类的时候会调用父类的构造方法吗？<br>java int类型的赋值是不是原子性操作？重新赋值是否为原子性操作？<br>基本数据类型大小？<br>Hashmap相关/重写了hash算法后，hashmap是否能使用？/一个存储在map中的对象发生了改变，map中会有什么操作？/ConcurrentHashMap？<br>Cyclicbarrier、CountDownLatch、Semaphore了解吗？<br>死锁，哲学家吃饭问题怎么解决？死锁发生的条件<br>Https了解吗？<br>非对称加密算法？用了哪一个数学上的理论？<br>TCP、UDP<br>DNS聊一下<br>QUIC协议了解吗？ 。。不了解😥<br>GC相关算法 漏了一个分代收集。。随口说了个可达性分析<br>合并k个已排序的链表</p>
+<ol>
+<li>现在要你来设计一个你们学校的论坛帖子列表的存储表，你要怎么设计？写个sql查询一下第二页的第二条记录怎么写？</li>
+</ol>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/data/README.md" rel="noopener" target="_blank">
+      Edit this on GitHub!
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+      appId: 'BH4D9OD16A',
+      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
+      indexName: 'vuejs',
+      inputSelector: selector,
+      algoliaOptions: { facetFilters: ["version:" + version] },
+      autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+    </script>
+  </body>
+</html>
